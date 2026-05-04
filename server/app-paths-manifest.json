@@ -1,0 +1,20 @@
+{
+  "/(marketing)/kontakt/page": "app/(marketing)/kontakt/page.js",
+  "/(marketing)/page": "app/(marketing)/page.js",
+  "/(marketing)/reference/page": "app/(marketing)/reference/page.js",
+  "/(marketing)/storitve/page": "app/(marketing)/storitve/page.js",
+  "/(marketing)/vzdrzevalni-paketi/page": "app/(marketing)/vzdrzevalni-paketi/page.js",
+  "/_not-found/page": "app/_not-found/page.js",
+  "/favicon.ico/route": "app/favicon.ico/route.js",
+  "/portal/cas/page": "app/portal/cas/page.js",
+  "/portal/inventar/page": "app/portal/inventar/page.js",
+  "/portal/obvestila/page": "app/portal/obvestila/page.js",
+  "/portal/opomniki/page": "app/portal/opomniki/page.js",
+  "/portal/orodja/page": "app/portal/orodja/page.js",
+  "/portal/page": "app/portal/page.js",
+  "/portal/ponudbe/page": "app/portal/ponudbe/page.js",
+  "/portal/stranke/[id]/page": "app/portal/stranke/[id]/page.js",
+  "/portal/stranke/page": "app/portal/stranke/page.js",
+  "/sign-in/[[...sign-in]]/page": "app/sign-in/[[...sign-in]]/page.js",
+  "/sign-up/[[...sign-up]]/page": "app/sign-up/[[...sign-up]]/page.js"
+}

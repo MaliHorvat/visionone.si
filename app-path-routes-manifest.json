@@ -1,0 +1,20 @@
+{
+  "/(marketing)/kontakt/page": "/kontakt",
+  "/(marketing)/page": "/",
+  "/(marketing)/reference/page": "/reference",
+  "/(marketing)/storitve/page": "/storitve",
+  "/(marketing)/vzdrzevalni-paketi/page": "/vzdrzevalni-paketi",
+  "/_not-found/page": "/_not-found",
+  "/favicon.ico/route": "/favicon.ico",
+  "/portal/cas/page": "/portal/cas",
+  "/portal/inventar/page": "/portal/inventar",
+  "/portal/obvestila/page": "/portal/obvestila",
+  "/portal/opomniki/page": "/portal/opomniki",
+  "/portal/orodja/page": "/portal/orodja",
+  "/portal/page": "/portal",
+  "/portal/ponudbe/page": "/portal/ponudbe",
+  "/portal/stranke/[id]/page": "/portal/stranke/[id]",
+  "/portal/stranke/page": "/portal/stranke",
+  "/sign-in/[[...sign-in]]/page": "/sign-in/[[...sign-in]]",
+  "/sign-up/[[...sign-up]]/page": "/sign-up/[[...sign-up]]"
+}
