@@ -1,3 +1,0 @@
-module.exports=[39e3,a=>{"use strict";a.s(["AdminGate",()=>d]);var b=a.i(87924),c=a.i(83650);function d({children:a}){let{role:d}=(0,c.usePortalRole)();return"client"===d?(0,b.jsxs)("div",{className:"rounded-xl border border-[var(--vo-border)] bg-[var(--vo-surface)] p-8 text-center shadow-[var(--vo-card-shadow)]",children:[(0,b.jsx)("p",{className:"font-medium text-[var(--vo-fg)]",children:"Ta modul je na voljo le administratorjem."}),(0,b.jsx)("p",{className:"mt-2 text-sm text-[var(--vo-muted)]",children:"Preklopi pogled na »Admin« v glavi portala za dostop."})]}):(0,b.jsx)(b.Fragment,{children:a})}}];
-
-//# sourceMappingURL=src_components_portal_AdminGate_tsx_3da71eef._.js.map
