@@ -2,7 +2,6 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { UserButton } from "@clerk/nextjs";
 import {
   Bell,
   Boxes,
@@ -40,7 +39,7 @@ const navItems: NavItem[] = [
 
 export function PortalShell({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
-  const { role, setRole } = usePortalRole();
+  const { role } = usePortalRole();
 
   const visible = navItems.filter((item) => {
     if (item.label === "Moj objekt") return role === "client";
@@ -98,32 +97,15 @@ export function PortalShell({ children }: { children: React.ReactNode }) {
             </div>
           </div>
           <div className="flex items-center gap-2">
-            <div className="hidden rounded-lg border border-[var(--vo-border)] p-0.5 sm:flex">
-              <button
-                type="button"
-                onClick={() => setRole("admin")}
-                className={`rounded-md px-2 py-1 text-xs font-medium ${
-                  role === "admin"
-                    ? "bg-[var(--vo-accent-muted)] text-[var(--vo-accent)]"
-                    : "text-[var(--vo-muted)]"
-                }`}
-              >
-                Admin
-              </button>
-              <button
-                type="button"
-                onClick={() => setRole("client")}
-                className={`rounded-md px-2 py-1 text-xs font-medium ${
-                  role === "client"
-                    ? "bg-[var(--vo-accent-muted)] text-[var(--vo-accent)]"
-                    : "text-[var(--vo-muted)]"
-                }`}
-              >
-                Stranka
-              </button>
-            </div>
             <ThemeToggle />
-            <UserButton />
+            <form action="/api/portal-logout" method="post">
+              <button
+                type="submit"
+                className="rounded-lg border border-[var(--vo-border)] px-2.5 py-1.5 text-xs font-medium text-[var(--vo-muted)] hover:bg-[var(--vo-surface-2)] hover:text-[var(--vo-fg)]"
+              >
+                Odjava
+              </button>
+            </form>
           </div>
         </header>
 

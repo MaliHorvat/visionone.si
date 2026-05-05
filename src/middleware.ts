@@ -1,6 +1,22 @@
-import { clerkMiddleware } from "@clerk/nextjs/server";
+import { NextResponse } from "next/server";
+import type { NextRequest } from "next/server";
+import { isPortalSessionValid, PORTAL_SESSION_COOKIE } from "@/lib/portal-auth";
 
-export default clerkMiddleware();
+export default function middleware(request: NextRequest) {
+  const { pathname } = request.nextUrl;
+  const sessionCookie = request.cookies.get(PORTAL_SESSION_COOKIE)?.value;
+  const isLoggedIn = isPortalSessionValid(sessionCookie);
+
+  if (pathname.startsWith("/portal") && !isLoggedIn) {
+    return NextResponse.redirect(new URL("/portal-login", request.url));
+  }
+
+  if (pathname === "/portal-login" && isLoggedIn) {
+    return NextResponse.redirect(new URL("/portal", request.url));
+  }
+
+  return NextResponse.next();
+}
 
 export const config = {
   matcher: [
