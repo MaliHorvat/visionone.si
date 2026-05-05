@@ -17,6 +17,7 @@ export function PaketiView({ packages, dbConfigured }: Props) {
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [editingId, setEditingId] = useState<string | null>(null);
+  const [notice, setNotice] = useState<string | null>(null);
 
   async function handleCreate(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -39,6 +40,7 @@ export function PaketiView({ packages, dbConfigured }: Props) {
       setError(data?.error ?? "Napaka pri ustvarjanju paketa.");
       return;
     }
+    setNotice("Paket je uspešno ustvarjen.");
     setShowForm(false);
     router.refresh();
   }
@@ -58,9 +60,10 @@ export function PaketiView({ packages, dbConfigured }: Props) {
     });
     if (!res.ok) {
       const data = await res.json().catch(() => ({}));
-      alert(data?.error ?? "Napaka pri urejanju.");
+      setNotice(data?.error ?? "Napaka pri urejanju.");
       return;
     }
+    setNotice("Paket je uspešno posodobljen.");
     setEditingId(null);
     router.refresh();
   }
@@ -70,9 +73,10 @@ export function PaketiView({ packages, dbConfigured }: Props) {
     const res = await fetch(`/api/packages/${id}`, { method: "DELETE" });
     if (!res.ok) {
       const data = await res.json().catch(() => ({}));
-      alert(data?.error ?? "Napaka pri brisanju.");
+      setNotice(data?.error ?? "Napaka pri brisanju.");
       return;
     }
+    setNotice("Paket je uspešno izbrisan.");
     router.refresh();
   }
 
@@ -101,6 +105,12 @@ export function PaketiView({ packages, dbConfigured }: Props) {
       {!dbConfigured ? (
         <div className="rounded-xl border border-amber-300 bg-amber-50 px-4 py-3 text-sm text-amber-800">
           Baza ni nastavljena. Prikazani so demo paketi.
+        </div>
+      ) : null}
+
+      {notice ? (
+        <div className="rounded-xl border border-[var(--vo-ok-muted)] bg-[var(--vo-ok-muted)] px-4 py-3 text-sm text-[var(--vo-ok)]">
+          {notice}
         </div>
       ) : null}
 

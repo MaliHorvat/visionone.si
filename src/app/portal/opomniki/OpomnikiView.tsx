@@ -25,6 +25,7 @@ export function OpomnikiView({ reminders, clients, dbConfigured }: Props) {
   const [showForm, setShowForm] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [notice, setNotice] = useState<string | null>(null);
 
   const rows =
     role === "client"
@@ -53,6 +54,7 @@ export function OpomnikiView({ reminders, clients, dbConfigured }: Props) {
       setError(data?.error ?? "Napaka pri ustvarjanju opomnika.");
       return;
     }
+    setNotice("Opomnik je uspešno shranjen.");
     setShowForm(false);
     router.refresh();
   }
@@ -65,9 +67,10 @@ export function OpomnikiView({ reminders, clients, dbConfigured }: Props) {
     });
     if (!res.ok) {
       const data = await res.json().catch(() => ({}));
-      alert(data?.error ?? "Napaka pri posodobitvi.");
+      setNotice(data?.error ?? "Napaka pri posodobitvi.");
       return;
     }
+    setNotice("Status opomnika je posodobljen.");
     router.refresh();
   }
 
@@ -76,9 +79,10 @@ export function OpomnikiView({ reminders, clients, dbConfigured }: Props) {
     const res = await fetch(`/api/reminders/${id}`, { method: "DELETE" });
     if (!res.ok) {
       const data = await res.json().catch(() => ({}));
-      alert(data?.error ?? "Napaka pri brisanju.");
+      setNotice(data?.error ?? "Napaka pri brisanju.");
       return;
     }
+    setNotice("Opomnik je uspešno izbrisan.");
     router.refresh();
   }
 
@@ -105,6 +109,12 @@ export function OpomnikiView({ reminders, clients, dbConfigured }: Props) {
       {!dbConfigured ? (
         <div className="rounded-xl border border-amber-300 bg-amber-50 px-4 py-3 text-sm text-amber-800">
           Baza ni nastavljena. Prikazani so demo opomniki.
+        </div>
+      ) : null}
+
+      {notice ? (
+        <div className="rounded-xl border border-[var(--vo-ok-muted)] bg-[var(--vo-ok-muted)] px-4 py-3 text-sm text-[var(--vo-ok)]">
+          {notice}
         </div>
       ) : null}
 

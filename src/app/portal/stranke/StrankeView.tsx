@@ -19,6 +19,7 @@ export function StrankeView({ clients, packages, dbConfigured }: Props) {
   const [showForm, setShowForm] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [notice, setNotice] = useState<string | null>(null);
 
   useEffect(() => {
     if (role === "client") {
@@ -53,6 +54,7 @@ export function StrankeView({ clients, packages, dbConfigured }: Props) {
       setError(data?.error ?? "Napaka pri ustvarjanju stranke.");
       return;
     }
+    setNotice("Stranka je uspešno shranjena.");
     setShowForm(false);
     router.refresh();
   }
@@ -62,9 +64,10 @@ export function StrankeView({ clients, packages, dbConfigured }: Props) {
     const res = await fetch(`/api/clients/${id}`, { method: "DELETE" });
     if (!res.ok) {
       const data = await res.json().catch(() => ({}));
-      alert(data?.error ?? "Napaka pri brisanju.");
+      setNotice(data?.error ?? "Napaka pri brisanju.");
       return;
     }
+    setNotice("Stranka je uspešno izbrisana.");
     router.refresh();
   }
 
@@ -91,6 +94,12 @@ export function StrankeView({ clients, packages, dbConfigured }: Props) {
           Baza ni nastavljena. Nastavite <code>DATABASE_URL</code> v Vercelu in poženite{" "}
           <code>npm run db:push</code>. Trenutno so prikazani demo podatki in dodajanje/brisanje ne bo
           delovalo.
+        </div>
+      ) : null}
+
+      {notice ? (
+        <div className="rounded-xl border border-[var(--vo-ok-muted)] bg-[var(--vo-ok-muted)] px-4 py-3 text-sm text-[var(--vo-ok)]">
+          {notice}
         </div>
       ) : null}
 
