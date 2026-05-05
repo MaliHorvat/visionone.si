@@ -6,12 +6,14 @@ export default function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
   const sessionCookie = request.cookies.get(PORTAL_SESSION_COOKIE)?.value;
   const isLoggedIn = isPortalSessionValid(sessionCookie);
+  const isPortalLoginRoute = pathname === "/portal-login";
+  const isPortalRoute = pathname === "/portal" || pathname.startsWith("/portal/");
 
-  if (pathname.startsWith("/portal") && !isLoggedIn) {
+  if (isPortalRoute && !isLoggedIn) {
     return NextResponse.redirect(new URL("/portal-login", request.url));
   }
 
-  if (pathname === "/portal-login" && isLoggedIn) {
+  if (isPortalLoginRoute && isLoggedIn) {
     return NextResponse.redirect(new URL("/portal", request.url));
   }
 
