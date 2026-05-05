@@ -11,6 +11,7 @@ import {
   FileText,
   LayoutDashboard,
   Network,
+  Package,
   Users,
   Wrench,
 } from "lucide-react";
@@ -30,6 +31,7 @@ const navItems: NavItem[] = [
     adminOnly: false,
   },
   { href: "/portal/orodja", label: "Orodja in diagnostika", icon: Wrench },
+  { href: "/portal/paketi", label: "Paketi", icon: Package, adminOnly: true },
   { href: "/portal/ponudbe", label: "Ponudbe", icon: FileText, adminOnly: true },
   { href: "/portal/inventar", label: "Inventar", icon: Boxes, adminOnly: true },
   { href: "/portal/opomniki", label: "Opomniki", icon: CalendarClock },
@@ -78,7 +80,7 @@ export function PortalShell({ children }: { children: React.ReactNode }) {
             })}
         </nav>
         <div className="border-t border-[var(--vo-border)] p-3 text-xs text-[var(--vo-muted)]">
-          Mock podatki — zamenjaj z klici na Go API.
+          VisionOne portal · Faza 1
         </div>
       </aside>
 

@@ -1,8 +1,15 @@
-/** Tipi za kasnejšo povezavo z Go API — UI naj uporablja te strukture. */
+/** Domenski tipi za VisionOne portal. Usklajeno z app.go strukturami. */
 
 export type DeviceStatus = "online" | "offline" | "alarm";
+export type ClientHealth = "ok" | "alarm";
+export type DiskHealth = "ok" | "warn" | "fail";
 
-export type SubscriptionTier = "osnovni" | "napredni" | "proaktivni";
+export interface SubscriptionPackageDto {
+  id: string;
+  name: string;
+  price: number;
+  description: string;
+}
 
 export interface ClientSummary {
   id: string;
@@ -10,9 +17,8 @@ export interface ClientSummary {
   address: string;
   contact: string;
   email: string;
-  package: SubscriptionTier;
-  /** Zelena / rdeča za celotno stranko (agregat naprav) */
-  health: "ok" | "alarm";
+  package: SubscriptionPackageDto | null;
+  health: ClientHealth;
 }
 
 export interface CameraDevice {
@@ -46,7 +52,7 @@ export interface DiskEntry {
   label: string;
   sizeTb: number;
   installedAt: string;
-  health: "ok" | "warn" | "fail";
+  health: DiskHealth;
 }
 
 export interface ClientDetail extends ClientSummary {
@@ -110,13 +116,16 @@ export interface InventoryItem {
   unit: string;
 }
 
+export type ReminderKind = "ciscenje_kamer" | "diski" | "servis" | "drugo";
+
 export interface MaintenanceReminder {
   id: string;
   clientId: string;
   clientName: string;
   title: string;
   dueDate: string;
-  kind: "ciscenje_kamer" | "diski" | "servis" | "drugo";
+  kind: ReminderKind;
+  completed: boolean;
 }
 
 export interface TimeLogEntry {

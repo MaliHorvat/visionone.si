@@ -4,14 +4,19 @@
   "private": true,
   "scripts": {
     "dev": "next dev --turbopack",
-    "build": "next build",
+    "build": "prisma generate && next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "postinstall": "prisma generate",
+    "db:push": "prisma db push",
+    "db:seed": "node --import tsx prisma/seed.ts"
   },
   "dependencies": {
     "@clerk/nextjs": "^7.3.0",
+    "@prisma/client": "^6.19.3",
     "lucide-react": "^1.14.0",
     "next": "15.5.15",
+    "prisma": "^6.19.3",
     "react": "^19.2.3",
     "react-dom": "^19.2.3"
   },
@@ -24,6 +29,7 @@
     "eslint": "^9",
     "eslint-config-next": "15.5.15",
     "tailwindcss": "^4",
+    "tsx": "^4.21.0",
     "typescript": "^5"
   }
 }

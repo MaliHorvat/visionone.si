@@ -5,6 +5,7 @@ import type {
   MaintenanceReminder,
   OfferLine,
   SiteTrafficLight,
+  SubscriptionPackageDto,
   SystemEvent,
   TimeLogEntry,
   TopologyEdge,
@@ -77,6 +78,12 @@ export const mockSystemEvents: SystemEvent[] = [
   },
 ];
 
+export const mockPackages: SubscriptionPackageDto[] = [
+  { id: "pkg-osnovni", name: "Osnovni", price: 29, description: "Temeljni paket vzdrževanja." },
+  { id: "pkg-napredni", name: "Napredni", price: 59, description: "Razširjeno spremljanje + hitri odziv." },
+  { id: "pkg-proaktivni", name: "Proaktivni", price: 99, description: "24/7 proaktivna podpora in SLA." },
+];
+
 const baseClients: ClientDetail[] = [
   {
     id: "c1",
@@ -84,43 +91,17 @@ const baseClients: ClientDetail[] = [
     address: "Industrijska cesta 14, 4000 Kranj",
     contact: "Janez Novak",
     email: "j.novak@logistika-kranj.si",
-    package: "napredni",
+    package: mockPackages[1],
     health: "ok",
     cameras: [
-      {
-        id: "cam1",
-        name: "Vhod sever",
-        ip: "10.20.1.50",
-        model: "Axis P3265",
-        status: "online",
-      },
-      {
-        id: "cam2",
-        name: "Rampni prostor",
-        ip: "10.20.1.51",
-        model: "Hikvision DS-2CD2xxx",
-        status: "online",
-      },
+      { id: "cam1", name: "Vhod sever", ip: "10.20.1.50", model: "Axis P3265", status: "online" },
+      { id: "cam2", name: "Rampni prostor", ip: "10.20.1.51", model: "Hikvision DS-2CD2xxx", status: "online" },
     ],
     nvrs: [
-      {
-        id: "nvr1",
-        name: "NVR glavni",
-        ip: "10.20.1.10",
-        model: "Hikvision 7732",
-        status: "online",
-        diskTb: 48,
-      },
+      { id: "nvr1", name: "NVR glavni", ip: "10.20.1.10", model: "Hikvision 7732", status: "online", diskTb: 48 },
     ],
     switches: [
-      {
-        id: "sw1",
-        name: "Switch skladišče",
-        ip: "10.20.1.2",
-        model: "UniFi US-24",
-        status: "online",
-        ports: 24,
-      },
+      { id: "sw1", name: "Switch skladišče", ip: "10.20.1.2", model: "UniFi US-24", status: "online", ports: 24 },
     ],
     disks: [
       { id: "d1", label: "SATA RAID1", sizeTb: 24, installedAt: "2024-03-01", health: "ok" },
@@ -133,43 +114,17 @@ const baseClients: ClientDetail[] = [
     address: "Trgovski center 3, 2000 Maribor",
     contact: "Ana Kovač",
     email: "ana.kovac@retailpark.si",
-    package: "proaktivni",
+    package: mockPackages[2],
     health: "alarm",
     cameras: [
-      {
-        id: "cam10",
-        name: "Vhod zahod",
-        ip: "10.50.2.18",
-        model: "Dahua IPC-HFW",
-        status: "offline",
-      },
-      {
-        id: "cam11",
-        name: "Parking",
-        ip: "10.50.2.19",
-        model: "Dahua IPC-HFW",
-        status: "online",
-      },
+      { id: "cam10", name: "Vhod zahod", ip: "10.50.2.18", model: "Dahua IPC-HFW", status: "offline" },
+      { id: "cam11", name: "Parking", ip: "10.50.2.19", model: "Dahua IPC-HFW", status: "online" },
     ],
     nvrs: [
-      {
-        id: "nvr2",
-        name: "NVR retail",
-        ip: "10.50.2.5",
-        model: "Dahua NVR5xxx",
-        status: "online",
-        diskTb: 32,
-      },
+      { id: "nvr2", name: "NVR retail", ip: "10.50.2.5", model: "Dahua NVR5xxx", status: "online", diskTb: 32 },
     ],
     switches: [
-      {
-        id: "sw2",
-        name: "PoE switch L2",
-        ip: "10.50.2.1",
-        model: "TP-Link SG3428",
-        status: "online",
-        ports: 28,
-      },
+      { id: "sw2", name: "PoE switch L2", ip: "10.50.2.1", model: "TP-Link SG3428", status: "online", ports: 28 },
     ],
     disks: [
       { id: "d3", label: "Disk 1", sizeTb: 8, installedAt: "2025-01-10", health: "ok" },
@@ -182,36 +137,16 @@ const baseClients: ClientDetail[] = [
     address: "Celovška 100, 1000 Ljubljana",
     contact: "Upravnik",
     email: "uprava@stanovanja.si",
-    package: "osnovni",
+    package: mockPackages[0],
     health: "ok",
     cameras: [
-      {
-        id: "cam20",
-        name: "Dvigalo A",
-        ip: "192.168.88.40",
-        model: "Ubiquiti G4",
-        status: "online",
-      },
+      { id: "cam20", name: "Dvigalo A", ip: "192.168.88.40", model: "Ubiquiti G4", status: "online" },
     ],
     nvrs: [
-      {
-        id: "nvr3",
-        name: "NVR CloudKey",
-        ip: "192.168.88.1",
-        model: "UniFi CK+",
-        status: "online",
-        diskTb: 8,
-      },
+      { id: "nvr3", name: "NVR CloudKey", ip: "192.168.88.1", model: "UniFi CK+", status: "online", diskTb: 8 },
     ],
     switches: [
-      {
-        id: "sw3",
-        name: "Mini switch",
-        ip: "192.168.88.2",
-        model: "UniFi Flex",
-        status: "online",
-        ports: 5,
-      },
+      { id: "sw3", name: "Mini switch", ip: "192.168.88.2", model: "UniFi Flex", status: "online", ports: 5 },
     ],
     disks: [{ id: "d5", label: "SSD", sizeTb: 8, installedAt: "2023-11-20", health: "ok" }],
   },
@@ -258,30 +193,9 @@ export const mockRackUnits: RackUnit[] = [
 ];
 
 export const mockOfferLines: OfferLine[] = [
-  {
-    id: "l1",
-    code: "CAM-AXIS",
-    description: "Montaža kamere Axis P32 + kabliranje",
-    qty: 4,
-    unitPrice: 420,
-    discountPct: 0,
-  },
-  {
-    id: "l2",
-    code: "NVR-HIK",
-    description: "NVR 32 kanala + konfiguracija",
-    qty: 1,
-    unitPrice: 1850,
-    discountPct: 5,
-  },
-  {
-    id: "l3",
-    code: "SW-POE",
-    description: "Stikalo 24p PoE",
-    qty: 2,
-    unitPrice: 680,
-    discountPct: 0,
-  },
+  { id: "l1", code: "CAM-AXIS", description: "Montaža kamere Axis P32 + kabliranje", qty: 4, unitPrice: 420, discountPct: 0 },
+  { id: "l2", code: "NVR-HIK", description: "NVR 32 kanala + konfiguracija", qty: 1, unitPrice: 1850, discountPct: 5 },
+  { id: "l3", code: "SW-POE", description: "Stikalo 24p PoE", qty: 2, unitPrice: 680, discountPct: 0 },
 ];
 
 export const mockInventory: InventoryItem[] = [
@@ -299,6 +213,7 @@ export const mockReminders: MaintenanceReminder[] = [
     title: "Čiščenje objektivov kamer (vhod)",
     dueDate: "2026-05-12",
     kind: "ciscenje_kamer",
+    completed: false,
   },
   {
     id: "r2",
@@ -307,6 +222,7 @@ export const mockReminders: MaintenanceReminder[] = [
     title: "Preveritev diskov NVR + SMART",
     dueDate: "2026-05-18",
     kind: "diski",
+    completed: false,
   },
   {
     id: "r3",
@@ -315,6 +231,7 @@ export const mockReminders: MaintenanceReminder[] = [
     title: "Letni servis domofona",
     dueDate: "2026-06-02",
     kind: "servis",
+    completed: false,
   },
 ];
 
