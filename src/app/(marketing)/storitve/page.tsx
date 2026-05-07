@@ -11,7 +11,7 @@ export default function StoritvePage() {
       <h1 className="text-3xl font-bold text-[var(--vo-fg)]">Storitve</h1>
       <p className="mt-3 max-w-2xl text-[var(--vo-muted)]">
         Celovita podpora pri varnostnih in komunikacijskih sistemih — od načrta do rednega
-        vzdrževanja.
+        vzdrževanja in proaktivnega nadzora v portalu.
       </p>
 
       <div className="mt-12 space-y-10">
@@ -22,7 +22,7 @@ export default function StoritvePage() {
             <p className="mt-2 text-[var(--vo-muted)]">
               Montaža kamer (notranje/zunanje), kabliranje, konfiguracija snemanja in dostopa,
               integracija z NVR ali oblakovnimi storitvami. Vzdrževalni obiski, čiščenje objektivov,
-              posodobitve firmware in nadzor kapacitet diskov.
+              posodobitve firmware, ping watchdog in nadzor kapacitet diskov.
             </p>
           </div>
         </section>
@@ -45,7 +45,7 @@ export default function StoritvePage() {
             <p className="mt-2 text-[var(--vo-muted)]">
               Postavitev LAN in Wi‑Fi, stikala in routerji, VLAN in segmentacija za kamere.
               Diagnostika izpadov, interferenc in težav z internetom pri ponudniku — z jasnimi
-              poročili za odločanje.
+              poročili za odločanje, vključno z live statusom switchov in snemalnikov.
             </p>
           </div>
         </section>

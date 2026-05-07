@@ -8,9 +8,14 @@ export const metadata: Metadata = {
 const paketi = [
   {
     name: "Osnovni",
-    desc: "Redni letni pregled in remote podpora v delovnem času.",
+    desc: "Redni pregled in remote podpora v delovnem času.",
     price: "od 39 € / mesec",
-    feats: ["Letni terenski obisk", "Posodobitve firmware (dogovor)", "E-poštna podpora"],
+    feats: [
+      "Letni terenski obisk",
+      "Posodobitve firmware (dogovor)",
+      "E-poštna podpora",
+      "Osnovni portalni dostop",
+    ],
   },
   {
     name: "Napredni",
@@ -21,6 +26,7 @@ const paketi = [
       "Mesečni oddaljeni pregled",
       "Prioritetni klici",
       "Poročila o diskih in kamerah",
+      "Disk semafor (2+ leti opozorilo, 3+ leti kritično)",
     ],
     highlight: true,
   },
@@ -33,6 +39,7 @@ const paketi = [
       "Telegram / obvestila",
       "Intervencijski čas po SLA",
       "Portal za status objektov",
+      "Zero-touch agent onboarding",
     ],
   },
 ];
