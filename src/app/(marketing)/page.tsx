@@ -49,6 +49,19 @@ export default function HomePage() {
       </section>
 
       <section className="mx-auto max-w-6xl px-4 py-16 md:px-6">
+        <div className="grid gap-3 sm:grid-cols-3">
+          {[
+            { k: "100+", v: "Aktivnih objektov v nadzoru" },
+            { k: "24/7", v: "Spremljanje dosegljivosti" },
+            { k: "< 15 min", v: "Povprečen prvi odziv (SLA)" },
+          ].map((x) => (
+            <div key={x.v} className="rounded-xl border border-[var(--vo-border)] bg-[var(--vo-surface)] px-4 py-3">
+              <p className="text-xl font-bold text-[var(--vo-fg)]">{x.k}</p>
+              <p className="text-xs text-[var(--vo-muted)]">{x.v}</p>
+            </div>
+          ))}
+        </div>
+
         <h2 className="text-center text-2xl font-bold text-[var(--vo-fg)]">Zakaj VisionOne portal</h2>
         <p className="mx-auto mt-2 max-w-xl text-center text-[var(--vo-muted)]">
           Rešitev temelji na realnih terenskih potrebah: hiter pregled, jasni alarmi in manj ročnega

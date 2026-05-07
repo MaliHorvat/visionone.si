@@ -55,6 +55,12 @@ export function PublicNav() {
         </nav>
 
         <div className="flex items-center gap-2">
+          <Link
+            href="/kontakt#ponudba"
+            className="hidden rounded-lg border border-[var(--vo-border)] bg-[var(--vo-surface-2)] px-3 py-2 text-sm font-semibold text-[var(--vo-fg)] hover:bg-[var(--vo-surface)] lg:inline-flex"
+          >
+            Brezplačen ogled
+          </Link>
           <ThemeToggle className="hidden sm:inline-flex" />
           {isSignedIn ? (
             <>

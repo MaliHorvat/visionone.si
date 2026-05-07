@@ -21,6 +21,20 @@ export default function ReferencePage() {
         Izbrani projekti — vizualna galerija s placeholderji; kasneje lahko zamenjaš s fotografijami
         iz Go CDN.
       </p>
+      <div className="mt-6 grid gap-3 sm:grid-cols-3">
+        <div className="rounded-xl border border-[var(--vo-border)] bg-[var(--vo-surface)] px-4 py-3">
+          <p className="text-lg font-bold text-[var(--vo-fg)]">99.9%</p>
+          <p className="text-xs text-[var(--vo-muted)]">Dosegljivost kritičnih sistemov</p>
+        </div>
+        <div className="rounded-xl border border-[var(--vo-border)] bg-[var(--vo-surface)] px-4 py-3">
+          <p className="text-lg font-bold text-[var(--vo-fg)]">24/7</p>
+          <p className="text-xs text-[var(--vo-muted)]">Aktivna podpora in monitoring</p>
+        </div>
+        <div className="rounded-xl border border-[var(--vo-border)] bg-[var(--vo-surface)] px-4 py-3">
+          <p className="text-lg font-bold text-[var(--vo-fg)]">SLA</p>
+          <p className="text-xs text-[var(--vo-muted)]">Jasni odzivni časi po paketu</p>
+        </div>
+      </div>
 
       <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
         {ref.map((r, i) => (
