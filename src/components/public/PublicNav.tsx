@@ -24,20 +24,8 @@ export function PublicNav() {
     <header className="sticky top-0 z-50 border-b border-[var(--vo-border)] bg-[var(--vo-surface)]/90 backdrop-blur-md">
       <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-4 py-3 md:px-6">
         <Link href="/" className="flex items-center gap-2 font-semibold tracking-tight">
-          <span className="relative h-10 w-10 shrink-0 overflow-hidden rounded">
-            <img
-              src="/visionone-logo.png"
-              alt="VisionOne znak"
-              className="absolute left-1/2 top-0 h-[185%] max-w-none -translate-x-1/2"
-            />
-          </span>
-          <span className="relative h-7 w-[132px] overflow-hidden">
-            <img
-              src="/visionone-logo.png"
-              alt="VisionOne napis"
-              className="absolute bottom-0 left-1/2 h-[240%] max-w-none -translate-x-1/2"
-            />
-          </span>
+          <img src="/visionone-mark.png" alt="VisionOne znak" className="h-10 w-10 rounded object-contain" />
+          <img src="/visionone-wordmark.png" alt="VisionOne napis" className="h-7 w-auto object-contain" />
         </Link>
 
         <nav className="hidden items-center gap-1 md:flex">
