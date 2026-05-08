@@ -54,9 +54,12 @@ export function PortalShell({ children }: { children: React.ReactNode }) {
     <div className="flex min-h-screen bg-[var(--vo-bg)]">
       <aside className="hidden w-60 shrink-0 flex-col border-r border-[var(--vo-border)] bg-[var(--vo-surface)] md:flex">
         <div className="border-b border-[var(--vo-border)] px-4 py-4">
-          <Link href="/" className="text-sm font-semibold text-[var(--vo-fg)]">
-            Vision<span className="text-[var(--vo-accent)]">One</span>
-            <span className="block text-xs font-normal text-[var(--vo-muted)]">Portal</span>
+          <Link href="/" className="flex items-center gap-2 text-sm font-semibold text-[var(--vo-fg)]">
+            <img src="/visionone-logo.png" alt="VisionOne" className="h-8 w-8 rounded object-contain" />
+            <span>
+              Vision<span className="text-[var(--vo-accent)]">One</span>
+              <span className="block text-xs font-normal text-[var(--vo-muted)]">Portal</span>
+            </span>
           </Link>
         </div>
         <nav className="flex flex-1 flex-col gap-0.5 p-2">
@@ -87,7 +90,7 @@ export function PortalShell({ children }: { children: React.ReactNode }) {
       <div className="flex min-w-0 flex-1 flex-col">
         <header className="flex items-center justify-between gap-3 border-b border-[var(--vo-border)] bg-[var(--vo-surface)] px-4 py-3">
           <div className="flex min-w-0 items-center gap-3">
-            <Network className="h-5 w-5 shrink-0 text-[var(--vo-accent)] md:hidden" aria-hidden />
+            <img src="/visionone-logo.png" alt="VisionOne" className="h-5 w-5 shrink-0 rounded object-contain md:hidden" />
             <div className="min-w-0">
               <p className="truncate text-sm font-semibold text-[var(--vo-fg)]">VisionOne portal</p>
               <p className="truncate text-xs text-[var(--vo-muted)]">

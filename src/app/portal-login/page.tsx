@@ -9,6 +9,9 @@ export default async function PortalLoginPage({ searchParams }: PortalLoginPageP
   return (
     <div className="flex min-h-screen items-center justify-center bg-[var(--vo-bg)] px-4">
       <div className="w-full max-w-md rounded-2xl border border-[var(--vo-border)] bg-[var(--vo-surface)] p-6 shadow-sm">
+        <div className="mb-4 flex justify-center">
+          <img src="/visionone-logo.png" alt="VisionOne" className="h-20 w-20 rounded object-contain" />
+        </div>
         <h1 className="text-xl font-semibold text-[var(--vo-fg)]">Prijava v portal</h1>
         <p className="mt-1 text-sm text-[var(--vo-muted)]">Dostop je trenutno omejen na interne uporabnike.</p>
 

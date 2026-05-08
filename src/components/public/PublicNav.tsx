@@ -24,12 +24,7 @@ export function PublicNav() {
     <header className="sticky top-0 z-50 border-b border-[var(--vo-border)] bg-[var(--vo-surface)]/90 backdrop-blur-md">
       <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-4 py-3 md:px-6">
         <Link href="/" className="flex items-center gap-2 font-semibold tracking-tight">
-          <span
-            className="flex h-9 w-9 items-center justify-center rounded-lg bg-[var(--vo-accent-muted)] text-[var(--vo-accent)]"
-            aria-hidden
-          >
-            V1
-          </span>
+          <img src="/visionone-logo.png" alt="VisionOne" className="h-9 w-9 rounded object-contain" />
           <span className="text-lg text-[var(--vo-fg)]">
             Vision<span className="text-[var(--vo-accent)]">One</span>
           </span>
