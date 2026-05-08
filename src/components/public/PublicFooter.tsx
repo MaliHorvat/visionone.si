@@ -6,9 +6,19 @@ export function PublicFooter() {
       <div className="mx-auto flex max-w-6xl flex-col gap-8 px-4 md:flex-row md:justify-between md:px-6">
         <div>
           <div className="flex items-center gap-2 text-lg font-semibold text-[var(--vo-fg)]">
-            <img src="/visionone-logo.png" alt="VisionOne" className="h-8 w-8 rounded object-contain" />
-            <span>
-              Vision<span className="text-[var(--vo-accent)]">One</span>
+            <span className="relative h-8 w-8 shrink-0 overflow-hidden rounded">
+              <img
+                src="/visionone-logo.png"
+                alt="VisionOne znak"
+                className="absolute left-1/2 top-0 h-[185%] max-w-none -translate-x-1/2"
+              />
+            </span>
+            <span className="relative h-6 w-[124px] overflow-hidden">
+              <img
+                src="/visionone-logo.png"
+                alt="VisionOne napis"
+                className="absolute bottom-0 left-1/2 h-[240%] max-w-none -translate-x-1/2"
+              />
             </span>
           </div>
           <p className="mt-2 max-w-sm text-sm text-[var(--vo-muted)]">
