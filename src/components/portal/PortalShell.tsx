@@ -10,12 +10,11 @@ import {
   ClipboardList,
   FileText,
   LayoutDashboard,
-  Network,
   Package,
   Users,
   Wrench,
 } from "lucide-react";
-import { ThemeToggle } from "@/components/theme/ThemeToggle";
+import { PortalForceLightDocument } from "@/components/portal/PortalForceLightDocument";
 import { usePortalRole } from "@/context/PortalRoleContext";
 import { mockClientPortalClientId } from "@/lib/mock-data";
 
@@ -52,6 +51,7 @@ export function PortalShell({ children }: { children: React.ReactNode }) {
 
   return (
     <div className="flex min-h-screen bg-[var(--vo-bg)]">
+      <PortalForceLightDocument />
       <aside className="hidden w-60 shrink-0 flex-col border-r border-[var(--vo-border)] bg-[var(--vo-surface)] md:flex">
         <div className="border-b border-[var(--vo-border)] px-4 py-4">
           <Link href="/" className="flex items-center gap-2 text-sm font-semibold text-[var(--vo-fg)]">
@@ -105,7 +105,6 @@ export function PortalShell({ children }: { children: React.ReactNode }) {
             </div>
           </div>
           <div className="flex items-center gap-2">
-            <ThemeToggle />
             <form action="/api/portal-logout" method="post">
               <button
                 type="submit"

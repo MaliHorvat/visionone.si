@@ -84,7 +84,7 @@ export default function HomePage() {
           </h2>
           <p className="mt-4 text-sm leading-relaxed text-[var(--vo-muted)] md:text-base">
             Na terenu izvedemo montažo in zagon videonadzora, brezžičnih in hibridnih alarmnih sistemov, požarne
-            signalizacije (po dogovoru in predpisih), domofonije ter LAN/Wi‑Fi in ojačevalce mobilnega signala.
+            signalizacije (po dogovoru in predpisih), domofonije ter LAN/Wi‑Fi.
             Nudimo dokumentacijo, servis in proaktivno spremljanje — vključno z našim portalom za živ pregled
             kamer, snemalnikov, stikal in diskov.
           </p>

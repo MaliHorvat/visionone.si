@@ -19,11 +19,26 @@ type Ctx = {
 
 const ThemeContext = createContext<Ctx | null>(null);
 
-const STORAGE_KEY = "visionone_theme";
+export const VISIONONE_THEME_STORAGE_KEY = "visionone_theme";
+
+const STORAGE_KEY = VISIONONE_THEME_STORAGE_KEY;
 
 function getSystemDark() {
   if (typeof window === "undefined") return false;
   return window.matchMedia("(prefers-color-scheme: dark)").matches;
+}
+
+/** Po zapuščanju portala (kjer je tema prisilno svetla) obnovi `dark` glede na shranjeno izbiro. */
+export function syncDocumentThemeClassFromStorage() {
+  if (typeof document === "undefined") return;
+  try {
+    const s = localStorage.getItem(STORAGE_KEY) as Theme | null;
+    const t: Theme = s === "light" || s === "dark" || s === "system" ? s : "system";
+    const resolved: "light" | "dark" = t === "system" ? (getSystemDark() ? "dark" : "light") : t;
+    document.documentElement.classList.toggle("dark", resolved === "dark");
+  } catch {
+    /* ignore */
+  }
 }
 
 export function ThemeProvider({ children }: { children: React.ReactNode }) {

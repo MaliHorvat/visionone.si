@@ -1,14 +1,14 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import type { LucideIcon } from "lucide-react";
-import { Bell, DoorOpen, Flame, Radio, Router, Shield, Wifi, Wrench } from "lucide-react";
+import { Bell, DoorOpen, Flame, Router, Shield, Wifi, Wrench } from "lucide-react";
 import { ServiceImageSplit } from "@/components/public/ServiceImageSplit";
 import { MARKETING_IMG_CCTV } from "@/lib/marketing-images";
 
 export const metadata: Metadata = {
   title: "Storitve",
   description:
-    "Montaža in podpora videonadzora, alarmnih in požarnih sistemov, domofonije, omrežij in ojačevalcev signala.",
+    "Montaža in podpora videonadzora, alarmnih in požarnih sistemov, domofonije in omrežij.",
 };
 
 export default function StoritvePage() {
@@ -18,8 +18,8 @@ export default function StoritvePage() {
       <p className="mt-3 max-w-3xl text-base leading-relaxed break-words text-[var(--vo-muted)]">
         Na terenu in na daljavo: od prvega načrta do zagona, dokumentacije in redne podpore. Pokrivamo videonadzor,
         brezžične in hibridne alarmne sisteme, požarno signalizacijo (v okviru veljavnih certifikatov in dogovora),
-        domofonijo, strukturirana omrežja, zasebna omrežja (VPN / segmentacija), ojačevalce mobilnega signala ter
-        ostale montaže in servise, ki jih objekt potrebuje.
+        domofonijo, strukturirana omrežja, zasebna omrežja (VPN / segmentacija) ter ostale montaže in servise, ki jih
+        objekt potrebuje.
       </p>
 
       <div className="mt-12">
@@ -68,11 +68,6 @@ export default function StoritvePage() {
           icon={Wifi}
           title="Wi‑Fi in pokritost"
           text="Načrtovanje pokritosti, montaža access pointov, kanalizacija in izogibanje motnjam. Diagnostika šibkih signalov in predlogi izboljšav."
-        />
-        <ServiceBlock
-          icon={Radio}
-          title="Ojačevalci mobilnega signala"
-          text="Izmera signala, predlog opreme, montaža notranjih/zunanjih anten in zagon ojačevalnika (GSM/4G/5G po možnostih naprave). Usklajevanje z operaterji, kjer je potrebno."
         />
         <ServiceBlock
           icon={Shield}
