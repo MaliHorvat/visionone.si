@@ -169,8 +169,9 @@ function ServiceBlock({
           codeLabel={imageSlot.codeLabel}
           src={imageSlot.src}
           alt={imageSlot.alt}
-          aspectClass="aspect-[5/3] min-h-[140px] max-h-80 sm:max-h-96"
-          fit="contain"
+          aspectClass="aspect-[16/9] min-h-[180px] max-h-72 w-full sm:max-h-80"
+          fit="cover"
+          anchor="top"
         />
       </div>
     </section>

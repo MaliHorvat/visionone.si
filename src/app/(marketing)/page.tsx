@@ -58,7 +58,7 @@ export default function HomePage() {
 
       <section className="mx-auto max-w-6xl px-4 pb-10 pt-12 md:px-6 md:pb-12 md:pt-14">
         {/* SLIKA: MARKETING_IMG_CCTV — marketing-images.ts (velik split levo) */}
-        <ServiceImageSplit imageSrc={MARKETING_IMG_CCTV} imageAlt="Videonadzorna kamera na objektu" imageFit="contain">
+        <ServiceImageSplit imageSrc={MARKETING_IMG_CCTV} imageAlt="Videonadzor, alarmi, domofoni in omrežja na objektu">
           <p className="text-xs font-bold uppercase tracking-[0.2em] text-[var(--vo-accent)]">Celostna skrb za objekt</p>
           <h2 className="mt-3 text-2xl font-bold text-[var(--vo-fg)] md:text-3xl">
             Montaža, zagon, podpora — videonadzor, alarmi, požar, domofoni, omrežja

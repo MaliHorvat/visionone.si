@@ -8,24 +8,14 @@ type Props = {
   children: ReactNode;
   reverse?: boolean;
   priority?: boolean;
-  /** `contain` = celotna slika na sredini (manj odrezavanja). */
-  imageFit?: "cover" | "contain";
 };
 
 /** Vizual + besedilo — za predstavitev terenskih storitev (npr. videonadzor). */
-export function ServiceImageSplit({
-  imageSrc,
-  imageAlt,
-  children,
-  reverse = false,
-  priority = false,
-  imageFit = "cover",
-}: Props) {
-  const imgClass = imageFit === "contain" ? "object-contain object-center" : "object-cover";
+export function ServiceImageSplit({ imageSrc, imageAlt, children, reverse = false, priority = false }: Props) {
   return (
     <div className="grid gap-0 overflow-hidden rounded-2xl border border-[var(--vo-border)] bg-[var(--vo-surface)] shadow-[var(--vo-card-shadow)] md:grid-cols-2">
       <div
-        className={`relative aspect-[16/10] min-h-[200px] w-full bg-[var(--vo-surface-2)] p-2 md:min-h-[280px] md:p-4 ${
+        className={`relative aspect-[16/10] min-h-[220px] w-full min-w-0 bg-[var(--vo-surface-2)] md:min-h-[min(52vh,380px)] ${
           reverse ? "md:order-2" : ""
         }`}
       >
@@ -33,7 +23,7 @@ export function ServiceImageSplit({
           src={imageSrc}
           alt={imageAlt}
           fill
-          className={imgClass}
+          className="object-cover object-top"
           sizes="(max-width: 768px) 100vw, 50vw"
           priority={priority}
         />
