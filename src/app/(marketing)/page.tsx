@@ -9,6 +9,8 @@ import {
   ShieldCheck,
   Video,
 } from "lucide-react";
+import { ServiceImageSplit } from "@/components/public/ServiceImageSplit";
+import { MARKETING_IMG_CCTV } from "@/lib/marketing-images";
 
 export default function HomePage() {
   return (
@@ -39,6 +41,12 @@ export default function HomePage() {
               Pregled storitev
             </Link>
             <Link
+              href="/produkti"
+              className="inline-flex items-center rounded-xl border border-[var(--vo-border)] bg-[var(--vo-surface)] px-6 py-3 text-sm font-semibold text-[var(--vo-fg)] hover:bg-[var(--vo-surface-2)]"
+            >
+              Produkti
+            </Link>
+            <Link
               href="/kontakt"
               className="inline-flex items-center rounded-xl border border-[var(--vo-border)] bg-[var(--vo-surface)] px-6 py-3 text-sm font-semibold text-[var(--vo-fg)] hover:bg-[var(--vo-surface-2)]"
             >
@@ -46,6 +54,29 @@ export default function HomePage() {
             </Link>
           </div>
         </div>
+      </section>
+
+      <section className="mx-auto max-w-6xl px-4 py-16 md:px-6">
+        <ServiceImageSplit imageSrc={MARKETING_IMG_CCTV} imageAlt="Videonadzorna kamera na objektu">
+          <p className="text-xs font-bold uppercase tracking-[0.2em] text-[var(--vo-accent)]">Celostna skrb za objekt</p>
+          <h2 className="mt-3 text-2xl font-bold text-[var(--vo-fg)] md:text-3xl">
+            Montaža, zagon, podpora — videonadzor, alarmi, požar, domofoni, omrežja
+          </h2>
+          <p className="mt-4 text-sm leading-relaxed text-[var(--vo-muted)] md:text-base">
+            Na terenu izvedemo montažo in zagon videonadzora, brezžičnih in hibridnih alarmnih sistemov, požarne
+            signalizacije (po dogovoru in predpisih), domofonije ter LAN/Wi‑Fi in ojačevalce mobilnega signala.
+            Nudimo dokumentacijo, servis in proaktivno spremljanje — vključno z našim portalom za živ pregled
+            kamer, snemalnikov, stikal in diskov.
+          </p>
+          <div className="mt-6 flex flex-wrap gap-4">
+            <Link href="/storitve" className="text-sm font-semibold text-[var(--vo-accent)] hover:underline">
+              Vse storitve →
+            </Link>
+            <Link href="/produkti" className="text-sm font-semibold text-[var(--vo-accent)] hover:underline">
+              Produkti →
+            </Link>
+          </div>
+        </ServiceImageSplit>
       </section>
 
       <section className="mx-auto max-w-6xl px-4 py-16 md:px-6">

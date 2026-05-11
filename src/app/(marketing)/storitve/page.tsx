@@ -1,55 +1,115 @@
 import type { Metadata } from "next";
-import { Router, Video, DoorOpen } from "lucide-react";
+import Link from "next/link";
+import type { LucideIcon } from "lucide-react";
+import { Bell, DoorOpen, Flame, Radio, Router, Shield, Wifi, Wrench } from "lucide-react";
+import { ServiceImageSplit } from "@/components/public/ServiceImageSplit";
+import { MARKETING_IMG_CCTV } from "@/lib/marketing-images";
 
 export const metadata: Metadata = {
   title: "Storitve",
+  description:
+    "Montaža in podpora videonadzora, alarmnih in požarnih sistemov, domofonije, omrežij in ojačevalcev signala.",
 };
 
 export default function StoritvePage() {
   return (
     <div className="mx-auto max-w-6xl px-4 py-14 md:px-6">
       <h1 className="text-3xl font-bold text-[var(--vo-fg)]">Storitve</h1>
-      <p className="mt-3 max-w-2xl text-[var(--vo-muted)]">
-        Celovita podpora pri varnostnih in komunikacijskih sistemih — od načrta do rednega
-        vzdrževanja in proaktivnega nadzora v portalu.
+      <p className="mt-3 max-w-3xl text-[var(--vo-muted)]">
+        Na terenu in na daljavo: od prvega načrta do zagona, dokumentacije in redne podpore. Pokrivamo videonadzor,
+        brezžične in hibridne alarmne sisteme, požarno signalizacijo (v okviru veljavnih certifikatov in dogovora),
+        domofonijo, strukturirana omrežja, zasebna omrežja (VPN / segmentacija), ojačevalce mobilnega signala ter
+        ostale montaže in servise, ki jih objekt potrebuje.
       </p>
 
-      <div className="mt-12 space-y-10">
-        <section className="grid gap-8 rounded-2xl border border-[var(--vo-border)] bg-[var(--vo-surface)] p-8 shadow-[var(--vo-card-shadow)] md:grid-cols-[auto_1fr] md:items-start">
-          <Video className="h-10 w-10 shrink-0 text-[var(--vo-accent)]" aria-hidden />
-          <div>
-            <h2 className="text-xl font-semibold text-[var(--vo-fg)]">Videonadzor</h2>
-            <p className="mt-2 text-[var(--vo-muted)]">
-              Montaža kamer (notranje/zunanje), kabliranje, konfiguracija snemanja in dostopa,
-              integracija z NVR ali oblakovnimi storitvami. Vzdrževalni obiski, čiščenje objektivov,
-              posodobitve firmware, ping watchdog in nadzor kapacitet diskov.
-            </p>
-          </div>
-        </section>
+      <div className="mt-12">
+        <ServiceImageSplit
+          imageSrc={MARKETING_IMG_CCTV}
+          imageAlt="Varnostna kamera na objektu — videonadzor"
+        >
+          <p className="text-xs font-bold uppercase tracking-[0.2em] text-[var(--vo-accent)]">Teren &amp; podpora</p>
+          <h2 className="mt-3 text-2xl font-bold text-[var(--vo-fg)] md:text-3xl">Videonadzor od montaže do 24/7 spremljanja</h2>
+          <p className="mt-4 text-sm leading-relaxed text-[var(--vo-muted)] md:text-base">
+            Montaža in zagon kamer (notranje/zunanje), kabliranje, konfiguracija NVR/DVR in dostopa na daljavo.
+            Vzdrževalni obiski, čiščenje objektivov, firmware, nadgradnje kapacitet in diskov. Ob dogovoru povezava z
+            našim <strong className="text-[var(--vo-fg)]">VisionOne portalom</strong> za živ status naprav in alarmov.
+          </p>
+          <Link
+            href="/produkti"
+            className="mt-6 inline-flex text-sm font-semibold text-[var(--vo-accent)] hover:underline"
+          >
+            Oglej si produkt — VisionOne portal →
+          </Link>
+        </ServiceImageSplit>
+      </div>
 
-        <section className="grid gap-8 rounded-2xl border border-[var(--vo-border)] bg-[var(--vo-surface)] p-8 shadow-[var(--vo-card-shadow)] md:grid-cols-[auto_1fr] md:items-start">
-          <DoorOpen className="h-10 w-10 shrink-0 text-[var(--vo-accent)]" aria-hidden />
-          <div>
-            <h2 className="text-xl font-semibold text-[var(--vo-fg)]">Domofonski sistemi</h2>
-            <p className="mt-2 text-[var(--vo-muted)]">
-              IP domofoni, paneli na vhodih, integracija z elektro omaricami in omrežjem.
-              Konfiguracija klicov, snemanja ob obisku in oddaljenega odklepanja po dogovoru.
-            </p>
-          </div>
-        </section>
+      <div className="mt-16 space-y-8">
+        <ServiceBlock
+          icon={Bell}
+          title="Brezžični in hibridni alarmni sistemi"
+          text="Načrtovanje, montaža senzorjev, central, sirene in zagon. Integracija z obstoječimi vrati/omrežjem, testiranje con in predaja stranki. Servisni posegi in nadgradnje."
+        />
+        <ServiceBlock
+          icon={Flame}
+          title="Požarna signalizacija"
+          text="Projektiranje in izvedba v skladu z veljavnimi predpisi in dogovorjenim obsegom (npr. javni objekti, garaže, skladišča). Vzdrževanje in periodični pregledi po dogovoru."
+        />
+        <ServiceBlock
+          icon={DoorOpen}
+          title="Domofonija"
+          text="IP domofoni, paneli, integracija z elektro omarico in LAN/Wi‑Fi. Konfiguracija klicov, posnetkov ob obisku in oddaljenega odklepanja po dogovoru."
+        />
+        <ServiceBlock
+          icon={Router}
+          title="Omrežne montaže in rešitve"
+          text="Stikala, routerji, strukturirano kabliranje, VLAN in segmentacija (kamere ločeno od pisarniškega omrežja). Zasebna omrežja, VPN za oddaljen dostop in varnostne politike po dogovoru."
+        />
+        <ServiceBlock
+          icon={Wifi}
+          title="Wi‑Fi in pokritost"
+          text="Načrtovanje pokritosti, montaža access pointov, kanalizacija in izogibanje motnjam. Diagnostika šibkih signalov in predlogi izboljšav."
+        />
+        <ServiceBlock
+          icon={Radio}
+          title="Ojačevalci mobilnega signala"
+          text="Izmera signala, predlog opreme, montaža notranjih/zunanjih anten in zagon ojačevalnika (GSM/4G/5G po možnostih naprave). Usklajevanje z operaterji, kjer je potrebno."
+        />
+        <ServiceBlock
+          icon={Shield}
+          title="Podpora in servis"
+          text="Helpdesk, intervencije, nadomestni deli, poročila po obisku. Proaktivno spremljanje prek portala, če imate vključen nadzor."
+        />
+        <ServiceBlock
+          icon={Wrench}
+          title="Ostale montaže"
+          text="Po dogovoru: TV distribucija, dodatna polja v omaricah, označevanje kablov, manjše prilagoditve rackov in podobno — vse z dokumentacijo za kasnejši servis."
+        />
+      </div>
 
-        <section className="grid gap-8 rounded-2xl border border-[var(--vo-border)] bg-[var(--vo-surface)] p-8 shadow-[var(--vo-card-shadow)] md:grid-cols-[auto_1fr] md:items-start">
-          <Router className="h-10 w-10 shrink-0 text-[var(--vo-accent)]" aria-hidden />
-          <div>
-            <h2 className="text-xl font-semibold text-[var(--vo-fg)]">Mrežne rešitve</h2>
-            <p className="mt-2 text-[var(--vo-muted)]">
-              Postavitev LAN in Wi‑Fi, stikala in routerji, VLAN in segmentacija za kamere.
-              Diagnostika izpadov, interferenc in težav z internetom pri ponudniku — z jasnimi
-              poročili za odločanje, vključno z live statusom switchov in snemalnikov.
-            </p>
-          </div>
-        </section>
+      <div className="mt-16 rounded-2xl border border-[var(--vo-border)] bg-[var(--vo-accent-muted)] px-6 py-8 text-center md:px-10">
+        <h2 className="text-xl font-bold text-[var(--vo-fg)]">Potrebujete ponudbo ali ogled lokacije?</h2>
+        <p className="mt-2 text-sm text-[var(--vo-muted)]">
+          Na kratko opišite objekt in želene sisteme — odgovorimo z naslednjimi koraki.
+        </p>
+        <Link
+          href="/kontakt#ponudba"
+          className="mt-6 inline-flex rounded-xl bg-[var(--vo-accent)] px-6 py-3 text-sm font-semibold text-white hover:bg-[var(--vo-accent-hover)]"
+        >
+          Kontakt in ponudba
+        </Link>
       </div>
     </div>
+  );
+}
+
+function ServiceBlock({ icon: Icon, title, text }: { icon: LucideIcon; title: string; text: string }) {
+  return (
+    <section className="grid gap-6 rounded-2xl border border-[var(--vo-border)] bg-[var(--vo-surface)] p-6 shadow-[var(--vo-card-shadow)] md:grid-cols-[auto_1fr] md:items-start md:p-8">
+      <Icon className="h-10 w-10 shrink-0 text-[var(--vo-accent)]" aria-hidden />
+      <div>
+        <h2 className="text-xl font-semibold text-[var(--vo-fg)]">{title}</h2>
+        <p className="mt-2 text-sm leading-relaxed text-[var(--vo-muted)] md:text-base">{text}</p>
+      </div>
+    </section>
   );
 }

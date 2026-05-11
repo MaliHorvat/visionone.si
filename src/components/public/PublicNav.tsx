@@ -10,6 +10,7 @@ import { ThemeToggle } from "@/components/theme/ThemeToggle";
 const links = [
   { href: "/", label: "Domov" },
   { href: "/storitve", label: "Storitve" },
+  { href: "/produkti", label: "Produkti" },
   { href: "/vzdrzevalni-paketi", label: "Vzdrževalni paketi" },
   { href: "/reference", label: "Reference" },
   { href: "/kontakt", label: "Kontakt" },
