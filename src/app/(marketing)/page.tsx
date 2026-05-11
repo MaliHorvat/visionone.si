@@ -53,39 +53,6 @@ export default function HomePage() {
             Od postavitve kamer in snemalnikov do 24/7 spremljanja dosegljivosti. VisionOne portal
             v realnem času pokaže stanje kamer, snemalnikov, switchov in diskov.
           </p>
-          <div className="mt-8 flex w-full max-w-xl flex-col gap-2 sm:mt-10 sm:max-w-none sm:flex-row sm:flex-wrap sm:gap-2">
-            <Link
-              href="/kontakt#ponudba"
-              className="inline-flex min-h-11 items-center justify-center gap-2 rounded-xl bg-[var(--vo-accent)] px-5 py-3 text-center text-sm font-semibold text-white shadow-lg shadow-teal-900/20 hover:bg-[var(--vo-accent-hover)] sm:min-h-0 sm:px-6"
-            >
-              Pridobi ponudbo
-              <ArrowRight className="h-4 w-4 shrink-0" aria-hidden />
-            </Link>
-            <Link
-              href="/kontakt#ponudba"
-              className="inline-flex min-h-11 items-center justify-center rounded-xl border border-[var(--vo-border)] bg-[var(--vo-surface)]/95 px-5 py-3 text-center text-sm font-semibold text-[var(--vo-fg)] backdrop-blur-sm hover:bg-[var(--vo-surface-2)] sm:min-h-0 sm:px-6"
-            >
-              Želim demo portal
-            </Link>
-            <Link
-              href="/storitve"
-              className="inline-flex min-h-11 items-center justify-center rounded-xl border border-[var(--vo-border)] bg-[var(--vo-surface)]/95 px-5 py-3 text-center text-sm font-semibold text-[var(--vo-fg)] backdrop-blur-sm hover:bg-[var(--vo-surface-2)] sm:min-h-0 sm:px-6"
-            >
-              Pregled storitev
-            </Link>
-            <Link
-              href="/produkti"
-              className="inline-flex min-h-11 items-center justify-center rounded-xl border border-[var(--vo-border)] bg-[var(--vo-surface)]/95 px-5 py-3 text-center text-sm font-semibold text-[var(--vo-fg)] backdrop-blur-sm hover:bg-[var(--vo-surface-2)] sm:min-h-0 sm:px-6"
-            >
-              Produkti
-            </Link>
-            <Link
-              href="/kontakt"
-              className="inline-flex min-h-11 items-center justify-center rounded-xl border border-[var(--vo-border)] bg-[var(--vo-surface)]/95 px-5 py-3 text-center text-sm font-semibold text-[var(--vo-fg)] backdrop-blur-sm hover:bg-[var(--vo-surface-2)] sm:min-h-0 sm:px-6"
-            >
-              Rezerviraj ogled lokacije
-            </Link>
-          </div>
         </div>
       </section>
 
