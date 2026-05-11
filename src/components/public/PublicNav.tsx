@@ -66,7 +66,7 @@ export function PublicNav() {
             href="/kontakt#ponudba"
             className="hidden rounded-lg border border-[var(--vo-border)] bg-[var(--vo-surface-2)] px-3 py-2 text-sm font-semibold text-[var(--vo-fg)] hover:bg-[var(--vo-surface)] lg:inline-flex"
           >
-            Brezplačen ogled
+            Dogovor za ogled
           </Link>
           {isSignedIn ? (
             <>
@@ -123,7 +123,7 @@ export function PublicNav() {
                 onClick={() => setOpen(false)}
                 className="min-h-11 rounded-lg border border-[var(--vo-border)] px-3 py-2.5 text-center text-base font-semibold text-[var(--vo-fg)] hover:bg-[var(--vo-surface-2)]"
               >
-                Brezplačen ogled
+                Dogovor za ogled
               </Link>
             </div>
             <div className="mt-3 flex flex-col gap-2 border-t border-[var(--vo-border)] pt-3">
