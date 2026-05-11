@@ -9,6 +9,8 @@ type Props = {
   className?: string;
   /** Razmerje stranic zabojnika, npr. `aspect-[21/9]` ali `aspect-video` */
   aspectClass?: string;
+  /** `contain` = celotna slika na sredini brez odrezavanja (primerno za storitvene kartice). */
+  fit?: "cover" | "contain";
 };
 
 /**
@@ -20,13 +22,15 @@ export function MarketingImageSlot({
   alt,
   className = "",
   aspectClass = "aspect-[2/1] max-h-[min(100vw,28rem)] min-h-[120px] sm:aspect-[21/9]",
+  fit = "cover",
 }: Props) {
   if (src) {
+    const objectClass = fit === "contain" ? "object-contain object-center" : "object-cover";
     return (
       <div
         className={`relative w-full overflow-hidden rounded-xl border border-[var(--vo-border)] bg-[var(--vo-surface-2)] ${aspectClass} ${className}`}
       >
-        <Image src={src} alt={alt} fill className="object-cover" sizes="(max-width: 768px) 100vw, 72rem" />
+        <Image src={src} alt={alt} fill className={objectClass} sizes="(max-width: 768px) 100vw, 72rem" />
       </div>
     );
   }

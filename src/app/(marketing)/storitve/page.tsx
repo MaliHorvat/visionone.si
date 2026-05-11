@@ -12,7 +12,6 @@ import {
   MARKETING_IMG_STORITVE_OSTALO,
   MARKETING_IMG_STORITVE_POZAR,
   MARKETING_IMG_STORITVE_SERVIS,
-  MARKETING_IMG_STORITVE_UVOD,
   MARKETING_IMG_STORITVE_WIFI,
 } from "@/lib/marketing-images";
 
@@ -32,15 +31,6 @@ export default function StoritvePage() {
         domofonijo, strukturirana omrežja, zasebna omrežja (VPN / segmentacija) ter ostale montaže in servise, ki jih
         objekt potrebuje.
       </p>
-
-      {/* SLIKA: MARKETING_IMG_STORITVE_UVOD — marketing-images.ts */}
-      <div className="mt-8">
-        <MarketingImageSlot
-          codeLabel="MARKETING_IMG_STORITVE_UVOD"
-          src={MARKETING_IMG_STORITVE_UVOD}
-          alt="VisionOne storitve — uvodna ilustracija"
-        />
-      </div>
 
       <div className="mt-12">
         {/* SLIKA: MARKETING_IMG_CCTV — marketing-images.ts (split levo) */}
@@ -180,6 +170,7 @@ function ServiceBlock({
           src={imageSlot.src}
           alt={imageSlot.alt}
           aspectClass="aspect-[5/3] min-h-[140px] max-h-80 sm:max-h-96"
+          fit="contain"
         />
       </div>
     </section>

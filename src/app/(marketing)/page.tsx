@@ -4,7 +4,6 @@ import {
   ArrowRight,
   Camera,
   EthernetPort,
-  HardDrive,
   Network,
   RadioTower,
   ShieldCheck,
@@ -136,17 +135,12 @@ export default function HomePage() {
           Rešitev temelji na realnih terenskih potrebah: hiter pregled, jasni alarmi in manj ročnega
           dela pri objektih.
         </p>
-        <div className="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+        <div className="mt-12 grid gap-6 md:grid-cols-3">
           {[
             {
               icon: Video,
               title: "Live status naprav",
               text: "Sinhroniziran online/offline status kamer, snemalnikov in switchov na enem mestu.",
-            },
-            {
-              icon: HardDrive,
-              title: "Disk semafor",
-              text: "Avtomatska lestvica stanja diskov: zeleno, oranžno po 2 letih, rdeče po 3+ letih.",
             },
             {
               icon: RadioTower,
@@ -240,19 +234,40 @@ export default function HomePage() {
               aspectClass="aspect-video min-h-[160px] max-h-64 w-full sm:max-h-80"
             />
           </div>
-          <div className="flex w-full max-w-md flex-col items-stretch gap-3 sm:max-w-none sm:flex-row sm:flex-wrap sm:items-center sm:justify-center sm:gap-4">
-            {/*
-            <Link href="/vzdrzevalni-paketi" className="text-sm font-semibold text-[var(--vo-accent)] hover:underline">
-              Oglej si vzdrževalne pakete
-            </Link>
-            */}
-            <Link
-              href="/kontakt#ponudba"
-              className="inline-flex min-h-11 w-full items-center justify-center gap-2 rounded-xl bg-[var(--vo-accent)] px-5 py-2.5 text-sm font-semibold text-white hover:bg-[var(--vo-accent-hover)] sm:w-auto sm:min-h-0"
-            >
-              Želim demo portala
-              <ArrowRight className="h-4 w-4" aria-hidden />
-            </Link>
+          <div className="flex w-full max-w-3xl flex-col items-stretch gap-3 sm:max-w-none">
+            <div className="flex flex-col flex-wrap items-stretch justify-center gap-3 sm:flex-row sm:items-center sm:justify-center">
+              <Link
+                href="/kontakt#ponudba"
+                className="inline-flex min-h-11 w-full items-center justify-center gap-2 rounded-xl bg-[var(--vo-accent)] px-5 py-2.5 text-sm font-semibold text-white hover:bg-[var(--vo-accent-hover)] sm:w-auto sm:min-h-0"
+              >
+                Želim demo portal
+                <ArrowRight className="h-4 w-4" aria-hidden />
+              </Link>
+              <Link
+                href="/kontakt#ponudba"
+                className="inline-flex min-h-11 w-full items-center justify-center gap-2 rounded-xl border border-[var(--vo-border)] bg-[var(--vo-surface)] px-5 py-2.5 text-sm font-semibold text-[var(--vo-fg)] hover:bg-[var(--vo-surface-2)] sm:w-auto sm:min-h-0"
+              >
+                Pridobi ponudbo
+              </Link>
+              <Link
+                href="/storitve"
+                className="inline-flex min-h-11 w-full items-center justify-center rounded-xl border border-[var(--vo-border)] bg-[var(--vo-surface)] px-5 py-2.5 text-sm font-semibold text-[var(--vo-fg)] hover:bg-[var(--vo-surface-2)] sm:w-auto sm:min-h-0"
+              >
+                Pregled storitev
+              </Link>
+              <Link
+                href="/produkti"
+                className="inline-flex min-h-11 w-full items-center justify-center rounded-xl border border-[var(--vo-border)] bg-[var(--vo-surface)] px-5 py-2.5 text-sm font-semibold text-[var(--vo-fg)] hover:bg-[var(--vo-surface-2)] sm:w-auto sm:min-h-0"
+              >
+                Produkti
+              </Link>
+              <Link
+                href="/kontakt"
+                className="inline-flex min-h-11 w-full items-center justify-center rounded-xl border border-[var(--vo-border)] bg-[var(--vo-surface)] px-5 py-2.5 text-sm font-semibold text-[var(--vo-fg)] hover:bg-[var(--vo-surface-2)] sm:w-auto sm:min-h-0"
+              >
+                Rezerviraj ogled lokacije
+              </Link>
+            </div>
           </div>
         </div>
       </section>
