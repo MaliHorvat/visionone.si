@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import {
   ArrowRight,
   Camera,
@@ -10,13 +11,31 @@ import {
   Video,
 } from "lucide-react";
 import { ServiceImageSplit } from "@/components/public/ServiceImageSplit";
-import { MARKETING_IMG_CCTV } from "@/lib/marketing-images";
+import { MARKETING_IMG_CCTV, MARKETING_IMG_HERO } from "@/lib/marketing-images";
 
 export default function HomePage() {
   return (
     <>
       <section className="relative overflow-hidden border-b border-[var(--vo-border)] bg-[var(--vo-surface)]">
-        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,rgba(13,122,122,0.15),transparent_50%)]" />
+        <div className="pointer-events-none absolute inset-0">
+          <Image
+            src={MARKETING_IMG_HERO}
+            alt=""
+            fill
+            priority
+            className="object-cover object-[70%_30%] md:object-[85%_center]"
+            sizes="100vw"
+          />
+          {/* Čiten napis: močnejši sloj z leve, slika bolj vidna desno (kot na tvoji skici). */}
+          <div
+            className="absolute inset-0 bg-gradient-to-r from-[var(--vo-surface)] from-[28%] via-[color-mix(in_oklab,var(--vo-surface)_88%,transparent)] to-[color-mix(in_oklab,var(--vo-surface)_22%,transparent)] md:from-[32%] md:via-[color-mix(in_oklab,var(--vo-surface)_55%,transparent)] md:to-transparent"
+            aria-hidden
+          />
+          <div
+            className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,rgba(13,122,122,0.14),transparent_52%)]"
+            aria-hidden
+          />
+        </div>
         <div className="relative mx-auto max-w-6xl px-4 py-20 md:px-6 md:py-28">
           <p className="text-sm font-semibold uppercase tracking-wider text-[var(--vo-accent)]">VisionOne</p>
           <h1 className="mt-3 max-w-3xl text-4xl font-bold tracking-tight text-[var(--vo-fg)] md:text-5xl">
