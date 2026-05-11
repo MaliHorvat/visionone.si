@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Inter } from "next/font/google";
 import { Providers } from "./providers";
 import "./globals.css";
@@ -7,6 +7,12 @@ const inter = Inter({
   variable: "--font-inter",
   subsets: ["latin", "latin-ext"],
 });
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  viewportFit: "cover",
+};
 
 export const metadata: Metadata = {
   title: {
@@ -24,7 +30,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="sl" suppressHydrationWarning>
-      <body className={`${inter.variable} min-h-screen antialiased`}>
+      <body className={`${inter.variable} min-h-screen min-w-0 overflow-x-clip antialiased`}>
         <Providers>{children}</Providers>
       </body>
     </html>

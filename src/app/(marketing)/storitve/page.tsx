@@ -13,9 +13,9 @@ export const metadata: Metadata = {
 
 export default function StoritvePage() {
   return (
-    <div className="mx-auto max-w-6xl px-4 py-14 md:px-6">
-      <h1 className="text-3xl font-bold text-[var(--vo-fg)]">Storitve</h1>
-      <p className="mt-3 max-w-3xl text-[var(--vo-muted)]">
+    <div className="mx-auto max-w-6xl px-4 py-10 sm:py-14 md:px-6">
+      <h1 className="text-balance text-3xl font-bold text-[var(--vo-fg)]">Storitve</h1>
+      <p className="mt-3 max-w-3xl text-base leading-relaxed break-words text-[var(--vo-muted)]">
         Na terenu in na daljavo: od prvega načrta do zagona, dokumentacije in redne podpore. Pokrivamo videonadzor,
         brezžične in hibridne alarmne sisteme, požarno signalizacijo (v okviru veljavnih certifikatov in dogovora),
         domofonijo, strukturirana omrežja, zasebna omrežja (VPN / segmentacija), ojačevalce mobilnega signala ter
@@ -93,7 +93,7 @@ export default function StoritvePage() {
         </p>
         <Link
           href="/kontakt#ponudba"
-          className="mt-6 inline-flex rounded-xl bg-[var(--vo-accent)] px-6 py-3 text-sm font-semibold text-white hover:bg-[var(--vo-accent-hover)]"
+          className="mt-6 inline-flex min-h-11 w-full items-center justify-center rounded-xl bg-[var(--vo-accent)] px-6 py-3 text-sm font-semibold text-white hover:bg-[var(--vo-accent-hover)] sm:w-auto sm:min-h-0"
         >
           Kontakt in ponudba
         </Link>
@@ -106,7 +106,7 @@ function ServiceBlock({ icon: Icon, title, text }: { icon: LucideIcon; title: st
   return (
     <section className="grid gap-6 rounded-2xl border border-[var(--vo-border)] bg-[var(--vo-surface)] p-6 shadow-[var(--vo-card-shadow)] md:grid-cols-[auto_1fr] md:items-start md:p-8">
       <Icon className="h-10 w-10 shrink-0 text-[var(--vo-accent)]" aria-hidden />
-      <div>
+      <div className="min-w-0">
         <h2 className="text-xl font-semibold text-[var(--vo-fg)]">{title}</h2>
         <p className="mt-2 text-sm leading-relaxed text-[var(--vo-muted)] md:text-base">{text}</p>
       </div>

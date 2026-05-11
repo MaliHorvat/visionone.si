@@ -89,7 +89,7 @@ export function ContactForm() {
               required
               name="name"
               maxLength={200}
-              className="mt-1 w-full rounded-lg border border-[var(--vo-border)] bg-[var(--vo-bg)] px-3 py-2 text-[var(--vo-fg)]"
+              className="mt-1 min-h-11 w-full rounded-lg border border-[var(--vo-border)] bg-[var(--vo-bg)] px-3 py-2 text-base text-[var(--vo-fg)] sm:min-h-0 sm:text-sm"
             />
           </label>
           <label className="block text-sm">
@@ -99,7 +99,7 @@ export function ContactForm() {
               type="email"
               name="email"
               maxLength={320}
-              className="mt-1 w-full rounded-lg border border-[var(--vo-border)] bg-[var(--vo-bg)] px-3 py-2 text-[var(--vo-fg)]"
+              className="mt-1 min-h-11 w-full rounded-lg border border-[var(--vo-border)] bg-[var(--vo-bg)] px-3 py-2 text-base text-[var(--vo-fg)] sm:min-h-0 sm:text-sm"
             />
           </label>
           <label className="sm:col-span-2 block text-sm">
@@ -107,7 +107,7 @@ export function ContactForm() {
             <select
               required
               name="siteType"
-              className="mt-1 w-full rounded-lg border border-[var(--vo-border)] bg-[var(--vo-bg)] px-3 py-2 text-[var(--vo-fg)]"
+              className="mt-1 min-h-11 w-full rounded-lg border border-[var(--vo-border)] bg-[var(--vo-bg)] px-3 py-2 text-base text-[var(--vo-fg)] sm:min-h-0 sm:text-sm"
             >
               <option value="">Izberite tip objekta</option>
               <option value="retail">Trgovina / retail</option>
@@ -125,7 +125,7 @@ export function ContactForm() {
               min={1}
               max={99999}
               name="cameraCount"
-              className="mt-1 w-full rounded-lg border border-[var(--vo-border)] bg-[var(--vo-bg)] px-3 py-2 text-[var(--vo-fg)]"
+              className="mt-1 min-h-11 w-full rounded-lg border border-[var(--vo-border)] bg-[var(--vo-bg)] px-3 py-2 text-base text-[var(--vo-fg)] sm:min-h-0 sm:text-sm"
             />
           </label>
           <label className="block text-sm">
@@ -133,7 +133,7 @@ export function ContactForm() {
             <select
               required
               name="timeline"
-              className="mt-1 w-full rounded-lg border border-[var(--vo-border)] bg-[var(--vo-bg)] px-3 py-2 text-[var(--vo-fg)]"
+              className="mt-1 min-h-11 w-full rounded-lg border border-[var(--vo-border)] bg-[var(--vo-bg)] px-3 py-2 text-base text-[var(--vo-fg)] sm:min-h-0 sm:text-sm"
             >
               <option value="">Izberite rok</option>
               <option value="asap">Takoj</option>
@@ -149,13 +149,13 @@ export function ContactForm() {
               name="message"
               rows={4}
               maxLength={10000}
-              className="mt-1 w-full rounded-lg border border-[var(--vo-border)] bg-[var(--vo-bg)] px-3 py-2 text-[var(--vo-fg)]"
+              className="mt-1 w-full rounded-lg border border-[var(--vo-border)] bg-[var(--vo-bg)] px-3 py-2 text-base text-[var(--vo-fg)] sm:text-sm"
             />
           </label>
           <button
             type="submit"
             disabled={status === "sending"}
-            className="sm:col-span-2 rounded-lg bg-[var(--vo-accent)] py-2.5 text-sm font-semibold text-white hover:bg-[var(--vo-accent-hover)] disabled:opacity-60"
+            className="min-h-11 rounded-lg bg-[var(--vo-accent)] py-3 text-base font-semibold text-white hover:bg-[var(--vo-accent-hover)] disabled:opacity-60 sm:col-span-2 sm:min-h-0 sm:py-2.5 sm:text-sm"
           >
             {status === "sending" ? "Pošiljam…" : "Pošlji"}
           </button>

@@ -109,7 +109,7 @@ export function PortalShell({ children }: { children: React.ReactNode }) {
             <form action="/api/portal-logout" method="post">
               <button
                 type="submit"
-                className="rounded-lg border border-[var(--vo-border)] px-2.5 py-1.5 text-xs font-medium text-[var(--vo-muted)] hover:bg-[var(--vo-surface-2)] hover:text-[var(--vo-fg)]"
+                className="min-h-9 rounded-lg border border-[var(--vo-border)] px-3 py-2 text-xs font-medium text-[var(--vo-muted)] hover:bg-[var(--vo-surface-2)] hover:text-[var(--vo-fg)] md:min-h-0 md:px-2.5 md:py-1.5"
               >
                 Odjava
               </button>
@@ -118,7 +118,7 @@ export function PortalShell({ children }: { children: React.ReactNode }) {
         </header>
 
         <div className="border-b border-[var(--vo-border)] bg-[var(--vo-surface)] px-2 py-2 md:hidden">
-          <nav className="flex gap-1 overflow-x-auto">
+          <nav className="-mx-0 flex gap-1 overflow-x-auto overscroll-x-contain px-1 pb-1 [-webkit-overflow-scrolling:touch]">
             {visible.map(({ href, label }) => {
                 const active =
                   href === "/portal" ? pathname === "/portal" : pathname.startsWith(href);
@@ -126,7 +126,7 @@ export function PortalShell({ children }: { children: React.ReactNode }) {
                   <Link
                     key={href + label + "m"}
                     href={href}
-                    className={`whitespace-nowrap rounded-lg px-2 py-1.5 text-xs font-medium ${
+                    className={`shrink-0 whitespace-nowrap rounded-lg px-3 py-2.5 text-xs font-medium ${
                       active ? "bg-[var(--vo-accent-muted)] text-[var(--vo-accent)]" : "text-[var(--vo-muted)]"
                     }`}
                   >

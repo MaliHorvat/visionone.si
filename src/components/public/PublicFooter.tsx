@@ -3,8 +3,8 @@ import { CookieSettingsButton } from "@/components/public/CookieSettingsButton";
 
 export function PublicFooter() {
   return (
-    <footer className="mt-auto border-t border-[var(--vo-border)] bg-[var(--vo-surface)] py-10">
-      <div className="mx-auto flex max-w-6xl flex-col gap-8 px-4 md:flex-row md:justify-between md:px-6">
+    <footer className="mt-auto border-t border-[var(--vo-border)] bg-[var(--vo-surface)] py-8 pb-10 sm:py-10">
+      <div className="mx-auto flex min-w-0 max-w-6xl flex-col gap-8 px-4 md:flex-row md:justify-between md:px-6">
         <div>
           <div className="flex items-center gap-2 text-lg font-semibold text-[var(--vo-fg)]">
             <img src="/visionone-mark.png" alt="VisionOne znak" className="h-8 w-8 rounded object-contain" />
@@ -17,7 +17,10 @@ export function PublicFooter() {
         </div>
         <div className="text-sm text-[var(--vo-muted)]">
           <div className="font-medium text-[var(--vo-fg)]">Kontakt</div>
-          <a className="mt-2 block hover:text-[var(--vo-accent)]" href="mailto:info@visionone.si">
+          <a
+            className="mt-2 block break-all hover:text-[var(--vo-accent)] sm:break-normal"
+            href="mailto:info@visionone.si"
+          >
             info@visionone.si
           </a>
           <Link className="mt-3 inline-block text-[var(--vo-accent)] hover:underline" href="/kontakt">
@@ -32,7 +35,7 @@ export function PublicFooter() {
             <Link className="hover:text-[var(--vo-accent)]" href="/piskotki">
               Piškotki
             </Link>
-            <CookieSettingsButton />
+            <CookieSettingsButton className="inline-flex min-h-11 items-center sm:min-h-0" />
           </div>
           <div>© {new Date().getFullYear()} VisionOne</div>
         </div>

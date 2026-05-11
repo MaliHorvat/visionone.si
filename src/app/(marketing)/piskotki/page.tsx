@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 
 export default function PiskotkiPage() {
   return (
-    <div className="mx-auto max-w-3xl px-4 py-12 md:px-6">
+    <div className="mx-auto min-w-0 max-w-3xl px-4 py-10 sm:py-12 md:px-6">
       <h1 className="text-3xl font-bold text-[var(--vo-fg)]">Politika piškotkov</h1>
       <p className="mt-2 text-sm text-[var(--vo-muted)]">
         Ta stran pojasnjuje, kaj lahko naložimo glede na vašo izbiro v piškotnem bannerju.
@@ -23,7 +23,7 @@ export default function PiskotkiPage() {
         </p>
       </div>
 
-      <div className="mt-8 space-y-6 text-sm text-[var(--vo-muted)] [&_strong]:text-[var(--vo-fg)]">
+      <div className="mt-8 space-y-6 break-words text-sm text-[var(--vo-muted)] [&_code]:break-all [&_strong]:text-[var(--vo-fg)]">
         <section>
           <h2 className="text-lg font-semibold text-[var(--vo-fg)]">1. Nujno (vedno)</h2>
           <p>

@@ -8,14 +8,14 @@ export const metadata: Metadata = {
 
 export default function ZasebnostPage() {
   return (
-    <div className="mx-auto max-w-3xl px-4 py-12 md:px-6">
+    <div className="mx-auto min-w-0 max-w-3xl px-4 py-10 sm:py-12 md:px-6">
       <h1 className="text-3xl font-bold text-[var(--vo-fg)]">Politika zasebnosti</h1>
       <p className="mt-2 text-sm text-[var(--vo-muted)]">
         Zadnja posodobitev: {new Date().toLocaleDateString("sl-SI")}. Besedilo je informativno — za pravno revizijo
         se obrnite na odvetnika.
       </p>
 
-      <div className="prose prose-invert mt-8 max-w-none space-y-6 text-sm text-[var(--vo-muted)] [&_strong]:text-[var(--vo-fg)]">
+      <div className="prose prose-invert mt-8 max-w-none space-y-6 break-words text-sm text-[var(--vo-muted)] [&_strong]:text-[var(--vo-fg)]">
         <section>
           <h2 className="text-lg font-semibold text-[var(--vo-fg)]">Upravljavec</h2>
           <p>

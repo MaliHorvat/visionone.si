@@ -23,7 +23,7 @@ export function ThemeToggle({ className = "" }: { className?: string }) {
           key={key}
           type="button"
           onClick={() => setTheme(key)}
-          className={`rounded-md p-2 transition ${
+          className={`min-h-9 min-w-9 rounded-md p-2 transition ${
             theme === key
               ? "bg-[var(--vo-accent-muted)] text-[var(--vo-accent)]"
               : "text-[var(--vo-muted)] hover:text-[var(--vo-fg)]"

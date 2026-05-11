@@ -1,6 +1,6 @@
 /** Datoteke v mapi `public/` (pot se začne z `/`). */
 
-export const MARKETING_IMG_CCTV = "/image.png";
+export const MARKETING_IMG_CCTV = "/image2.png";
 
 export const MARKETING_IMG_PORTAL_SOFTWARE = "/image1.png";
 

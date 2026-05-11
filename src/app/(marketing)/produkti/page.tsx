@@ -10,9 +10,9 @@ export const metadata: Metadata = {
 
 export default function ProduktiPage() {
   return (
-    <div className="mx-auto max-w-6xl px-4 py-14 md:px-6">
+    <div className="mx-auto max-w-6xl px-4 py-10 sm:py-14 md:px-6">
       <p className="text-sm font-semibold uppercase tracking-wider text-[var(--vo-accent)]">Produkti</p>
-      <h1 className="mt-2 text-3xl font-bold text-[var(--vo-fg)] md:text-4xl">Rešitve, ki jih ponujamo</h1>
+      <h1 className="mt-2 text-balance text-3xl font-bold text-[var(--vo-fg)] md:text-4xl">Rešitve, ki jih ponujamo</h1>
       <p className="mt-4 max-w-2xl text-[var(--vo-muted)]">
         Tukaj objavljamo lastne produkte in platforme. Za montažo, alarmne sisteme in omrežne storitve glejte tudi
         razdelek{" "}

@@ -39,13 +39,13 @@ export function ProductShowcaseCard({
           priority={priorityImage}
         />
       </div>
-      <div className="flex flex-col justify-center bg-[var(--vo-bg)] px-6 py-8 md:px-10 md:py-12">
+      <div className="flex min-w-0 flex-col justify-center bg-[var(--vo-bg)] px-5 py-7 sm:px-6 sm:py-8 md:px-10 md:py-12">
         <p className="text-xs font-bold uppercase tracking-[0.2em] text-[var(--vo-accent)]">{label}</p>
         <h2 className="mt-3 text-2xl font-bold tracking-tight text-[var(--vo-fg)] md:text-3xl">{title}</h2>
         <p className="mt-4 text-sm leading-relaxed text-[var(--vo-muted)] md:text-base">{description}</p>
         <Link
           href={ctaHref}
-          className="mt-8 inline-flex w-fit items-center gap-1 text-sm font-bold text-[var(--vo-accent)] hover:text-[var(--vo-accent-hover)]"
+          className="mt-8 inline-flex min-h-11 w-fit items-center gap-1 py-2 text-sm font-bold text-[var(--vo-accent)] hover:text-[var(--vo-accent-hover)] sm:min-h-0 sm:py-0"
         >
           {ctaLabel}
           <ChevronRight className="h-4 w-4" aria-hidden />

@@ -29,7 +29,7 @@ export function ServiceImageSplit({ imageSrc, imageAlt, children, reverse = fals
         />
       </div>
       <div
-        className={`flex flex-col justify-center px-6 py-8 md:px-10 md:py-12 ${reverse ? "md:order-1" : ""}`}
+        className={`min-w-0 flex flex-col justify-center px-5 py-7 sm:px-6 sm:py-8 md:px-10 md:py-12 ${reverse ? "md:order-1" : ""}`}
       >
         {children}
       </div>

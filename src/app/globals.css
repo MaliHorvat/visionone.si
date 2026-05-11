@@ -48,6 +48,16 @@ body {
   background: var(--vo-bg);
   color: var(--vo-fg);
   font-family: var(--font-sans);
+  overflow-x: clip;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+/* iPhone / notched naprave: prostor nad sistemsko vrstico (piškotni banner) */
+@supports (padding: max(0px)) {
+  .vo-safe-bottom {
+    padding-bottom: max(1rem, env(safe-area-inset-bottom));
+  }
 }
 
 /* Clerk modal on dark background */

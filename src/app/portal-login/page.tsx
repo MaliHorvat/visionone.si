@@ -7,8 +7,8 @@ export default async function PortalLoginPage({ searchParams }: PortalLoginPageP
   const showError = params?.error === "1";
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-[var(--vo-bg)] px-4">
-      <div className="w-full max-w-md rounded-2xl border border-[var(--vo-border)] bg-[var(--vo-surface)] p-6 shadow-sm">
+    <div className="flex min-h-screen min-w-0 items-center justify-center bg-[var(--vo-bg)] px-4 py-8">
+      <div className="w-full max-w-md rounded-2xl border border-[var(--vo-border)] bg-[var(--vo-surface)] p-5 shadow-sm sm:p-6">
         <div className="mb-4 flex justify-center">
           <img src="/visionone-logo.png" alt="VisionOne" className="h-20 w-20 rounded object-contain" />
         </div>
@@ -25,7 +25,7 @@ export default async function PortalLoginPage({ searchParams }: PortalLoginPageP
               name="username"
               type="text"
               required
-              className="w-full rounded-lg border border-[var(--vo-border)] bg-transparent px-3 py-2 text-sm outline-none ring-0 placeholder:text-[var(--vo-muted)] focus:border-[var(--vo-accent)]"
+              className="min-h-11 w-full rounded-lg border border-[var(--vo-border)] bg-transparent px-3 py-2 text-base outline-none ring-0 placeholder:text-[var(--vo-muted)] focus:border-[var(--vo-accent)] sm:min-h-0 sm:text-sm"
               placeholder="admin"
             />
           </div>
@@ -39,7 +39,7 @@ export default async function PortalLoginPage({ searchParams }: PortalLoginPageP
               name="password"
               type="password"
               required
-              className="w-full rounded-lg border border-[var(--vo-border)] bg-transparent px-3 py-2 text-sm outline-none ring-0 placeholder:text-[var(--vo-muted)] focus:border-[var(--vo-accent)]"
+              className="min-h-11 w-full rounded-lg border border-[var(--vo-border)] bg-transparent px-3 py-2 text-base outline-none ring-0 placeholder:text-[var(--vo-muted)] focus:border-[var(--vo-accent)] sm:min-h-0 sm:text-sm"
               placeholder="••••••••"
             />
           </div>
@@ -52,7 +52,7 @@ export default async function PortalLoginPage({ searchParams }: PortalLoginPageP
 
           <button
             type="submit"
-            className="w-full rounded-lg bg-[var(--vo-accent)] px-4 py-2 text-sm font-semibold text-white transition-opacity hover:opacity-90"
+            className="min-h-11 w-full rounded-lg bg-[var(--vo-accent)] px-4 py-3 text-base font-semibold text-white transition-opacity hover:opacity-90 sm:min-h-0 sm:py-2 sm:text-sm"
           >
             Prijavi se
           </button>

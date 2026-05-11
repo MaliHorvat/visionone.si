@@ -7,9 +7,9 @@ export const metadata: Metadata = {
 
 export default function KontaktPage() {
   return (
-    <div className="mx-auto max-w-6xl px-4 py-14 md:px-6">
-      <h1 className="text-3xl font-bold text-[var(--vo-fg)]">Kontakt</h1>
-      <p className="mt-3 max-w-2xl text-[var(--vo-muted)]">
+    <div className="mx-auto max-w-6xl px-4 py-10 sm:py-14 md:px-6">
+      <h1 className="text-balance text-3xl font-bold text-[var(--vo-fg)]">Kontakt</h1>
+      <p className="mt-3 max-w-2xl text-base leading-relaxed text-[var(--vo-muted)]">
         Pišite nam za ogled, ponudbo ali intervencijo. Kontakt je po e-pošti.
       </p>
 
@@ -22,7 +22,7 @@ export default function KontaktPage() {
             Za ponudbe, vprašanja in dogovor o ogledu nam pišite na:
           </p>
           <a
-            className="mt-4 inline-block text-lg font-semibold text-[var(--vo-accent)] hover:underline"
+            className="mt-4 inline-block break-all text-lg font-semibold text-[var(--vo-accent)] hover:underline sm:break-normal"
             href="mailto:info@visionone.si"
           >
             info@visionone.si

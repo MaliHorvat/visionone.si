@@ -23,11 +23,11 @@ export function CookieBanner() {
     <>
       {!consent.decided && !preferencesOpen ? (
         <div
-          className="fixed inset-x-0 bottom-0 z-[100] border-t border-[var(--vo-border)] bg-[var(--vo-surface)] p-4 shadow-[0_-8px_30px_rgba(0,0,0,0.12)] md:p-5"
+          className="vo-safe-bottom fixed inset-x-0 bottom-0 z-[100] border-t border-[var(--vo-border)] bg-[var(--vo-surface)] p-3 shadow-[0_-8px_30px_rgba(0,0,0,0.12)] sm:p-4 md:p-5"
           role="dialog"
           aria-label="Piškotki in zasebnost"
         >
-          <div className="mx-auto flex max-w-6xl flex-col gap-4 md:flex-row md:items-center md:justify-between">
+          <div className="mx-auto flex max-w-6xl flex-col gap-3 sm:gap-4 md:flex-row md:items-center md:justify-between">
             <div className="min-w-0 text-sm text-[var(--vo-fg)]">
               <p className="font-semibold">Piškotki in sledenje</p>
               <p className="mt-1 text-[var(--vo-muted)]">
@@ -43,25 +43,25 @@ export function CookieBanner() {
                 .
               </p>
             </div>
-            <div className="flex flex-shrink-0 flex-wrap gap-2">
+            <div className="flex w-full flex-shrink-0 flex-col gap-2 sm:w-auto sm:flex-row sm:flex-wrap">
               <button
                 type="button"
                 onClick={() => openPreferences()}
-                className="rounded-lg border border-[var(--vo-border)] px-4 py-2 text-sm font-medium text-[var(--vo-fg)] hover:bg-[var(--vo-surface-2)]"
+                className="min-h-11 w-full rounded-lg border border-[var(--vo-border)] px-4 py-2.5 text-sm font-medium text-[var(--vo-fg)] hover:bg-[var(--vo-surface-2)] sm:w-auto sm:min-h-10 sm:py-2"
               >
                 Nastavitve
               </button>
               <button
                 type="button"
                 onClick={() => rejectNonEssential()}
-                className="rounded-lg border border-[var(--vo-border)] px-4 py-2 text-sm font-medium text-[var(--vo-fg)] hover:bg-[var(--vo-surface-2)]"
+                className="min-h-11 w-full rounded-lg border border-[var(--vo-border)] px-4 py-2.5 text-sm font-medium text-[var(--vo-fg)] hover:bg-[var(--vo-surface-2)] sm:w-auto sm:min-h-10 sm:py-2"
               >
                 Zavrni ne-nujne
               </button>
               <button
                 type="button"
                 onClick={() => acceptAll()}
-                className="rounded-lg bg-[var(--vo-accent)] px-4 py-2 text-sm font-semibold text-white hover:bg-[var(--vo-accent-hover)]"
+                className="min-h-11 w-full rounded-lg bg-[var(--vo-accent)] px-4 py-2.5 text-sm font-semibold text-white hover:bg-[var(--vo-accent-hover)] sm:w-auto sm:min-h-10 sm:py-2"
               >
                 Sprejmi vse
               </button>
@@ -71,9 +71,9 @@ export function CookieBanner() {
       ) : null}
 
       {preferencesOpen ? (
-        <div className="fixed inset-0 z-[101] flex items-end justify-center bg-black/50 p-4 sm:items-center">
+        <div className="fixed inset-0 z-[101] flex items-end justify-center bg-black/50 p-3 pb-[max(0.75rem,env(safe-area-inset-bottom))] sm:items-center sm:p-4">
           <div
-            className="max-h-[90vh] w-full max-w-lg overflow-y-auto rounded-xl border border-[var(--vo-border)] bg-[var(--vo-surface)] p-5 shadow-xl"
+            className="max-h-[min(90dvh,32rem)] w-full max-w-lg overflow-y-auto overscroll-y-contain rounded-xl border border-[var(--vo-border)] bg-[var(--vo-surface)] p-4 shadow-xl sm:max-h-[90vh] sm:p-5"
             role="dialog"
             aria-modal="true"
             aria-labelledby="vo-cookie-prefs-title"
@@ -115,18 +115,18 @@ export function CookieBanner() {
               </li>
             </ul>
 
-            <div className="mt-5 flex flex-wrap justify-end gap-2">
+            <div className="mt-5 flex flex-col-reverse gap-2 sm:flex-row sm:flex-wrap sm:justify-end">
               <button
                 type="button"
                 onClick={() => closePreferences()}
-                className="rounded-lg border border-[var(--vo-border)] px-4 py-2 text-sm font-medium"
+                className="min-h-11 w-full rounded-lg border border-[var(--vo-border)] px-4 py-2.5 text-sm font-medium sm:w-auto sm:min-h-10 sm:py-2"
               >
                 {consent.decided ? "Zapri" : "Prekliči"}
               </button>
               <button
                 type="button"
                 onClick={() => savePreferences({ analytics, marketing })}
-                className="rounded-lg bg-[var(--vo-accent)] px-4 py-2 text-sm font-semibold text-white hover:bg-[var(--vo-accent-hover)]"
+                className="min-h-11 w-full rounded-lg bg-[var(--vo-accent)] px-4 py-2.5 text-sm font-semibold text-white hover:bg-[var(--vo-accent-hover)] sm:w-auto sm:min-h-10 sm:py-2"
               >
                 Shrani izbiro
               </button>

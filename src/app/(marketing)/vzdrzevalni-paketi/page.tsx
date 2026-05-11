@@ -50,7 +50,7 @@ const paketi = [
 
 export default function PaketiPage() {
   return (
-    <div className="mx-auto max-w-6xl px-4 py-14 md:px-6">
+    <div className="mx-auto max-w-6xl px-4 py-10 sm:py-14 md:px-6">
       <h1 className="text-3xl font-bold text-[var(--vo-fg)]">Vzdrževalni paketi</h1>
       <p className="mt-3 max-w-2xl text-[var(--vo-muted)]">
         Naročniški paketi prilagojeni velikosti objekta. Končne cene potrdimo po ogledu in
@@ -69,7 +69,7 @@ export default function PaketiPage() {
           >
             <h2 className="text-lg font-semibold text-[var(--vo-fg)]">{p.name}</h2>
             <p className="mt-2 flex-1 text-sm text-[var(--vo-muted)]">{p.desc}</p>
-            <p className="mt-4 text-sm font-bold text-[var(--vo-accent)]">{p.price}</p>
+            <p className="mt-4 break-words text-sm font-bold text-[var(--vo-accent)]">{p.price}</p>
             <ul className="mt-6 space-y-2 text-sm text-[var(--vo-fg)]">
               {p.feats.map((f) => (
                 <li key={f} className="flex gap-2">

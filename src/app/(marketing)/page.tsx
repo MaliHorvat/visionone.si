@@ -23,51 +23,52 @@ export default function HomePage() {
             alt=""
             fill
             priority
-            className="object-cover object-[70%_30%] md:object-[85%_center]"
+            className="object-cover object-[60%_40%] sm:object-[70%_30%] md:object-[85%_center]"
             sizes="100vw"
           />
-          {/* Čiten napis: močnejši sloj z leve, slika bolj vidna desno (kot na tvoji skici). */}
+          {/* Telefon: enoten zaslon za berljivost (brez color-mix). Namizje: gradient z leve. */}
+          <div className="absolute inset-0 bg-[var(--vo-surface)]/86 md:hidden" aria-hidden />
           <div
-            className="absolute inset-0 bg-gradient-to-r from-[var(--vo-surface)] from-[28%] via-[color-mix(in_oklab,var(--vo-surface)_88%,transparent)] to-[color-mix(in_oklab,var(--vo-surface)_22%,transparent)] md:from-[32%] md:via-[color-mix(in_oklab,var(--vo-surface)_55%,transparent)] md:to-transparent"
+            className="absolute inset-0 hidden bg-gradient-to-r from-[var(--vo-surface)] from-[22%] via-[var(--vo-surface)]/78 via-42% to-transparent to-88% md:block"
             aria-hidden
           />
           <div
-            className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,rgba(13,122,122,0.14),transparent_52%)]"
+            className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,rgba(13,122,122,0.12),transparent_55%)] md:bg-[radial-gradient(ellipse_at_top_right,rgba(13,122,122,0.14),transparent_52%)]"
             aria-hidden
           />
         </div>
-        <div className="relative mx-auto max-w-6xl px-4 py-20 md:px-6 md:py-28">
+        <div className="relative mx-auto max-w-6xl px-4 py-14 sm:py-16 md:px-6 md:py-28">
           <p className="text-sm font-semibold uppercase tracking-wider text-[var(--vo-accent)]">VisionOne</p>
-          <h1 className="mt-3 max-w-3xl text-4xl font-bold tracking-tight text-[var(--vo-fg)] md:text-5xl">
+          <h1 className="mt-3 max-w-3xl text-balance text-3xl font-bold tracking-tight text-[var(--vo-fg)] sm:text-4xl md:text-5xl">
             Videonadzor, mreža in proaktivni nadzor v enem sistemu
           </h1>
-          <p className="mt-6 max-w-2xl text-lg text-[var(--vo-muted)]">
+          <p className="mt-5 max-w-2xl text-base leading-relaxed text-[var(--vo-muted)] sm:mt-6 sm:text-lg">
             Od postavitve kamer in snemalnikov do 24/7 spremljanja dosegljivosti. VisionOne portal
             v realnem času pokaže stanje kamer, snemalnikov, switchov in diskov.
           </p>
-          <div className="mt-10 flex flex-wrap gap-4">
+          <div className="mt-8 flex w-full max-w-xl flex-col gap-3 sm:mt-10 sm:max-w-none sm:flex-row sm:flex-wrap">
             <Link
               href="/kontakt#ponudba"
-              className="inline-flex items-center gap-2 rounded-xl bg-[var(--vo-accent)] px-6 py-3 text-sm font-semibold text-white shadow-lg shadow-teal-900/20 hover:bg-[var(--vo-accent-hover)]"
+              className="inline-flex min-h-11 items-center justify-center gap-2 rounded-xl bg-[var(--vo-accent)] px-5 py-3 text-center text-sm font-semibold text-white shadow-lg shadow-teal-900/20 hover:bg-[var(--vo-accent-hover)] sm:min-h-0 sm:px-6"
             >
               Pridobi ponudbo
-              <ArrowRight className="h-4 w-4" aria-hidden />
+              <ArrowRight className="h-4 w-4 shrink-0" aria-hidden />
             </Link>
             <Link
               href="/storitve"
-              className="inline-flex items-center rounded-xl border border-[var(--vo-border)] bg-[var(--vo-surface)] px-6 py-3 text-sm font-semibold text-[var(--vo-fg)] hover:bg-[var(--vo-surface-2)]"
+              className="inline-flex min-h-11 items-center justify-center rounded-xl border border-[var(--vo-border)] bg-[var(--vo-surface)]/95 px-5 py-3 text-center text-sm font-semibold text-[var(--vo-fg)] backdrop-blur-sm hover:bg-[var(--vo-surface-2)] sm:min-h-0 sm:px-6"
             >
               Pregled storitev
             </Link>
             <Link
               href="/produkti"
-              className="inline-flex items-center rounded-xl border border-[var(--vo-border)] bg-[var(--vo-surface)] px-6 py-3 text-sm font-semibold text-[var(--vo-fg)] hover:bg-[var(--vo-surface-2)]"
+              className="inline-flex min-h-11 items-center justify-center rounded-xl border border-[var(--vo-border)] bg-[var(--vo-surface)]/95 px-5 py-3 text-center text-sm font-semibold text-[var(--vo-fg)] backdrop-blur-sm hover:bg-[var(--vo-surface-2)] sm:min-h-0 sm:px-6"
             >
               Produkti
             </Link>
             <Link
               href="/kontakt"
-              className="inline-flex items-center rounded-xl border border-[var(--vo-border)] bg-[var(--vo-surface)] px-6 py-3 text-sm font-semibold text-[var(--vo-fg)] hover:bg-[var(--vo-surface-2)]"
+              className="inline-flex min-h-11 items-center justify-center rounded-xl border border-[var(--vo-border)] bg-[var(--vo-surface)]/95 px-5 py-3 text-center text-sm font-semibold text-[var(--vo-fg)] backdrop-blur-sm hover:bg-[var(--vo-surface-2)] sm:min-h-0 sm:px-6"
             >
               Rezerviraj ogled lokacije
             </Link>
@@ -204,7 +205,7 @@ export default function HomePage() {
             Spremljamo ključne naprave in vas obvestimo, preden izpad postane kritičen. Portal je
             pripravljen za real-time status, servisne procese in poročila.
           </p>
-          <div className="flex flex-wrap items-center justify-center gap-4">
+          <div className="flex w-full max-w-md flex-col items-stretch gap-3 sm:max-w-none sm:flex-row sm:flex-wrap sm:items-center sm:justify-center sm:gap-4">
             {/*
             <Link href="/vzdrzevalni-paketi" className="text-sm font-semibold text-[var(--vo-accent)] hover:underline">
               Oglej si vzdrževalne pakete
@@ -212,7 +213,7 @@ export default function HomePage() {
             */}
             <Link
               href="/kontakt#ponudba"
-              className="inline-flex items-center gap-2 rounded-xl bg-[var(--vo-accent)] px-5 py-2.5 text-sm font-semibold text-white hover:bg-[var(--vo-accent-hover)]"
+              className="inline-flex min-h-11 w-full items-center justify-center gap-2 rounded-xl bg-[var(--vo-accent)] px-5 py-2.5 text-sm font-semibold text-white hover:bg-[var(--vo-accent-hover)] sm:w-auto sm:min-h-0"
             >
               Želim demo portala
               <ArrowRight className="h-4 w-4" aria-hidden />
