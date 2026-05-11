@@ -18,7 +18,7 @@
 export const MARKETING_IMG_HERO = "/vo-home-hero.png";
 
 /** Domov + Storitve — velika kartica (split), leva polovica */
-export const MARKETING_IMG_CCTV = "/vo-home-cctv-split.png";
+export const MARKETING_IMG_CCTV = "image1.png";
 
 /** Produkti — kartica portala, levi stolpec */
 export const MARKETING_IMG_PORTAL_SOFTWARE = "/vo-produkti-portal-card.png";

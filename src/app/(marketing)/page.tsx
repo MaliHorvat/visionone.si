@@ -30,7 +30,7 @@ export default function HomePage() {
             alt=""
             fill
             priority
-            className="object-cover object-[60%_40%] sm:object-[70%_30%] md:object-[85%_center]"
+            className="object-cover object-center"
             sizes="100vw"
           />
           {/* Telefon: enoten zaslon za berljivost (brez color-mix). Namizje: gradient z leve. */}
@@ -53,13 +53,19 @@ export default function HomePage() {
             Od postavitve kamer in snemalnikov do 24/7 spremljanja dosegljivosti. VisionOne portal
             v realnem času pokaže stanje kamer, snemalnikov, switchov in diskov.
           </p>
-          <div className="mt-8 flex w-full max-w-xl flex-col gap-3 sm:mt-10 sm:max-w-none sm:flex-row sm:flex-wrap">
+          <div className="mt-8 flex w-full max-w-xl flex-col gap-2 sm:mt-10 sm:max-w-none sm:flex-row sm:flex-wrap sm:gap-2">
             <Link
               href="/kontakt#ponudba"
               className="inline-flex min-h-11 items-center justify-center gap-2 rounded-xl bg-[var(--vo-accent)] px-5 py-3 text-center text-sm font-semibold text-white shadow-lg shadow-teal-900/20 hover:bg-[var(--vo-accent-hover)] sm:min-h-0 sm:px-6"
             >
               Pridobi ponudbo
               <ArrowRight className="h-4 w-4 shrink-0" aria-hidden />
+            </Link>
+            <Link
+              href="/kontakt#ponudba"
+              className="inline-flex min-h-11 items-center justify-center rounded-xl border border-[var(--vo-border)] bg-[var(--vo-surface)]/95 px-5 py-3 text-center text-sm font-semibold text-[var(--vo-fg)] backdrop-blur-sm hover:bg-[var(--vo-surface-2)] sm:min-h-0 sm:px-6"
+            >
+              Želim demo portal
             </Link>
             <Link
               href="/storitve"
@@ -83,9 +89,9 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="mx-auto max-w-6xl px-4 py-16 md:px-6">
+      <section className="mx-auto max-w-6xl px-4 pb-10 pt-12 md:px-6 md:pb-12 md:pt-14">
         {/* SLIKA: MARKETING_IMG_CCTV — marketing-images.ts (velik split levo) */}
-        <ServiceImageSplit imageSrc={MARKETING_IMG_CCTV} imageAlt="Videonadzorna kamera na objektu">
+        <ServiceImageSplit imageSrc={MARKETING_IMG_CCTV} imageAlt="Videonadzorna kamera na objektu" imageFit="contain">
           <p className="text-xs font-bold uppercase tracking-[0.2em] text-[var(--vo-accent)]">Celostna skrb za objekt</p>
           <h2 className="mt-3 text-2xl font-bold text-[var(--vo-fg)] md:text-3xl">
             Montaža, zagon, podpora — videonadzor, alarmi, požar, domofoni, omrežja
@@ -105,10 +111,8 @@ export default function HomePage() {
             </Link>
           </div>
         </ServiceImageSplit>
-      </section>
 
-      <section className="mx-auto max-w-6xl px-4 py-16 md:px-6">
-        <div className="grid gap-3 sm:grid-cols-3">
+        <div className="mt-8 grid gap-3 sm:grid-cols-3 md:mt-10">
           {[
             { k: "100+", v: "Aktivnih objektov v nadzoru" },
             { k: "24/7", v: "Spremljanje dosegljivosti" },
@@ -122,7 +126,7 @@ export default function HomePage() {
         </div>
 
         {/* SLIKA: MARKETING_IMG_DOMOV_ZAKAJ_INTRO — marketing-images.ts */}
-        <div className="mt-10">
+        <div className="mt-12">
           <MarketingImageSlot
             codeLabel="MARKETING_IMG_DOMOV_ZAKAJ_INTRO"
             src={MARKETING_IMG_DOMOV_ZAKAJ_INTRO}
