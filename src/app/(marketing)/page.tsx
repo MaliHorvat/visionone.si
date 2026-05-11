@@ -22,15 +22,15 @@ import {
 export default function HomePage() {
   return (
     <>
-      <section className="relative overflow-hidden border-b border-[var(--vo-border)] bg-[var(--vo-surface)]">
-        <div className="pointer-events-none absolute inset-0">
-          {/* SLIKA: MARKETING_IMG_HERO — marketing-images.ts (hero ozadje) */}
+      <section className="relative overflow-hidden border-b border-[var(--vo-border)] bg-[var(--vo-surface-2)]">
+        <div className="pointer-events-none absolute inset-0 bg-[var(--vo-surface-2)]">
+          {/* SLIKA: MARKETING_IMG_HERO — marketing-images.ts (hero: cel kader, brez odrezavanja) */}
           <Image
             src={MARKETING_IMG_HERO}
             alt=""
             fill
             priority
-            className="object-cover object-center"
+            className="object-contain object-center"
             sizes="100vw"
           />
           {/* Telefon: enoten zaslon za berljivost (brez color-mix). Namizje: gradient z leve. */}
