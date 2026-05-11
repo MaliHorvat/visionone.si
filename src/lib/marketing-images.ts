@@ -15,7 +15,7 @@
  */
 
 /** Domov — hero, polno širina za napisom */
-export const MARKETING_IMG_HERO = "1.png";
+export const MARKETING_IMG_HERO = "12.png";
 
 /** Domov + Storitve — velika kartica (split), leva polovica */
 export const MARKETING_IMG_CCTV = "image1.png";
