@@ -10,14 +10,22 @@ import {
   ShieldCheck,
   Video,
 } from "lucide-react";
+import { MarketingImageSlot } from "@/components/public/MarketingImageSlot";
 import { ServiceImageSplit } from "@/components/public/ServiceImageSplit";
-import { MARKETING_IMG_CCTV, MARKETING_IMG_HERO } from "@/lib/marketing-images";
+import {
+  MARKETING_IMG_CCTV,
+  MARKETING_IMG_DOMOV_KAJ_NUDIMO,
+  MARKETING_IMG_DOMOV_PODPORA,
+  MARKETING_IMG_DOMOV_ZAKAJ_INTRO,
+  MARKETING_IMG_HERO,
+} from "@/lib/marketing-images";
 
 export default function HomePage() {
   return (
     <>
       <section className="relative overflow-hidden border-b border-[var(--vo-border)] bg-[var(--vo-surface)]">
         <div className="pointer-events-none absolute inset-0">
+          {/* SLIKA: MARKETING_IMG_HERO — marketing-images.ts (hero ozadje) */}
           <Image
             src={MARKETING_IMG_HERO}
             alt=""
@@ -77,6 +85,7 @@ export default function HomePage() {
       </section>
 
       <section className="mx-auto max-w-6xl px-4 py-16 md:px-6">
+        {/* SLIKA: MARKETING_IMG_CCTV — marketing-images.ts (velik split levo) */}
         <ServiceImageSplit imageSrc={MARKETING_IMG_CCTV} imageAlt="Videonadzorna kamera na objektu">
           <p className="text-xs font-bold uppercase tracking-[0.2em] text-[var(--vo-accent)]">Celostna skrb za objekt</p>
           <h2 className="mt-3 text-2xl font-bold text-[var(--vo-fg)] md:text-3xl">
@@ -113,7 +122,16 @@ export default function HomePage() {
           ))}
         </div>
 
-        <h2 className="text-center text-2xl font-bold text-[var(--vo-fg)]">Zakaj VisionOne portal</h2>
+        {/* SLIKA: MARKETING_IMG_DOMOV_ZAKAJ_INTRO — marketing-images.ts */}
+        <div className="mt-10">
+          <MarketingImageSlot
+            codeLabel="MARKETING_IMG_DOMOV_ZAKAJ_INTRO"
+            src={MARKETING_IMG_DOMOV_ZAKAJ_INTRO}
+            alt="VisionOne — ilustracija pred razdelkom Zakaj portal"
+          />
+        </div>
+
+        <h2 className="mt-10 text-center text-2xl font-bold text-[var(--vo-fg)]">Zakaj VisionOne portal</h2>
         <p className="mx-auto mt-2 max-w-xl text-center text-[var(--vo-muted)]">
           Rešitev temelji na realnih terenskih potrebah: hiter pregled, jasni alarmi in manj ročnega
           dela pri objektih.
@@ -156,6 +174,14 @@ export default function HomePage() {
       </section>
 
       <section className="mx-auto max-w-6xl px-4 py-4 md:px-6">
+        {/* SLIKA: MARKETING_IMG_DOMOV_KAJ_NUDIMO — marketing-images.ts */}
+        <div className="mb-10">
+          <MarketingImageSlot
+            codeLabel="MARKETING_IMG_DOMOV_KAJ_NUDIMO"
+            src={MARKETING_IMG_DOMOV_KAJ_NUDIMO}
+            alt="VisionOne — ilustracija storitev"
+          />
+        </div>
         <h2 className="text-center text-2xl font-bold text-[var(--vo-fg)]">Kaj nudimo</h2>
         <p className="mx-auto mt-2 max-w-xl text-center text-[var(--vo-muted)]">
           Celostne rešitve od načrtovanja do 24/7 nadzora.
@@ -205,6 +231,15 @@ export default function HomePage() {
             Spremljamo ključne naprave in vas obvestimo, preden izpad postane kritičen. Portal je
             pripravljen za real-time status, servisne procese in poročila.
           </p>
+          {/* SLIKA: MARKETING_IMG_DOMOV_PODPORA — marketing-images.ts */}
+          <div className="w-full max-w-3xl">
+            <MarketingImageSlot
+              codeLabel="MARKETING_IMG_DOMOV_PODPORA"
+              src={MARKETING_IMG_DOMOV_PODPORA}
+              alt="VisionOne — podpora in nadzor"
+              aspectClass="aspect-video min-h-[160px] max-h-64 w-full sm:max-h-80"
+            />
+          </div>
           <div className="flex w-full max-w-md flex-col items-stretch gap-3 sm:max-w-none sm:flex-row sm:flex-wrap sm:items-center sm:justify-center sm:gap-4">
             {/*
             <Link href="/vzdrzevalni-paketi" className="text-sm font-semibold text-[var(--vo-accent)] hover:underline">

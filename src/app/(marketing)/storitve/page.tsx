@@ -2,8 +2,19 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import type { LucideIcon } from "lucide-react";
 import { Bell, DoorOpen, Flame, Router, Shield, Wifi, Wrench } from "lucide-react";
+import { MarketingImageSlot } from "@/components/public/MarketingImageSlot";
 import { ServiceImageSplit } from "@/components/public/ServiceImageSplit";
-import { MARKETING_IMG_CCTV } from "@/lib/marketing-images";
+import {
+  MARKETING_IMG_CCTV,
+  MARKETING_IMG_STORITVE_ALARM,
+  MARKETING_IMG_STORITVE_DOMOFON,
+  MARKETING_IMG_STORITVE_MREZA,
+  MARKETING_IMG_STORITVE_OSTALO,
+  MARKETING_IMG_STORITVE_POZAR,
+  MARKETING_IMG_STORITVE_SERVIS,
+  MARKETING_IMG_STORITVE_UVOD,
+  MARKETING_IMG_STORITVE_WIFI,
+} from "@/lib/marketing-images";
 
 export const metadata: Metadata = {
   title: "Storitve",
@@ -22,7 +33,17 @@ export default function StoritvePage() {
         objekt potrebuje.
       </p>
 
+      {/* SLIKA: MARKETING_IMG_STORITVE_UVOD — marketing-images.ts */}
+      <div className="mt-8">
+        <MarketingImageSlot
+          codeLabel="MARKETING_IMG_STORITVE_UVOD"
+          src={MARKETING_IMG_STORITVE_UVOD}
+          alt="VisionOne storitve — uvodna ilustracija"
+        />
+      </div>
+
       <div className="mt-12">
+        {/* SLIKA: MARKETING_IMG_CCTV — marketing-images.ts (split levo) */}
         <ServiceImageSplit
           imageSrc={MARKETING_IMG_CCTV}
           imageAlt="Varnostna kamera na objektu — videonadzor"
@@ -48,36 +69,71 @@ export default function StoritvePage() {
           icon={Bell}
           title="Brezžični in hibridni alarmni sistemi"
           text="Načrtovanje, montaža senzorjev, central, sirene in zagon. Integracija z obstoječimi vrati/omrežjem, testiranje con in predaja stranki. Servisni posegi in nadgradnje."
+          imageSlot={{
+            codeLabel: "MARKETING_IMG_STORITVE_ALARM",
+            src: MARKETING_IMG_STORITVE_ALARM,
+            alt: "Brezžični in hibridni alarmni sistemi",
+          }}
         />
         <ServiceBlock
           icon={Flame}
           title="Požarna signalizacija"
           text="Projektiranje in izvedba v skladu z veljavnimi predpisi in dogovorjenim obsegom (npr. javni objekti, garaže, skladišča). Vzdrževanje in periodični pregledi po dogovoru."
+          imageSlot={{
+            codeLabel: "MARKETING_IMG_STORITVE_POZAR",
+            src: MARKETING_IMG_STORITVE_POZAR,
+            alt: "Požarna signalizacija",
+          }}
         />
         <ServiceBlock
           icon={DoorOpen}
           title="Domofonija"
           text="IP domofoni, paneli, integracija z elektro omarico in LAN/Wi‑Fi. Konfiguracija klicov, posnetkov ob obisku in oddaljenega odklepanja po dogovoru."
+          imageSlot={{
+            codeLabel: "MARKETING_IMG_STORITVE_DOMOFON",
+            src: MARKETING_IMG_STORITVE_DOMOFON,
+            alt: "Domofonija",
+          }}
         />
         <ServiceBlock
           icon={Router}
           title="Omrežne montaže in rešitve"
           text="Stikala, routerji, strukturirano kabliranje, VLAN in segmentacija (kamere ločeno od pisarniškega omrežja). Zasebna omrežja, VPN za oddaljen dostop in varnostne politike po dogovoru."
+          imageSlot={{
+            codeLabel: "MARKETING_IMG_STORITVE_MREZA",
+            src: MARKETING_IMG_STORITVE_MREZA,
+            alt: "Omrežne rešitve",
+          }}
         />
         <ServiceBlock
           icon={Wifi}
           title="Wi‑Fi in pokritost"
           text="Načrtovanje pokritosti, montaža access pointov, kanalizacija in izogibanje motnjam. Diagnostika šibkih signalov in predlogi izboljšav."
+          imageSlot={{
+            codeLabel: "MARKETING_IMG_STORITVE_WIFI",
+            src: MARKETING_IMG_STORITVE_WIFI,
+            alt: "Wi‑Fi in pokritost",
+          }}
         />
         <ServiceBlock
           icon={Shield}
           title="Podpora in servis"
           text="Helpdesk, intervencije, nadomestni deli, poročila po obisku. Proaktivno spremljanje prek portala, če imate vključen nadzor."
+          imageSlot={{
+            codeLabel: "MARKETING_IMG_STORITVE_SERVIS",
+            src: MARKETING_IMG_STORITVE_SERVIS,
+            alt: "Podpora in servis",
+          }}
         />
         <ServiceBlock
           icon={Wrench}
           title="Ostale montaže"
           text="Po dogovoru: TV distribucija, dodatna polja v omaricah, označevanje kablov, manjše prilagoditve rackov in podobno — vse z dokumentacijo za kasnejši servis."
+          imageSlot={{
+            codeLabel: "MARKETING_IMG_STORITVE_OSTALO",
+            src: MARKETING_IMG_STORITVE_OSTALO,
+            alt: "Ostale montaže",
+          }}
         />
       </div>
 
@@ -97,13 +153,34 @@ export default function StoritvePage() {
   );
 }
 
-function ServiceBlock({ icon: Icon, title, text }: { icon: LucideIcon; title: string; text: string }) {
+function ServiceBlock({
+  icon: Icon,
+  title,
+  text,
+  imageSlot,
+}: {
+  icon: LucideIcon;
+  title: string;
+  text: string;
+  imageSlot: { codeLabel: string; src: string | null; alt: string };
+}) {
   return (
-    <section className="grid gap-6 rounded-2xl border border-[var(--vo-border)] bg-[var(--vo-surface)] p-6 shadow-[var(--vo-card-shadow)] md:grid-cols-[auto_1fr] md:items-start md:p-8">
-      <Icon className="h-10 w-10 shrink-0 text-[var(--vo-accent)]" aria-hidden />
-      <div className="min-w-0">
-        <h2 className="text-xl font-semibold text-[var(--vo-fg)]">{title}</h2>
-        <p className="mt-2 text-sm leading-relaxed text-[var(--vo-muted)] md:text-base">{text}</p>
+    <section className="overflow-hidden rounded-2xl border border-[var(--vo-border)] bg-[var(--vo-surface)] shadow-[var(--vo-card-shadow)]">
+      <div className="grid gap-6 p-6 md:grid-cols-[auto_1fr] md:items-start md:p-8">
+        <Icon className="h-10 w-10 shrink-0 text-[var(--vo-accent)]" aria-hidden />
+        <div className="min-w-0">
+          <h2 className="text-xl font-semibold text-[var(--vo-fg)]">{title}</h2>
+          <p className="mt-2 text-sm leading-relaxed text-[var(--vo-muted)] md:text-base">{text}</p>
+        </div>
+      </div>
+      {/* SLIKA: glej prop imageSlot.codeLabel → marketing-images.ts */}
+      <div className="border-t border-[var(--vo-border)] bg-[var(--vo-bg)] px-4 py-4 md:px-8 md:py-5">
+        <MarketingImageSlot
+          codeLabel={imageSlot.codeLabel}
+          src={imageSlot.src}
+          alt={imageSlot.alt}
+          aspectClass="aspect-[5/3] min-h-[140px] max-h-80 sm:max-h-96"
+        />
       </div>
     </section>
   );

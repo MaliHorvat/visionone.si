@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { MarketingImageSlot } from "@/components/public/MarketingImageSlot";
 import { ProductShowcaseCard } from "@/components/public/ProductShowcaseCard";
-import { MARKETING_IMG_PORTAL_SOFTWARE } from "@/lib/marketing-images";
+import { MARKETING_IMG_PORTAL_SOFTWARE, MARKETING_IMG_PRODUKTI_POD_KARTO } from "@/lib/marketing-images";
 
 export const metadata: Metadata = {
   title: "Produkti",
@@ -23,6 +24,7 @@ export default function ProduktiPage() {
       </p>
 
       <div className="mt-14 space-y-16">
+        {/* SLIKA: MARKETING_IMG_PORTAL_SOFTWARE — marketing-images.ts (kartica levo) */}
         <ProductShowcaseCard
           priorityImage
           imageSrc={MARKETING_IMG_PORTAL_SOFTWARE}
@@ -32,6 +34,15 @@ export default function ProduktiPage() {
           description="Spletni portal za spremljanje videonadzora in infrastrukture: stanje kamer, snemalnikov (NVR), stikal in diskov v realnem času, opomniki, zahtevki in telemetrija z agenta na lokaciji. Namenjen je podjetjem in vzdrževalcem, ki želijo enoten pregled več objektov."
           ctaHref="/kontakt#ponudba"
           ctaLabel="Spoznajte več"
+        />
+      </div>
+
+      {/* SLIKA: MARKETING_IMG_PRODUKTI_POD_KARTO — marketing-images.ts */}
+      <div className="mt-12">
+        <MarketingImageSlot
+          codeLabel="MARKETING_IMG_PRODUKTI_POD_KARTO"
+          src={MARKETING_IMG_PRODUKTI_POD_KARTO}
+          alt="VisionOne produkti — dodatna ilustracija"
         />
       </div>
 

@@ -1,4 +1,6 @@
 import type { Metadata } from "next";
+import { MarketingImageSlot } from "@/components/public/MarketingImageSlot";
+import { MARKETING_IMG_KONTAKT_UVOD } from "@/lib/marketing-images";
 import { ContactForm } from "./ContactForm";
 
 export const metadata: Metadata = {
@@ -13,7 +15,16 @@ export default function KontaktPage() {
         Pišite nam za ogled, ponudbo ali intervencijo. Kontakt je po e-pošti.
       </p>
 
-      <div className="mt-12 grid gap-10 lg:grid-cols-[1fr_minmax(0,320px)]">
+      {/* SLIKA: MARKETING_IMG_KONTAKT_UVOD — marketing-images.ts */}
+      <div className="mt-8">
+        <MarketingImageSlot
+          codeLabel="MARKETING_IMG_KONTAKT_UVOD"
+          src={MARKETING_IMG_KONTAKT_UVOD}
+          alt="VisionOne — kontakt"
+        />
+      </div>
+
+      <div className="mt-10 grid gap-10 lg:grid-cols-[1fr_minmax(0,320px)]">
         <ContactForm />
 
         <div className="rounded-2xl border border-[var(--vo-border)] bg-[var(--vo-surface)] p-6 shadow-[var(--vo-card-shadow)] lg:sticky lg:top-24 lg:self-start">
