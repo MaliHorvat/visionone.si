@@ -1,5 +1,9 @@
 import nodemailer from "nodemailer";
 
+/** Če CONTACT_FORM_* ni v okolju (npr. Vercel), SMTP še vedno pošlje sem (prepiše z .env). */
+const DEFAULT_CONTACT_FORM_TO = "info@visionone.si";
+const DEFAULT_CONTACT_FORM_FROM = "VisionOne <info@visionone.si>";
+
 export type ContactMailContent = {
   replyTo: string;
   subject: string;
@@ -10,8 +14,6 @@ export type ContactMailContent = {
 function missingForResend(): string[] {
   const m: string[] = [];
   if (!process.env.RESEND_API_KEY?.trim()) m.push("RESEND_API_KEY");
-  if (!process.env.CONTACT_FORM_TO?.trim()) m.push("CONTACT_FORM_TO");
-  if (!process.env.CONTACT_FORM_FROM?.trim()) m.push("CONTACT_FORM_FROM");
   return m;
 }
 
@@ -21,8 +23,6 @@ function missingForSmtp(): string[] {
   if (!process.env.SMTP_USER?.trim()) m.push("SMTP_USER");
   const pass = process.env.SMTP_PASSWORD?.trim() || process.env.SMTP_PASS?.trim();
   if (!pass) m.push("SMTP_PASSWORD");
-  if (!process.env.CONTACT_FORM_TO?.trim()) m.push("CONTACT_FORM_TO");
-  if (!process.env.CONTACT_FORM_FROM?.trim()) m.push("CONTACT_FORM_FROM");
   return m;
 }
 
@@ -42,8 +42,8 @@ function resolveMailer(): MailCfg {
     }
     return {
       mode: "resend",
-      to: process.env.CONTACT_FORM_TO!.trim(),
-      from: process.env.CONTACT_FORM_FROM!.trim(),
+      to: process.env.CONTACT_FORM_TO?.trim() || DEFAULT_CONTACT_FORM_TO,
+      from: process.env.CONTACT_FORM_FROM?.trim() || DEFAULT_CONTACT_FORM_FROM,
       apiKey: process.env.RESEND_API_KEY!.trim(),
     };
   }
@@ -67,8 +67,8 @@ function resolveMailer(): MailCfg {
     });
     return {
       mode: "smtp",
-      to: process.env.CONTACT_FORM_TO!.trim(),
-      from: process.env.CONTACT_FORM_FROM!.trim(),
+      to: process.env.CONTACT_FORM_TO?.trim() || DEFAULT_CONTACT_FORM_TO,
+      from: process.env.CONTACT_FORM_FROM?.trim() || DEFAULT_CONTACT_FORM_FROM,
       transport,
     };
   }
@@ -76,7 +76,7 @@ function resolveMailer(): MailCfg {
   return {
     mode: "none",
     hint:
-      "Pošta ni nastavljena. Dodajte v .env.local bodisi Resend (RESEND_API_KEY, CONTACT_FORM_TO, CONTACT_FORM_FROM) bodisi lasten SMTP (SMTP_HOST, SMTP_USER, SMTP_PASSWORD, CONTACT_FORM_TO, CONTACT_FORM_FROM). Podrobnosti: .env.example.",
+      "Pošta ni nastavljena. Dodajte bodisi RESEND_API_KEY bodisi SMTP (SMTP_HOST, SMTP_USER, SMTP_PASSWORD). Prejemnik in pošiljatelj sta privzeto info@visionone.si — zamenjajta z CONTACT_FORM_TO in CONTACT_FORM_FROM. Glej .env.example.",
   };
 }
 
