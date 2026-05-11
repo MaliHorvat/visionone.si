@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { CookieSettingsButton } from "@/components/public/CookieSettingsButton";
 
 export function PublicFooter() {
   return (
@@ -26,7 +27,18 @@ export function PublicFooter() {
             Kontaktni obrazec
           </Link>
         </div>
-        <div className="text-xs text-[var(--vo-muted)]">© {new Date().getFullYear()} VisionOne</div>
+        <div className="flex flex-col gap-3 text-xs text-[var(--vo-muted)]">
+          <div className="flex flex-col gap-2 sm:flex-row sm:flex-wrap sm:items-center sm:gap-x-4">
+            <Link className="hover:text-[var(--vo-accent)]" href="/zasebnost">
+              Zasebnost
+            </Link>
+            <Link className="hover:text-[var(--vo-accent)]" href="/piskotki">
+              Piškotki
+            </Link>
+            <CookieSettingsButton />
+          </div>
+          <div>© {new Date().getFullYear()} VisionOne</div>
+        </div>
       </div>
     </footer>
   );
