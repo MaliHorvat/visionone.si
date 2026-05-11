@@ -31,7 +31,7 @@ export default function ZasebnostPage() {
           <h2 className="text-lg font-semibold text-[var(--vo-fg)]">Katere podatke obdelujemo</h2>
           <ul className="mt-2 list-disc space-y-1 pl-5">
             <li>
-              <strong>Kontaktni obrazec:</strong> podatki, ki jih sami vnesete (npr. ime, e-pošta, telefon, sporočilo).
+              <strong>Kontaktni obrazec:</strong> podatki, ki jih sami vnesete (npr. ime, e-pošta, sporočilo).
             </li>
             <li>
               <strong>Piškotki in orodja tretjih oseb:</strong> samo, če za to date soglasje — npr. Google Analytics 4,

@@ -83,13 +83,6 @@ export function ContactForm() {
             </select>
           </label>
           <label className="sm:col-span-2 block text-sm">
-            <span className="text-[var(--vo-muted)]">Telefon</span>
-            <input
-              name="phone"
-              className="mt-1 w-full rounded-lg border border-[var(--vo-border)] bg-[var(--vo-bg)] px-3 py-2 text-[var(--vo-fg)]"
-            />
-          </label>
-          <label className="sm:col-span-2 block text-sm">
             <span className="text-[var(--vo-muted)]">Sporočilo</span>
             <textarea
               required

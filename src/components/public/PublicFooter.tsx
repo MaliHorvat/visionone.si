@@ -20,9 +20,6 @@ export function PublicFooter() {
           <a className="mt-2 block hover:text-[var(--vo-accent)]" href="mailto:info@visionone.si">
             info@visionone.si
           </a>
-          <a className="block hover:text-[var(--vo-accent)]" href="tel:+38631234567">
-            +386 31 234 567
-          </a>
           <Link className="mt-3 inline-block text-[var(--vo-accent)] hover:underline" href="/kontakt">
             Kontaktni obrazec
           </Link>

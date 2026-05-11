@@ -186,9 +186,11 @@ export default function HomePage() {
             pripravljen za real-time status, servisne procese in poročila.
           </p>
           <div className="flex flex-wrap items-center justify-center gap-4">
+            {/*
             <Link href="/vzdrzevalni-paketi" className="text-sm font-semibold text-[var(--vo-accent)] hover:underline">
               Oglej si vzdrževalne pakete
             </Link>
+            */}
             <Link
               href="/kontakt#ponudba"
               className="inline-flex items-center gap-2 rounded-xl bg-[var(--vo-accent)] px-5 py-2.5 text-sm font-semibold text-white hover:bg-[var(--vo-accent-hover)]"

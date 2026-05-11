@@ -11,8 +11,8 @@ const links = [
   { href: "/", label: "Domov" },
   { href: "/storitve", label: "Storitve" },
   { href: "/produkti", label: "Produkti" },
-  { href: "/vzdrzevalni-paketi", label: "Vzdrževalni paketi" },
-  { href: "/reference", label: "Reference" },
+  /* Časovno skrito — stran še obstaja na /vzdrzevalni-paketi za ponovno aktivacijo. */
+  // { href: "/vzdrzevalni-paketi", label: "Vzdrževalni paketi" },
   { href: "/kontakt", label: "Kontakt" },
 ];
 

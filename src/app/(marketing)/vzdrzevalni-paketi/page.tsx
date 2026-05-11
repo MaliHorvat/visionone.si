@@ -1,3 +1,7 @@
+/**
+ * Stran je ohranjena na URL /vzdrzevalni-paketi, vendar je skrita iz glavnega menija (PublicNav).
+ * Za ponovno aktivacijo odkomentiraj vrstico v `PublicNav.tsx` (links).
+ */
 import type { Metadata } from "next";
 import { Check } from "lucide-react";
 
