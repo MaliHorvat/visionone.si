@@ -15,7 +15,7 @@ export default function ZasebnostPage() {
         se obrnite na odvetnika.
       </p>
 
-      <div className="prose prose-invert mt-8 max-w-none space-y-6 break-words text-sm text-[var(--vo-muted)] [&_strong]:text-[var(--vo-fg)]">
+      <div className="prose prose-neutral mt-8 max-w-none space-y-6 break-words text-sm text-[var(--vo-muted)] [&_strong]:text-[var(--vo-fg)]">
         <section>
           <h2 className="text-lg font-semibold text-[var(--vo-fg)]">Upravljavec</h2>
           <p>

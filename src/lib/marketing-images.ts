@@ -7,6 +7,7 @@
  *  MARKETING_IMG_HERO              → Domov: hero ozadje (page.tsx)
  *  MARKETING_IMG_CCTV             → Domov + Storitve: velik split levo (ServiceImageSplit)
  *  MARKETING_IMG_PORTAL_SOFTWARE  → Produkti: kartica VisionOne portal
+ *  (rezervirane konstante DOMOV_* / STORITVE_* / PRODUKTI_* / KONTAKT_* → glej spodaj in JSX „SLIKA“)
  *
  * Rezervirana mesta (spodaj): nastavi npr. `"/moja-slika.webp"` ko dodaš datoteko v `public/`.
  * Na strani poišči isto IME konstante v JSX (komentar z besedo SLIKA).
@@ -61,5 +62,5 @@ export const MARKETING_IMG_STORITVE_OSTALO: string | null = null;
 /** Produkti — pod kartico portala (polna širina) */
 export const MARKETING_IMG_PRODUKTI_POD_KARTO: string | null = null;
 
-/** Kontakt — nad obrazcem / ob strani (polna širina pod uvodom) */
+/** Kontakt — nad obrazcem (polna širina pod uvodom) */
 export const MARKETING_IMG_KONTAKT_UVOD: string | null = null;

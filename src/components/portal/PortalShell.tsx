@@ -14,7 +14,6 @@ import {
   Users,
   Wrench,
 } from "lucide-react";
-import { PortalForceLightDocument } from "@/components/portal/PortalForceLightDocument";
 import { usePortalRole } from "@/context/PortalRoleContext";
 import { mockClientPortalClientId } from "@/lib/mock-data";
 
@@ -51,7 +50,6 @@ export function PortalShell({ children }: { children: React.ReactNode }) {
 
   return (
     <div className="flex min-h-screen bg-[var(--vo-bg)]">
-      <PortalForceLightDocument />
       <aside className="hidden w-60 shrink-0 flex-col border-r border-[var(--vo-border)] bg-[var(--vo-surface)] md:flex">
         <div className="border-b border-[var(--vo-border)] px-4 py-4">
           <Link href="/" className="flex items-center gap-2 text-sm font-semibold text-[var(--vo-fg)]">

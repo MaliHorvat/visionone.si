@@ -5,7 +5,6 @@ import { usePathname } from "next/navigation";
 import { useAuth, UserButton } from "@clerk/nextjs";
 import { Menu, X } from "lucide-react";
 import { useEffect, useState } from "react";
-import { ThemeToggle } from "@/components/theme/ThemeToggle";
 
 const links = [
   { href: "/", label: "Domov" },
@@ -69,7 +68,6 @@ export function PublicNav() {
           >
             Brezplačen ogled
           </Link>
-          <ThemeToggle className="inline-flex shrink-0" />
           {isSignedIn ? (
             <>
               <UserButton />
