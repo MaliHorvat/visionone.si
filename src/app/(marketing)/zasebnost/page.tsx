@@ -32,8 +32,8 @@ export default function ZasebnostPage() {
           <ul className="mt-2 list-disc space-y-1 pl-5">
             <li>
               <strong>Kontaktni obrazec:</strong> podatki, ki jih sami vnesete (npr. ime, e-pošta, sporočilo, izbire na
-              obrazcu). Za tehnično dostavo na naš e-naslov uporabljamo ponudnika pošte Resend; stranki ne pošljemo
-              avtomatskih potrditvenih e-pismov.
+              obrazcu). Za dostavo na naš e-naslov uporabljamo ponudnika Resend ali lasten SMTP strežnik; stranki ne
+              pošljemo avtomatskih potrditvenih e-pismov.
             </li>
             <li>
               <strong>Piškotki in orodja tretjih oseb:</strong> samo, če za to date soglasje — npr. Google Analytics 4,
