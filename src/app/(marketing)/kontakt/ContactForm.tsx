@@ -22,7 +22,7 @@ export function ContactForm() {
       cameraCount: fd.get("cameraCount"),
       timeline: fd.get("timeline"),
       message: fd.get("message"),
-      website: fd.get("website"),
+      vo_hp: fd.get("vo_hp"),
     };
 
     try {
@@ -58,10 +58,10 @@ export function ContactForm() {
         Podatke prejmemo na naš e-poštni naslov. Stranka ne prejme avtomatskega e-pisma — odgovorite ji ročno, če želite.
       </p>
 
-      {/* Honeypot — ne odstranjuj; če ga bot izpolni, API tiho sprejme brez pošiljanja. */}
+      {/* Honeypot (ime namenoma ne „website“, da ga brskalnik ne izpolni). */}
       <input
         type="text"
-        name="website"
+        name="vo_hp"
         tabIndex={-1}
         autoComplete="off"
         aria-hidden

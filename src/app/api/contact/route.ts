@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { sendContactMail } from "@/lib/contact-email";
 
 const MAX_NAME = 200;
 const MAX_EMAIL = 320;
@@ -26,8 +27,8 @@ type Body = {
   cameraCount?: number | string;
   timeline?: string;
   message?: string;
-  /** Honeypot — mora ostati prazen */
-  website?: string;
+  /** Honeypot — ime polja namenoma neobičajno, da ga brskalnik ne izpolni z avtomatikom. */
+  vo_hp?: string;
 };
 
 function trim(s: string, max: number) {
@@ -36,17 +37,6 @@ function trim(s: string, max: number) {
 }
 
 export async function POST(request: Request) {
-  const apiKey = process.env.RESEND_API_KEY;
-  const to = process.env.CONTACT_FORM_TO?.trim();
-  const from = process.env.CONTACT_FORM_FROM?.trim();
-
-  if (!apiKey || !to || !from) {
-    return NextResponse.json(
-      { error: "Kontaktni obrazec ni konfiguriran na strežniku." },
-      { status: 503 },
-    );
-  }
-
   let body: Body;
   try {
     body = (await request.json()) as Body;
@@ -54,7 +44,7 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: "Neveljavna zahteva." }, { status: 400 });
   }
 
-  if (body.website && String(body.website).trim() !== "") {
+  if (body.vo_hp != null && String(body.vo_hp).trim() !== "") {
     return NextResponse.json({ ok: true }, { status: 200 });
   }
 
@@ -111,29 +101,15 @@ export async function POST(request: Request) {
     <pre style="white-space:pre-wrap;font-family:inherit;background:#f5f5f5;padding:12px;border-radius:8px">${escapeHtml(message)}</pre>
   `;
 
-  const res = await fetch("https://api.resend.com/emails", {
-    method: "POST",
-    headers: {
-      Authorization: `Bearer ${apiKey}`,
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      from,
-      to: [to],
-      reply_to: email,
-      subject,
-      text,
-      html,
-    }),
+  const result = await sendContactMail({
+    replyTo: email,
+    subject,
+    text,
+    html,
   });
 
-  if (!res.ok) {
-    const errText = await res.text().catch(() => "");
-    console.error("[contact] Resend error", res.status, errText);
-    return NextResponse.json(
-      { error: "Pošiljanje ni uspelo. Poskusite pozneje ali nas kontaktirajte po e-pošti." },
-      { status: 502 },
-    );
+  if (!result.ok) {
+    return NextResponse.json({ error: result.message }, { status: result.status });
   }
 
   return NextResponse.json({ ok: true }, { status: 200 });
