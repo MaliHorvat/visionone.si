@@ -22,21 +22,21 @@ import {
 export default function HomePage() {
   return (
     <>
-      <section className="relative overflow-hidden border-b border-[var(--vo-border)] bg-[var(--vo-surface-2)]">
+      <section className="relative min-h-[min(88vh,760px)] overflow-hidden border-b border-[var(--vo-border)] bg-[var(--vo-surface-2)]">
         <div className="pointer-events-none absolute inset-0 bg-[var(--vo-surface-2)]">
-          {/* SLIKA: MARKETING_IMG_HERO — marketing-images.ts (hero: cel kader, brez odrezavanja) */}
+          {/* SLIKA: MARKETING_IMG_HERO — polno polje; sidro desno (manj praznine na desni) */}
           <Image
             src={MARKETING_IMG_HERO}
             alt=""
             fill
             priority
-            className="object-contain object-center"
+            className="object-cover object-right"
             sizes="100vw"
           />
           {/* Telefon: enoten zaslon za berljivost (brez color-mix). Namizje: gradient z leve. */}
           <div className="absolute inset-0 bg-[var(--vo-surface)]/86 md:hidden" aria-hidden />
           <div
-            className="absolute inset-0 hidden bg-gradient-to-r from-[var(--vo-surface)] from-[22%] via-[var(--vo-surface)]/78 via-42% to-transparent to-88% md:block"
+            className="absolute inset-0 hidden bg-gradient-to-r from-[var(--vo-surface)] from-[18%] via-[var(--vo-surface)]/70 via-38% to-transparent to-72% md:block"
             aria-hidden
           />
           <div

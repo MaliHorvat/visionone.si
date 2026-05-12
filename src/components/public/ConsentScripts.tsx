@@ -13,6 +13,8 @@ declare global {
 
 const META_PIXEL_ID = process.env.NEXT_PUBLIC_META_PIXEL_ID?.trim();
 const GA4_ID = process.env.NEXT_PUBLIC_GA4_MEASUREMENT_ID?.trim();
+/** Google Ads / konverzije (gtag) — npr. AW-18157157679 */
+const GOOGLE_ADS_ID = process.env.NEXT_PUBLIC_GOOGLE_ADS_ID?.trim();
 
 function loadMetaPixel(pixelId: string) {
   if (typeof window.fbq === "function") return;
@@ -38,21 +40,52 @@ t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)})(window,d
   window.setTimeout(() => window.clearInterval(t), 10000);
 }
 
-function ensureGa4(measurementId: string, marketing: boolean) {
+function ensureDataLayerAndGtag() {
   window.dataLayer = window.dataLayer || [];
   window.gtag =
     window.gtag ||
     function gtag(...args: unknown[]) {
       window.dataLayer!.push(args);
     };
+}
 
-  if (!document.getElementById("vo-gtag-loader")) {
-    const s = document.createElement("script");
-    s.async = true;
-    s.id = "vo-gtag-loader";
-    s.src = `https://www.googletagmanager.com/gtag/js?id=${encodeURIComponent(measurementId)}`;
-    document.head.appendChild(s);
+function loadGtagJsOnce(firstId: string) {
+  if (document.getElementById("vo-gtag-loader")) return;
+  const s = document.createElement("script");
+  s.async = true;
+  s.id = "vo-gtag-loader";
+  s.src = `https://www.googletagmanager.com/gtag/js?id=${encodeURIComponent(firstId)}`;
+  document.head.appendChild(s);
+}
+
+/**
+ * gtag.js: GA4 ob soglasju za analitiko, Google Ads (AW-) ob soglasju za marketing.
+ * Skripta se naloži enkrat; prvi parameter v URL je GA4 (če je aktiven), sicer AW.
+ */
+function syncGtag(opts: { analytics: boolean; marketing: boolean }) {
+  const runGa = Boolean(GA4_ID && opts.analytics);
+  const runAds = Boolean(GOOGLE_ADS_ID && opts.marketing);
+
+  if (!runGa && !runAds) {
+    if (typeof window.gtag === "function") {
+      try {
+        window.gtag("consent", "update", {
+          analytics_storage: "denied",
+          ad_storage: "denied",
+          ad_user_data: "denied",
+          ad_personalization: "denied",
+        });
+      } catch {
+        /* ignore */
+      }
+    }
+    return;
   }
+
+  ensureDataLayerAndGtag();
+
+  const loaderId = runGa ? GA4_ID! : GOOGLE_ADS_ID!;
+  loadGtagJsOnce(loaderId);
 
   window.gtag!("consent", "default", {
     analytics_storage: "denied",
@@ -63,19 +96,26 @@ function ensureGa4(measurementId: string, marketing: boolean) {
   });
 
   window.gtag!("consent", "update", {
-    analytics_storage: "granted",
-    ...(marketing
+    analytics_storage: opts.analytics ? "granted" : "denied",
+    ...(opts.marketing
       ? { ad_storage: "granted", ad_user_data: "granted", ad_personalization: "granted" }
       : { ad_storage: "denied", ad_user_data: "denied", ad_personalization: "denied" }),
   });
+
   window.gtag!("js", new Date());
-  window.gtag!("config", measurementId, { anonymize_ip: true });
+
+  if (runGa) {
+    window.gtag!("config", GA4_ID!, { anonymize_ip: true });
+  }
+  if (runAds) {
+    window.gtag!("config", GOOGLE_ADS_ID!);
+  }
 }
 
 export function ConsentScripts() {
   const { consent } = useCookieConsent();
   const metaStarted = useRef(false);
-  const gaConfigured = useRef(false);
+  const gtagSynced = useRef(false);
 
   useEffect(() => {
     if (!consent.decided) return;
@@ -98,18 +138,24 @@ export function ConsentScripts() {
       }
     }
 
-    if (GA4_ID) {
-      if (consent.analytics) {
-        if (!gaConfigured.current) {
-          gaConfigured.current = true;
-          ensureGa4(GA4_ID, consent.marketing);
+    if (GA4_ID || GOOGLE_ADS_ID) {
+      if (consent.analytics || consent.marketing) {
+        if (!gtagSynced.current) {
+          gtagSynced.current = true;
+          syncGtag({ analytics: consent.analytics, marketing: consent.marketing });
         } else if (typeof window.gtag === "function") {
           window.gtag("consent", "update", {
-            analytics_storage: "granted",
+            analytics_storage: consent.analytics ? "granted" : "denied",
             ...(consent.marketing
               ? { ad_storage: "granted", ad_user_data: "granted", ad_personalization: "granted" }
               : { ad_storage: "denied", ad_user_data: "denied", ad_personalization: "denied" }),
           });
+          if (GA4_ID && consent.analytics) {
+            window.gtag("config", GA4_ID, { anonymize_ip: true });
+          }
+          if (GOOGLE_ADS_ID && consent.marketing) {
+            window.gtag("config", GOOGLE_ADS_ID);
+          }
         }
       } else if (typeof window.gtag === "function") {
         try {
@@ -122,7 +168,7 @@ export function ConsentScripts() {
         } catch {
           /* ignore */
         }
-        gaConfigured.current = false;
+        gtagSynced.current = false;
       }
     }
   }, [consent.decided, consent.analytics, consent.marketing]);
