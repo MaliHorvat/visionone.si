@@ -58,35 +58,12 @@ function loadGtagJsOnce(firstId: string) {
   document.head.appendChild(s);
 }
 
-/**
- * gtag.js: GA4 ob soglasju za analitiko, Google Ads (AW-) ob soglasju za marketing.
- * Skripta se naloži enkrat; prvi parameter v URL je GA4 (če je aktiven), sicer AW.
- */
-function syncGtag(opts: { analytics: boolean; marketing: boolean }) {
-  const runGa = Boolean(GA4_ID && opts.analytics);
-  const runAds = Boolean(GOOGLE_ADS_ID && opts.marketing);
-
-  if (!runGa && !runAds) {
-    if (typeof window.gtag === "function") {
-      try {
-        window.gtag("consent", "update", {
-          analytics_storage: "denied",
-          ad_storage: "denied",
-          ad_user_data: "denied",
-          ad_personalization: "denied",
-        });
-      } catch {
-        /* ignore */
-      }
-    }
-    return;
-  }
-
+/** Zgodnji bootstrap: gtag na strani + consent mode privzeto zavrnjen (Google diagnostika vidi oznako). */
+function bootstrapGtagConsentDefaults() {
+  if (!GA4_ID && !GOOGLE_ADS_ID) return;
   ensureDataLayerAndGtag();
-
-  const loaderId = runGa ? GA4_ID! : GOOGLE_ADS_ID!;
+  const loaderId = GA4_ID || GOOGLE_ADS_ID!;
   loadGtagJsOnce(loaderId);
-
   window.gtag!("consent", "default", {
     analytics_storage: "denied",
     ad_storage: "denied",
@@ -94,28 +71,48 @@ function syncGtag(opts: { analytics: boolean; marketing: boolean }) {
     ad_personalization: "denied",
     wait_for_update: 500,
   });
+  window.gtag!("js", new Date());
+  if (GOOGLE_ADS_ID) {
+    window.gtag!("config", GOOGLE_ADS_ID);
+  }
+  if (GA4_ID) {
+    window.gtag!("config", GA4_ID, { anonymize_ip: true, send_page_view: false });
+  }
+}
 
-  window.gtag!("consent", "update", {
+function applyGtagConsent(opts: { analytics: boolean; marketing: boolean }) {
+  if (!GA4_ID && !GOOGLE_ADS_ID) return;
+  if (typeof window.gtag !== "function") return;
+
+  window.gtag("consent", "update", {
     analytics_storage: opts.analytics ? "granted" : "denied",
     ...(opts.marketing
       ? { ad_storage: "granted", ad_user_data: "granted", ad_personalization: "granted" }
       : { ad_storage: "denied", ad_user_data: "denied", ad_personalization: "denied" }),
   });
 
-  window.gtag!("js", new Date());
-
-  if (runGa) {
-    window.gtag!("config", GA4_ID!, { anonymize_ip: true });
+  if (GA4_ID && opts.analytics) {
+    window.gtag("config", GA4_ID, { anonymize_ip: true, send_page_view: true });
+  } else if (GA4_ID) {
+    window.gtag("config", GA4_ID, { anonymize_ip: true, send_page_view: false });
   }
-  if (runAds) {
-    window.gtag!("config", GOOGLE_ADS_ID!);
+
+  if (GOOGLE_ADS_ID && opts.marketing) {
+    window.gtag("config", GOOGLE_ADS_ID);
   }
 }
 
 export function ConsentScripts() {
   const { consent } = useCookieConsent();
   const metaStarted = useRef(false);
-  const gtagSynced = useRef(false);
+  const gtagBootstrapped = useRef(false);
+
+  useEffect(() => {
+    if (!GA4_ID && !GOOGLE_ADS_ID) return;
+    if (gtagBootstrapped.current) return;
+    gtagBootstrapped.current = true;
+    bootstrapGtagConsentDefaults();
+  }, []);
 
   useEffect(() => {
     if (!consent.decided) return;
@@ -139,37 +136,7 @@ export function ConsentScripts() {
     }
 
     if (GA4_ID || GOOGLE_ADS_ID) {
-      if (consent.analytics || consent.marketing) {
-        if (!gtagSynced.current) {
-          gtagSynced.current = true;
-          syncGtag({ analytics: consent.analytics, marketing: consent.marketing });
-        } else if (typeof window.gtag === "function") {
-          window.gtag("consent", "update", {
-            analytics_storage: consent.analytics ? "granted" : "denied",
-            ...(consent.marketing
-              ? { ad_storage: "granted", ad_user_data: "granted", ad_personalization: "granted" }
-              : { ad_storage: "denied", ad_user_data: "denied", ad_personalization: "denied" }),
-          });
-          if (GA4_ID && consent.analytics) {
-            window.gtag("config", GA4_ID, { anonymize_ip: true });
-          }
-          if (GOOGLE_ADS_ID && consent.marketing) {
-            window.gtag("config", GOOGLE_ADS_ID);
-          }
-        }
-      } else if (typeof window.gtag === "function") {
-        try {
-          window.gtag("consent", "update", {
-            analytics_storage: "denied",
-            ad_storage: "denied",
-            ad_user_data: "denied",
-            ad_personalization: "denied",
-          });
-        } catch {
-          /* ignore */
-        }
-        gtagSynced.current = false;
-      }
+      applyGtagConsent({ analytics: consent.analytics, marketing: consent.marketing });
     }
   }, [consent.decided, consent.analytics, consent.marketing]);
 
