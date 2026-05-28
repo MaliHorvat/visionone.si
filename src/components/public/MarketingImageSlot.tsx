@@ -42,16 +42,11 @@ export function MarketingImageSlot({
 
   return (
     <div
-      className={`flex w-full flex-col items-center justify-center rounded-xl border border-dashed border-[var(--vo-border)] bg-[var(--vo-surface-2)] px-4 py-8 text-center ${aspectClass} ${className}`}
+      className={`flex w-full flex-col items-center justify-center rounded-xl border border-dashed border-[var(--vo-accent)]/25 bg-gradient-to-br from-[var(--vo-surface)] to-[var(--vo-accent-muted)] px-4 py-10 text-center ${aspectClass} ${className}`}
       aria-label={`Predvidena slika: ${codeLabel}`}
     >
       <span className="font-mono text-xs font-semibold tracking-wide text-[var(--vo-accent)]">{codeLabel}</span>
-      <p className="mt-3 max-w-lg text-xs leading-relaxed text-[var(--vo-muted)]">
-        Ko dodaš sliko v mapo <code className="rounded bg-[var(--vo-bg)] px-1 py-0.5 font-mono">public/</code>, v
-        datoteki <code className="rounded bg-[var(--vo-bg)] px-1 py-0.5 font-mono">src/lib/marketing-images.ts</code>{" "}
-        nastavi konstanto <code className="rounded bg-[var(--vo-bg)] px-1 py-0.5 font-mono">{codeLabel}</code> na pot,
-        npr. <code className="rounded bg-[var(--vo-bg)] px-1 py-0.5 font-mono">&quot;/fotografija.webp&quot;</code>.
-      </p>
+      <p className="mt-2 text-sm text-[var(--vo-muted)]">Slika bo kmalu dodana</p>
     </div>
   );
 }

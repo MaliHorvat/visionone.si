@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { MarketingImageSlot } from "@/components/public/MarketingImageSlot";
+import { PageHero } from "@/components/public/PageHero";
 import { ProductShowcaseCard } from "@/components/public/ProductShowcaseCard";
 import { MARKETING_IMG_PORTAL_SOFTWARE, MARKETING_IMG_PRODUKTI_POD_KARTO } from "@/lib/marketing-images";
 
@@ -11,48 +12,44 @@ export const metadata: Metadata = {
 
 export default function ProduktiPage() {
   return (
-    <div className="mx-auto max-w-6xl px-4 py-10 sm:py-14 md:px-6">
-      <p className="text-sm font-semibold uppercase tracking-wider text-[var(--vo-accent)]">Produkti</p>
-      <h1 className="mt-2 text-balance text-3xl font-bold text-[var(--vo-fg)] md:text-4xl">Rešitve, ki jih ponujamo</h1>
-      <p className="mt-4 max-w-2xl text-[var(--vo-muted)]">
-        Tukaj objavljamo lastne produkte in platforme. Za montažo, alarmne sisteme in omrežne storitve glejte tudi
-        razdelek{" "}
-        <Link href="/storitve" className="font-medium text-[var(--vo-accent)] hover:underline">
-          Storitve
-        </Link>
-        .
-      </p>
+    <>
+      <PageHero
+        eyebrow="Produkti"
+        title="Rešitve, ki jih ponujamo"
+        description="Lastne platforme in orodja za nadzor objektov — zgrajena iz realne terenske prakse, ne iz predavalnic."
+      />
 
-      <div className="mt-14 space-y-16">
-        {/* SLIKA: MARKETING_IMG_PORTAL_SOFTWARE — marketing-images.ts (kartica levo) */}
-        <ProductShowcaseCard
-          priorityImage
-          imageSrc={MARKETING_IMG_PORTAL_SOFTWARE}
-          imageAlt="Pregled nadzorne plošče in analitike na prenosniku"
-          label="Produkt"
-          title="VisionOne portal"
-          description="Spletni portal za spremljanje videonadzora in infrastrukture: stanje kamer, snemalnikov (NVR), stikal in diskov v realnem času, opomniki, zahtevki in telemetrija z agenta na lokaciji. Namenjen je podjetjem in vzdrževalcem, ki želijo enoten pregled več objektov."
-          ctaHref="/kontakt#ponudba"
-          ctaLabel="Spoznajte več"
-        />
+      <div className="mx-auto max-w-6xl px-4 py-10 sm:py-14 md:px-6">
+        <div className="space-y-16">
+          <ProductShowcaseCard
+            priorityImage
+            imageSrc={MARKETING_IMG_PORTAL_SOFTWARE}
+            imageAlt="Pregled nadzorne plošče in analitike na prenosniku"
+            label="Produkt"
+            title="VisionOne portal"
+            description="Spletni portal za spremljanje videonadzora in infrastrukture: stanje kamer, snemalnikov (NVR), stikal in diskov v realnem času, opomniki, zahtevki in telemetrija z agenta na lokaciji. Namenjen je podjetjem in vzdrževalcem, ki želijo enoten pregled več objektov."
+            ctaHref="/kontakt#ponudba"
+            ctaLabel="Spoznajte več"
+          />
+        </div>
+
+        <div className="mt-12 overflow-hidden rounded-2xl shadow-[var(--vo-card-shadow)]">
+          <MarketingImageSlot
+            codeLabel="MARKETING_IMG_PRODUKTI_POD_KARTO"
+            src={MARKETING_IMG_PRODUKTI_POD_KARTO}
+            alt="VisionOne produkti — analitika in nadzor"
+            className="rounded-2xl border-0"
+          />
+        </div>
+
+        <p className="mt-12 text-center text-sm text-[var(--vo-muted)]">
+          Želite predstavitev portala?{" "}
+          <Link href="/kontakt#ponudba" className="font-bold text-[var(--vo-accent)] hover:underline">
+            Kontaktirajte nas
+          </Link>
+          .
+        </p>
       </div>
-
-      {/* SLIKA: MARKETING_IMG_PRODUKTI_POD_KARTO — marketing-images.ts */}
-      <div className="mt-12">
-        <MarketingImageSlot
-          codeLabel="MARKETING_IMG_PRODUKTI_POD_KARTO"
-          src={MARKETING_IMG_PRODUKTI_POD_KARTO}
-          alt="VisionOne produkti — dodatna ilustracija"
-        />
-      </div>
-
-      <p className="mt-12 text-center text-sm text-[var(--vo-muted)]">
-        Želite predstavitev portala?{" "}
-        <Link href="/kontakt#ponudba" className="font-semibold text-[var(--vo-accent)] hover:underline">
-          Kontaktirajte nas
-        </Link>
-        .
-      </p>
-    </div>
+    </>
   );
 }

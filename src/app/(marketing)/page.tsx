@@ -3,14 +3,18 @@ import Image from "next/image";
 import {
   ArrowRight,
   Camera,
+  CheckCircle2,
   EthernetPort,
   Network,
   RadioTower,
   ShieldCheck,
+  Sparkles,
   Video,
+  Zap,
 } from "lucide-react";
-import { MarketingImageSlot } from "@/components/public/MarketingImageSlot";
 import { ServiceImageSplit } from "@/components/public/ServiceImageSplit";
+import { VisualBand } from "@/components/public/VisualBand";
+import { MarketingImageSlot } from "@/components/public/MarketingImageSlot";
 import {
   MARKETING_IMG_CCTV,
   MARKETING_IMG_DOMOV_KAJ_NUDIMO,
@@ -19,99 +23,131 @@ import {
   MARKETING_IMG_HERO,
 } from "@/lib/marketing-images";
 
+const trustPills = ["24/7 nadzor", "Certificirani monterji", "VisionOne portal", "Hiter odziv"];
+
 export default function HomePage() {
   return (
     <>
-      <section className="relative min-h-[min(88vh,760px)] overflow-hidden border-b border-[var(--vo-border)] bg-[var(--vo-surface-2)]">
+      <section className="relative min-h-[min(92vh,820px)] overflow-hidden border-b border-[var(--vo-border)]">
         <div className="pointer-events-none absolute inset-0 bg-[var(--vo-surface-2)]">
-          {/* SLIKA: MARKETING_IMG_HERO — polno polje; sidro desno (manj praznine na desni) */}
-          <Image
-            src={MARKETING_IMG_HERO}
-            alt=""
-            fill
-            priority
-            className="object-cover object-right"
-            sizes="100vw"
-          />
-          {/* Telefon: enoten zaslon za berljivost (brez color-mix). Namizje: gradient z leve. */}
-          <div className="absolute inset-0 bg-[var(--vo-surface)]/86 md:hidden" aria-hidden />
-          <div
-            className="absolute inset-0 hidden bg-gradient-to-r from-[var(--vo-surface)] from-[18%] via-[var(--vo-surface)]/70 via-38% to-transparent to-72% md:block"
-            aria-hidden
-          />
-          <div
-            className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,rgba(13,122,122,0.12),transparent_55%)] md:bg-[radial-gradient(ellipse_at_top_right,rgba(13,122,122,0.14),transparent_52%)]"
-            aria-hidden
-          />
+          <Image src={MARKETING_IMG_HERO} alt="" fill priority className="object-cover object-center md:object-right" sizes="100vw" />
+          <div className="absolute inset-0 bg-[var(--vo-surface)]/90 md:bg-gradient-to-r md:from-[var(--vo-surface)] md:from-15% md:via-[var(--vo-surface)]/75 md:via-45% md:to-transparent md:to-80%" aria-hidden />
+          <div className="vo-hero-glow absolute inset-0" aria-hidden />
         </div>
-        <div className="relative mx-auto max-w-6xl px-4 py-14 sm:py-16 md:px-6 md:py-28">
-          <p className="text-sm font-semibold uppercase tracking-wider text-[var(--vo-accent)]">VisionOne</p>
-          <h1 className="mt-3 max-w-3xl text-balance text-3xl font-bold tracking-tight text-[var(--vo-fg)] sm:text-4xl md:text-5xl">
-            Videonadzor, mreža in proaktivni nadzor v enem sistemu
+
+        <div className="relative mx-auto max-w-6xl px-4 py-16 sm:py-20 md:px-6 md:py-28">
+          <div className="inline-flex items-center gap-2 rounded-full border border-[var(--vo-accent)]/30 bg-[var(--vo-surface)]/80 px-3 py-1.5 text-xs font-semibold text-[var(--vo-accent)] shadow-sm backdrop-blur-sm">
+            <Sparkles className="h-3.5 w-3.5" aria-hidden />
+            Varnost, ki deluje — ne le na papirju
+          </div>
+
+          <h1 className="mt-5 max-w-3xl text-balance text-4xl font-extrabold tracking-tight text-[var(--vo-fg)] sm:text-5xl md:text-[3.25rem] md:leading-[1.08]">
+            Videonadzor, mreža in proaktivni nadzor v{" "}
+            <span className="bg-gradient-to-r from-[var(--vo-accent)] to-[var(--vo-accent-2)] bg-clip-text text-transparent">
+              enem sistemu
+            </span>
           </h1>
-          <p className="mt-5 max-w-2xl text-base leading-relaxed text-[var(--vo-muted)] sm:mt-6 sm:text-lg">
-            Od postavitve kamer in snemalnikov do 24/7 spremljanja dosegljivosti. VisionOne portal
-            v realnem času pokaže stanje kamer, snemalnikov, switchov in diskov.
+
+          <p className="mt-6 max-w-2xl text-base leading-relaxed text-[var(--vo-muted)] sm:text-lg">
+            Od postavitve kamer in snemalnikov do 24/7 spremljanja dosegljivosti. VisionOne portal v realnem času
+            pokaže stanje kamer, snemalnikov, stikal in diskov — vi ukrepate prej, ko izpad postane kritičen.
           </p>
+
+          <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+            <Link
+              href="/kontakt#ponudba"
+              className="vo-btn-primary inline-flex min-h-12 items-center justify-center gap-2 rounded-xl px-6 py-3 text-sm font-bold text-white"
+            >
+              Brezplačna ponudba
+              <ArrowRight className="h-4 w-4" aria-hidden />
+            </Link>
+            <Link
+              href="/produkti"
+              className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl border border-[var(--vo-border)] bg-[var(--vo-surface)]/90 px-6 py-3 text-sm font-bold text-[var(--vo-fg)] backdrop-blur-sm transition hover:border-[var(--vo-accent)]/40 hover:bg-[var(--vo-surface)]"
+            >
+              Spoznaj portal
+            </Link>
+          </div>
+
+          <ul className="mt-10 flex flex-wrap gap-2">
+            {trustPills.map((pill) => (
+              <li
+                key={pill}
+                className="inline-flex items-center gap-1.5 rounded-lg border border-[var(--vo-border)] bg-[var(--vo-surface)]/85 px-3 py-1.5 text-xs font-semibold text-[var(--vo-fg)] backdrop-blur-sm"
+              >
+                <CheckCircle2 className="h-3.5 w-3.5 text-[var(--vo-accent)]" aria-hidden />
+                {pill}
+              </li>
+            ))}
+          </ul>
         </div>
       </section>
 
-      <section className="mx-auto max-w-6xl px-4 pb-10 pt-12 md:px-6 md:pb-12 md:pt-14">
-        {/* SLIKA: MARKETING_IMG_CCTV — marketing-images.ts (velik split levo) */}
-        <ServiceImageSplit imageSrc={MARKETING_IMG_CCTV} imageAlt="Videonadzor, alarmi, domofoni in omrežja na objektu">
+      <section className="mx-auto max-w-6xl px-4 pb-10 pt-12 md:px-6 md:pb-14 md:pt-16">
+        <ServiceImageSplit imageSrc={MARKETING_IMG_CCTV} imageAlt="Videonadzor in varnostni sistemi na objektu" priority>
           <p className="text-xs font-bold uppercase tracking-[0.2em] text-[var(--vo-accent)]">Celostna skrb za objekt</p>
           <h2 className="mt-3 text-2xl font-bold text-[var(--vo-fg)] md:text-3xl">
             Montaža, zagon, podpora — videonadzor, alarmi, požar, domofoni, omrežja
           </h2>
           <p className="mt-4 text-sm leading-relaxed text-[var(--vo-muted)] md:text-base">
             Na terenu izvedemo montažo in zagon videonadzora, brezžičnih in hibridnih alarmnih sistemov, požarne
-            signalizacije (po dogovoru in predpisih), domofonije ter LAN/Wi‑Fi.
-            Nudimo dokumentacijo, servis in proaktivno spremljanje — vključno z našim portalom za živ pregled
-            kamer, snemalnikov, stikal in diskov.
+            signalizacije, domofonije ter LAN/Wi‑Fi. Nudimo dokumentacijo, servis in proaktivno spremljanje — vključno z
+            VisionOne portalom za živ pregled kamer, snemalnikov, stikal in diskov.
           </p>
           <div className="mt-6 flex flex-wrap gap-4">
-            <Link href="/storitve" className="text-sm font-semibold text-[var(--vo-accent)] hover:underline">
-              Vse storitve →
+            <Link href="/storitve" className="inline-flex items-center gap-1 text-sm font-bold text-[var(--vo-accent)] hover:underline">
+              Vse storitve <ArrowRight className="h-4 w-4" />
             </Link>
-            <Link href="/produkti" className="text-sm font-semibold text-[var(--vo-accent)] hover:underline">
-              Produkti →
+            <Link href="/kontakt" className="inline-flex items-center gap-1 text-sm font-bold text-[var(--vo-accent)] hover:underline">
+              Rezerviraj ogled <ArrowRight className="h-4 w-4" />
             </Link>
           </div>
         </ServiceImageSplit>
 
-        <div className="mt-8 grid gap-3 sm:grid-cols-3 md:mt-10">
+        <div className="mt-10 grid gap-4 sm:grid-cols-3">
           {[
-            { k: "100+", v: "Aktivnih objektov v nadzoru" },
-            { k: "24/7", v: "Spremljanje dosegljivosti" },
-            { k: "< 15 min", v: "Povprečen prvi odziv (SLA)" },
-          ].map((x) => (
-            <div key={x.v} className="rounded-xl border border-[var(--vo-border)] bg-[var(--vo-surface)] px-4 py-3">
-              <p className="text-xl font-bold text-[var(--vo-fg)]">{x.k}</p>
-              <p className="text-xs text-[var(--vo-muted)]">{x.v}</p>
+            { k: "100+", v: "Aktivnih objektov v nadzoru", icon: ShieldCheck },
+            { k: "24/7", v: "Spremljanje dosegljivosti", icon: Zap },
+            { k: "< 15 min", v: "Povprečen prvi odziv (SLA)", icon: RadioTower },
+          ].map(({ k, v, icon: Icon }) => (
+            <div key={v} className="vo-stat-card vo-card-hover rounded-2xl border border-[var(--vo-border)] px-5 py-5">
+              <Icon className="h-6 w-6 text-[var(--vo-accent)]" aria-hidden />
+              <p className="mt-3 text-3xl font-extrabold text-[var(--vo-fg)]">{k}</p>
+              <p className="mt-1 text-sm text-[var(--vo-muted)]">{v}</p>
             </div>
           ))}
         </div>
 
-        {/* SLIKA: MARKETING_IMG_DOMOV_ZAKAJ_INTRO — marketing-images.ts */}
-        <div className="mt-12">
-          <MarketingImageSlot
-            codeLabel="MARKETING_IMG_DOMOV_ZAKAJ_INTRO"
-            src={MARKETING_IMG_DOMOV_ZAKAJ_INTRO}
-            alt="VisionOne — ilustracija pred razdelkom Zakaj portal"
-          />
+        <div className="mt-14">
+          {MARKETING_IMG_DOMOV_ZAKAJ_INTRO ? (
+            <MarketingImageSlot
+              codeLabel="MARKETING_IMG_DOMOV_ZAKAJ_INTRO"
+              src={MARKETING_IMG_DOMOV_ZAKAJ_INTRO}
+              alt="VisionOne — zakaj portal"
+            />
+          ) : (
+            <VisualBand
+              icon={Sparkles}
+              title="Tehnologija, ki dela za vas — ne obratno"
+              subtitle="Manj ročnega preverjanja, več jasnih signalov in hitrejših odločitev na terenu."
+            />
+          )}
         </div>
 
-        <h2 className="mt-10 text-center text-2xl font-bold text-[var(--vo-fg)]">Zakaj VisionOne portal</h2>
-        <p className="mx-auto mt-2 max-w-xl text-center text-[var(--vo-muted)]">
-          Rešitev temelji na realnih terenskih potrebah: hiter pregled, jasni alarmi in manj ročnega
-          dela pri objektih.
-        </p>
-        <div className="mt-12 grid gap-6 md:grid-cols-3">
+        <div className="mt-14 text-center">
+          <p className="text-xs font-bold uppercase tracking-[0.22em] text-[var(--vo-accent)]">VisionOne portal</p>
+          <h2 className="mt-2 text-3xl font-bold text-[var(--vo-fg)]">Zakaj naš portal</h2>
+          <p className="mx-auto mt-3 max-w-xl text-[var(--vo-muted)]">
+            Rešitev temelji na realnih terenskih potrebah: hiter pregled, jasni alarmi in manj ročnega dela pri objektih.
+          </p>
+        </div>
+
+        <div className="mt-10 grid gap-6 md:grid-cols-3">
           {[
             {
               icon: Video,
               title: "Live status naprav",
-              text: "Sinhroniziran online/offline status kamer, snemalnikov in switchov na enem mestu.",
+              text: "Sinhroniziran online/offline status kamer, snemalnikov in stikal na enem mestu.",
             },
             {
               icon: RadioTower,
@@ -126,119 +162,88 @@ export default function HomePage() {
           ].map(({ icon: Icon, title, text }) => (
             <div
               key={title}
-              className="rounded-2xl border border-[var(--vo-border)] bg-[var(--vo-surface)] p-5 shadow-[var(--vo-card-shadow)]"
-            >
-              <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-[var(--vo-accent-muted)] text-[var(--vo-accent)]">
-                <Icon className="h-5 w-5" aria-hidden />
-              </div>
-              <h3 className="mt-3 text-base font-semibold text-[var(--vo-fg)]">{title}</h3>
-              <p className="mt-2 text-sm text-[var(--vo-muted)]">{text}</p>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      <section className="mx-auto max-w-6xl px-4 py-4 md:px-6">
-        {/* SLIKA: MARKETING_IMG_DOMOV_KAJ_NUDIMO — marketing-images.ts */}
-        <div className="mb-10">
-          <MarketingImageSlot
-            codeLabel="MARKETING_IMG_DOMOV_KAJ_NUDIMO"
-            src={MARKETING_IMG_DOMOV_KAJ_NUDIMO}
-            alt="VisionOne — ilustracija storitev"
-          />
-        </div>
-        <h2 className="text-center text-2xl font-bold text-[var(--vo-fg)]">Kaj nudimo</h2>
-        <p className="mx-auto mt-2 max-w-xl text-center text-[var(--vo-muted)]">
-          Celostne rešitve od načrtovanja do 24/7 nadzora.
-        </p>
-        <div className="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-4">
-          {[
-            {
-              icon: Video,
-              title: "Videonadzor",
-              text: "Projektiranje, montaža, konfiguracija NVR in kamer, vzdrževanje in nadgradnje.",
-            },
-            {
-              icon: Camera,
-              title: "Domofoni",
-              text: "IP domofonski sistemi, integracija z dostopom in obstoječimi omrežji.",
-            },
-            {
-              icon: Network,
-              title: "Mrežne rešitve",
-              text: "Strukturirano kabliranje, stikala, Wi‑Fi, diagnostika in odprava motenj.",
-            },
-            {
-              icon: EthernetPort,
-              title: "Rack & topologija",
-              text: "Sheme, rack postavitve in dokumentacija za servisne posege.",
-            },
-          ].map(({ icon: Icon, title, text }) => (
-            <div
-              key={title}
-              className="rounded-2xl border border-[var(--vo-border)] bg-[var(--vo-surface)] p-6 shadow-[var(--vo-card-shadow)]"
+              className="vo-card-hover rounded-2xl border border-[var(--vo-border)] bg-[var(--vo-surface)] p-6 shadow-[var(--vo-card-shadow)]"
             >
               <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-[var(--vo-accent-muted)] text-[var(--vo-accent)]">
                 <Icon className="h-5 w-5" aria-hidden />
               </div>
-              <h3 className="mt-4 text-lg font-semibold text-[var(--vo-fg)]">{title}</h3>
-              <p className="mt-2 text-sm text-[var(--vo-muted)]">{text}</p>
+              <h3 className="mt-4 text-lg font-bold text-[var(--vo-fg)]">{title}</h3>
+              <p className="mt-2 text-sm leading-relaxed text-[var(--vo-muted)]">{text}</p>
             </div>
           ))}
         </div>
       </section>
 
-      <section className="border-y border-[var(--vo-border)] bg-[var(--vo-surface-2)] py-16">
-        <div className="mx-auto flex max-w-6xl flex-col items-center gap-6 px-4 text-center md:px-6">
-          <ShieldCheck className="h-10 w-10 text-[var(--vo-accent)]" aria-hidden />
-          <h2 className="text-2xl font-bold text-[var(--vo-fg)]">24/7 proaktivna podpora</h2>
-          <p className="max-w-2xl text-[var(--vo-muted)]">
-            Spremljamo ključne naprave in vas obvestimo, preden izpad postane kritičen. Portal je
-            pripravljen za real-time status, servisne procese in poročila.
+      <section className="vo-section-alt border-y border-[var(--vo-border)] py-16 md:py-20">
+        <div className="mx-auto max-w-6xl px-4 md:px-6">
+          {MARKETING_IMG_DOMOV_KAJ_NUDIMO ? (
+            <div className="mb-10">
+              <MarketingImageSlot
+                codeLabel="MARKETING_IMG_DOMOV_KAJ_NUDIMO"
+                src={MARKETING_IMG_DOMOV_KAJ_NUDIMO}
+                alt="VisionOne storitve"
+              />
+            </div>
+          ) : null}
+
+          <div className="text-center">
+            <p className="text-xs font-bold uppercase tracking-[0.22em] text-[var(--vo-accent)]">Storitve</p>
+            <h2 className="mt-2 text-3xl font-bold text-[var(--vo-fg)]">Kaj nudimo</h2>
+            <p className="mx-auto mt-3 max-w-xl text-[var(--vo-muted)]">Celostne rešitve od načrtovanja do 24/7 nadzora.</p>
+          </div>
+
+          <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+            {[
+              { icon: Video, title: "Videonadzor", text: "Projektiranje, montaža, NVR/kamere, vzdrževanje in nadgradnje." },
+              { icon: Camera, title: "Domofoni", text: "IP domofonski sistemi, integracija z dostopom in omrežji." },
+              { icon: Network, title: "Mrežne rešitve", text: "Kabliranje, stikala, Wi‑Fi, diagnostika in odprava motenj." },
+              { icon: EthernetPort, title: "Rack & topologija", text: "Sheme, rack postavitve in dokumentacija za servis." },
+            ].map(({ icon: Icon, title, text }) => (
+              <div
+                key={title}
+                className="vo-card-hover rounded-2xl border border-[var(--vo-border)] bg-[var(--vo-surface)] p-6 shadow-[var(--vo-card-shadow)]"
+              >
+                <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-[var(--vo-accent-muted)] text-[var(--vo-accent)]">
+                  <Icon className="h-5 w-5" aria-hidden />
+                </div>
+                <h3 className="mt-4 text-lg font-bold text-[var(--vo-fg)]">{title}</h3>
+                <p className="mt-2 text-sm text-[var(--vo-muted)]">{text}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="relative overflow-hidden py-16 md:py-20">
+        <div className="pointer-events-none absolute inset-0 vo-mesh-bg opacity-60" aria-hidden />
+        <div className="relative mx-auto flex max-w-6xl flex-col items-center gap-8 px-4 text-center md:px-6">
+          <div className="vo-animate-float flex h-16 w-16 items-center justify-center rounded-2xl bg-[var(--vo-accent-muted)] text-[var(--vo-accent)] shadow-[var(--vo-glow-sm)]">
+            <ShieldCheck className="h-8 w-8" aria-hidden />
+          </div>
+          <h2 className="text-3xl font-bold text-[var(--vo-fg)] md:text-4xl">24/7 proaktivna podpora</h2>
+          <p className="max-w-2xl text-base leading-relaxed text-[var(--vo-muted)] md:text-lg">
+            Spremljamo ključne naprave in vas obvestimo, preden izpad postane kritičen. Portal je pripravljen za
+            real-time status, servisne procese in poročila.
           </p>
-          {/* SLIKA: MARKETING_IMG_DOMOV_PODPORA — marketing-images.ts */}
-          <div className="w-full max-w-3xl">
+          <div className="w-full max-w-3xl overflow-hidden rounded-2xl border border-[var(--vo-border)] shadow-[var(--vo-card-shadow)]">
             <MarketingImageSlot
               codeLabel="MARKETING_IMG_DOMOV_PODPORA"
               src={MARKETING_IMG_DOMOV_PODPORA}
               alt="VisionOne — podpora in nadzor"
-              aspectClass="aspect-video min-h-[160px] max-h-64 w-full sm:max-h-80"
+              aspectClass="aspect-video min-h-[180px] w-full sm:min-h-[220px]"
+              className="rounded-2xl border-0"
             />
           </div>
-          <div className="flex w-full max-w-3xl flex-col items-stretch gap-3 sm:max-w-none">
-            <div className="flex flex-col flex-wrap items-stretch justify-center gap-3 sm:flex-row sm:items-center sm:justify-center">
-              <Link
-                href="/kontakt#ponudba"
-                className="inline-flex min-h-11 w-full items-center justify-center gap-2 rounded-xl bg-[var(--vo-accent)] px-5 py-2.5 text-sm font-semibold text-white hover:bg-[var(--vo-accent-hover)] sm:w-auto sm:min-h-0"
-              >
-                Želim demo portal
-                <ArrowRight className="h-4 w-4" aria-hidden />
-              </Link>
-              <Link
-                href="/kontakt#ponudba"
-                className="inline-flex min-h-11 w-full items-center justify-center gap-2 rounded-xl border border-[var(--vo-border)] bg-[var(--vo-surface)] px-5 py-2.5 text-sm font-semibold text-[var(--vo-fg)] hover:bg-[var(--vo-surface-2)] sm:w-auto sm:min-h-0"
-              >
-                Pridobi ponudbo
-              </Link>
-              <Link
-                href="/storitve"
-                className="inline-flex min-h-11 w-full items-center justify-center rounded-xl border border-[var(--vo-border)] bg-[var(--vo-surface)] px-5 py-2.5 text-sm font-semibold text-[var(--vo-fg)] hover:bg-[var(--vo-surface-2)] sm:w-auto sm:min-h-0"
-              >
-                Pregled storitev
-              </Link>
-              <Link
-                href="/produkti"
-                className="inline-flex min-h-11 w-full items-center justify-center rounded-xl border border-[var(--vo-border)] bg-[var(--vo-surface)] px-5 py-2.5 text-sm font-semibold text-[var(--vo-fg)] hover:bg-[var(--vo-surface-2)] sm:w-auto sm:min-h-0"
-              >
-                Produkti
-              </Link>
-              <Link
-                href="/kontakt"
-                className="inline-flex min-h-11 w-full items-center justify-center rounded-xl border border-[var(--vo-border)] bg-[var(--vo-surface)] px-5 py-2.5 text-sm font-semibold text-[var(--vo-fg)] hover:bg-[var(--vo-surface-2)] sm:w-auto sm:min-h-0"
-              >
-                Rezerviraj ogled lokacije
-              </Link>
-            </div>
+          <div className="flex w-full max-w-3xl flex-col flex-wrap items-stretch justify-center gap-3 sm:flex-row">
+            <Link href="/kontakt#ponudba" className="vo-btn-primary inline-flex min-h-12 flex-1 items-center justify-center gap-2 rounded-xl px-5 py-3 text-sm font-bold text-white sm:flex-none">
+              Želim demo portal <ArrowRight className="h-4 w-4" />
+            </Link>
+            <Link href="/kontakt#ponudba" className="inline-flex min-h-12 flex-1 items-center justify-center rounded-xl border border-[var(--vo-border)] bg-[var(--vo-surface)] px-5 py-3 text-sm font-bold text-[var(--vo-fg)] hover:border-[var(--vo-accent)]/40 sm:flex-none">
+              Pridobi ponudbo
+            </Link>
+            <Link href="/storitve" className="inline-flex min-h-12 flex-1 items-center justify-center rounded-xl border border-[var(--vo-border)] bg-[var(--vo-surface)] px-5 py-3 text-sm font-bold text-[var(--vo-fg)] hover:border-[var(--vo-accent)]/40 sm:flex-none">
+              Pregled storitev
+            </Link>
           </div>
         </div>
       </section>

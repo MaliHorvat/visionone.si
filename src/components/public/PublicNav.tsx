@@ -28,7 +28,7 @@ export function PublicNav() {
   }, [open]);
 
   return (
-    <header className="sticky top-0 z-50 border-b border-[var(--vo-border)] bg-[var(--vo-surface)]/90 backdrop-blur-md">
+    <header className="sticky top-0 z-50 border-b border-[var(--vo-border)]/80 bg-[var(--vo-surface)]/85 backdrop-blur-lg">
       <div className="mx-auto flex min-w-0 max-w-6xl items-center justify-between gap-2 px-3 py-2.5 sm:gap-4 sm:px-4 sm:py-3 md:px-6">
         <Link
           href="/"
@@ -64,7 +64,7 @@ export function PublicNav() {
         <div className="flex shrink-0 items-center gap-1.5 sm:gap-2">
           <Link
             href="/kontakt#ponudba"
-            className="hidden rounded-lg border border-[var(--vo-border)] bg-[var(--vo-surface-2)] px-3 py-2 text-sm font-semibold text-[var(--vo-fg)] hover:bg-[var(--vo-surface)] lg:inline-flex"
+            className="hidden rounded-lg border border-[var(--vo-border)] bg-[var(--vo-surface-2)] px-3 py-2 text-sm font-semibold text-[var(--vo-fg)] transition hover:border-[var(--vo-accent)]/40 lg:inline-flex"
           >
             Dogovor za ogled
           </Link>
@@ -73,7 +73,7 @@ export function PublicNav() {
               <UserButton />
               <Link
                 href="/portal"
-                className="hidden rounded-lg bg-[var(--vo-accent)] px-3 py-2 text-sm font-semibold text-white hover:bg-[var(--vo-accent-hover)] sm:inline-flex sm:px-4"
+                className="vo-btn-primary hidden rounded-lg px-3 py-2 text-sm font-bold text-white sm:inline-flex sm:px-4"
               >
                 Portal
               </Link>
@@ -81,7 +81,7 @@ export function PublicNav() {
           ) : (
             <Link
               href="/sign-in"
-              className="hidden rounded-lg bg-[var(--vo-accent)] px-3 py-2 text-sm font-semibold text-white hover:bg-[var(--vo-accent-hover)] sm:inline-flex sm:px-4"
+              className="vo-btn-primary hidden rounded-lg px-3 py-2 text-sm font-bold text-white sm:inline-flex sm:px-4"
             >
               Prijava v portal
             </Link>

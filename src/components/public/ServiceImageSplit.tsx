@@ -13,9 +13,9 @@ type Props = {
 /** Vizual + besedilo — za predstavitev terenskih storitev (npr. videonadzor). */
 export function ServiceImageSplit({ imageSrc, imageAlt, children, reverse = false, priority = false }: Props) {
   return (
-    <div className="grid gap-0 overflow-hidden rounded-2xl border border-[var(--vo-border)] bg-[var(--vo-surface)] shadow-[var(--vo-card-shadow)] md:grid-cols-2">
+    <div className="grid gap-0 overflow-hidden rounded-2xl border border-[var(--vo-border)] bg-[var(--vo-surface)] shadow-[var(--vo-card-shadow)] transition hover:shadow-[var(--vo-glow-sm)] md:grid-cols-2">
       <div
-        className={`relative aspect-[16/10] min-h-[220px] w-full min-w-0 bg-[var(--vo-surface-2)] md:min-h-[min(52vh,380px)] ${
+        className={`group relative aspect-[16/10] min-h-[220px] w-full min-w-0 overflow-hidden bg-[var(--vo-surface-2)] md:min-h-[min(52vh,380px)] ${
           reverse ? "md:order-2" : ""
         }`}
       >
@@ -23,10 +23,11 @@ export function ServiceImageSplit({ imageSrc, imageAlt, children, reverse = fals
           src={imageSrc}
           alt={imageAlt}
           fill
-          className="object-cover object-top"
+          className="object-cover object-top transition duration-500 group-hover:scale-[1.03]"
           sizes="(max-width: 768px) 100vw, 50vw"
           priority={priority}
         />
+        <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 transition group-hover:opacity-100" aria-hidden />
       </div>
       <div
         className={`min-w-0 flex flex-col justify-center px-5 py-7 sm:px-6 sm:py-8 md:px-10 md:py-12 ${reverse ? "md:order-1" : ""}`}

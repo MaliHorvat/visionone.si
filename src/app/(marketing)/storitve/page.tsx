@@ -3,6 +3,7 @@ import Link from "next/link";
 import type { LucideIcon } from "lucide-react";
 import { Bell, DoorOpen, Flame, Router, Shield, Wifi, Wrench } from "lucide-react";
 import { MarketingImageSlot } from "@/components/public/MarketingImageSlot";
+import { PageHero } from "@/components/public/PageHero";
 import { ServiceImageSplit } from "@/components/public/ServiceImageSplit";
 import {
   MARKETING_IMG_CCTV,
@@ -23,16 +24,14 @@ export const metadata: Metadata = {
 
 export default function StoritvePage() {
   return (
-    <div className="mx-auto max-w-6xl px-4 py-10 sm:py-14 md:px-6">
-      <h1 className="text-balance text-3xl font-bold text-[var(--vo-fg)]">Storitve</h1>
-      <p className="mt-3 max-w-3xl text-base leading-relaxed break-words text-[var(--vo-muted)]">
-        Na terenu in na daljavo: od prvega načrta do zagona, dokumentacije in redne podpore. Pokrivamo videonadzor,
-        brezžične in hibridne alarmne sisteme, požarno signalizacijo (v okviru veljavnih certifikatov in dogovora),
-        domofonijo, strukturirana omrežja, zasebna omrežja (VPN / segmentacija) ter ostale montaže in servise, ki jih
-        objekt potrebuje.
-      </p>
+    <>
+      <PageHero
+        eyebrow="Storitve"
+        title="Montaža, integracija in 24/7 podpora"
+        description="Na terenu in na daljavo: od prvega načrta do zagona, dokumentacije in redne podpore. Videonadzor, alarmi, požar, domofoni, omrežja in servis."
+      />
 
-      <div className="mt-12">
+      <div className="mx-auto max-w-6xl px-4 py-10 sm:py-14 md:px-6">
         {/* SLIKA: MARKETING_IMG_CCTV — marketing-images.ts (split levo) */}
         <ServiceImageSplit
           imageSrc={MARKETING_IMG_CCTV}
@@ -52,7 +51,6 @@ export default function StoritvePage() {
             Oglej si produkt — VisionOne portal →
           </Link>
         </ServiceImageSplit>
-      </div>
 
       <div className="mt-16 space-y-8">
         <ServiceBlock
@@ -134,12 +132,13 @@ export default function StoritvePage() {
         </p>
         <Link
           href="/kontakt#ponudba"
-          className="mt-6 inline-flex min-h-11 w-full items-center justify-center rounded-xl bg-[var(--vo-accent)] px-6 py-3 text-sm font-semibold text-white hover:bg-[var(--vo-accent-hover)] sm:w-auto sm:min-h-0"
+          className="vo-btn-primary mt-6 inline-flex min-h-11 w-full items-center justify-center rounded-xl px-6 py-3 text-sm font-bold text-white sm:w-auto sm:min-h-0"
         >
           Kontakt in ponudba
         </Link>
       </div>
-    </div>
+      </div>
+    </>
   );
 }
 
@@ -155,7 +154,7 @@ function ServiceBlock({
   imageSlot: { codeLabel: string; src: string | null; alt: string };
 }) {
   return (
-    <section className="overflow-hidden rounded-2xl border border-[var(--vo-border)] bg-[var(--vo-surface)] shadow-[var(--vo-card-shadow)]">
+    <section className="vo-card-hover overflow-hidden rounded-2xl border border-[var(--vo-border)] bg-[var(--vo-surface)] shadow-[var(--vo-card-shadow)]">
       <div className="grid gap-6 p-6 md:grid-cols-[auto_1fr] md:items-start md:p-8">
         <Icon className="h-10 w-10 shrink-0 text-[var(--vo-accent)]" aria-hidden />
         <div className="min-w-0">

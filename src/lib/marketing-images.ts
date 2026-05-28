@@ -1,65 +1,53 @@
 /**
- * =============================================================================
- * MARKETING SLIKE — pregled (vse poti: mapa `public/`, začetek z `/`)
- * =============================================================================
- *
- * Datoteke `vo-*.png` so pripravljene ilustracije; jih lahko zamenjaš s svojimi.
- *
- * Že vezane na strani:
- *  MARKETING_IMG_HERO              → Domov: hero ozadje (page.tsx)
- *  MARKETING_IMG_CCTV             → Domov + Storitve: velik split levo (ServiceImageSplit)
- *  MARKETING_IMG_PORTAL_SOFTWARE  → Produkti: kartica VisionOne portal
- *  (DOMOV_* / STORITVE_* / PRODUKTI_* → glej spodaj in JSX „SLIKA“)
- *
- * =============================================================================
+ * Marketing slike — poti v `public/` ali Unsplash (next.config remotePatterns).
  */
 
-/** Domov — hero, polno širina za napisom */
-export const MARKETING_IMG_HERO = "12.png";
+/** Domov — hero ozadje */
+export const MARKETING_IMG_HERO =
+  "https://images.unsplash.com/photo-1558002032-1057167a4e22?auto=format&fit=crop&w=2400&q=85";
 
-/** Domov + Storitve — velika kartica (split), leva polovica */
-export const MARKETING_IMG_CCTV = "image1.png";
+/** Domov + Storitve — split levo (videonadzor) */
+export const MARKETING_IMG_CCTV =
+  "https://images.unsplash.com/photo-1557324232-b8917d3caeb0?auto=format&fit=crop&w=1400&q=80";
 
-/** Produkti — kartica portala, levi stolpec */
-export const MARKETING_IMG_PORTAL_SOFTWARE = "/vo-produkti-portal-card.png";
+/** Produkti — kartica portala */
+export const MARKETING_IMG_PORTAL_SOFTWARE =
+  "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1200&q=80";
 
-// --- Dodatna mesta ---
+/** Domov — pasica pred „Zakaj portal“ (null = VisualBand) */
+export const MARKETING_IMG_DOMOV_ZAKAJ_INTRO: string | null = null;
 
-/** Domov — med številkami (100+ / 24/7) in naslovom „Zakaj VisionOne portal“ (široka pasica) */
-export const MARKETING_IMG_DOMOV_ZAKAJ_INTRO: string | null = "/vo-domov-zakaj-intro.png";
+/** Domov — nad „Kaj nudimo“ */
+export const MARKETING_IMG_DOMOV_KAJ_NUDIMO: string | null = null;
 
-/** Domov — nad mrežo „Kaj nudimo“ (polna širina) */
-export const MARKETING_IMG_DOMOV_KAJ_NUDIMO: string | null = "/vo-domov-kaj-nudimo.png";
+/** Domov — podpora sekcija */
+export const MARKETING_IMG_DOMOV_PODPORA =
+  "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=1400&q=80";
 
-/** Domov — v sekciji „24/7 proaktivna podpora“ (pod besedilom) */
-export const MARKETING_IMG_DOMOV_PODPORA: string | null = "/vo-domov-podpora.png";
-
-/** Storitve — uvodna pasica (trenutno brez slike na strani) */
 export const MARKETING_IMG_STORITVE_UVOD: string | null = null;
 
-/** Storitve — pod blokom „Brezžični in hibridni alarmni sistemi“ */
-export const MARKETING_IMG_STORITVE_ALARM: string | null = "/vo-storitve-alarm.png";
+export const MARKETING_IMG_STORITVE_ALARM =
+  "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&w=1200&q=80";
 
-/** Storitve — pod blokom „Požarna signalizacija“ */
-export const MARKETING_IMG_STORITVE_POZAR: string | null = "/vo-storitve-pozar.png";
+export const MARKETING_IMG_STORITVE_POZAR =
+  "https://images.unsplash.com/photo-1581094790909-73dffecc8e8f?auto=format&fit=crop&w=1200&q=80";
 
-/** Storitve — pod blokom „Domofonija“ */
-export const MARKETING_IMG_STORITVE_DOMOFON: string | null = "/vo-storitve-domofon.png";
+export const MARKETING_IMG_STORITVE_DOMOFON =
+  "https://images.unsplash.com/photo-1558618047-3c8c76ca7d13?auto=format&fit=crop&w=1200&q=80";
 
-/** Storitve — pod blokom „Omrežne montaže“ */
-export const MARKETING_IMG_STORITVE_MREZA: string | null = "/vo-storitve-mreza.png";
+export const MARKETING_IMG_STORITVE_MREZA =
+  "https://images.unsplash.com/photo-1544197150-b99a580bb7a2?auto=format&fit=crop&w=1200&q=80";
 
-/** Storitve — pod blokom „Wi‑Fi in pokritost“ */
-export const MARKETING_IMG_STORITVE_WIFI: string | null = "/vo-storitve-wifi.png";
+export const MARKETING_IMG_STORITVE_WIFI =
+  "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=1200&q=80";
 
-/** Storitve — pod blokom „Podpora in servis“ */
-export const MARKETING_IMG_STORITVE_SERVIS: string | null = "/vo-storitve-servis.png";
+export const MARKETING_IMG_STORITVE_SERVIS =
+  "https://images.unsplash.com/photo-1581092918054-0c4c3acd3789?auto=format&fit=crop&w=1200&q=80";
 
-/** Storitve — pod blokom „Ostale montaže“ */
-export const MARKETING_IMG_STORITVE_OSTALO: string | null = "/vo-storitve-ostalo.png";
+export const MARKETING_IMG_STORITVE_OSTALO =
+  "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=1200&q=80";
 
-/** Produkti — pod kartico portala (polna širina) */
-export const MARKETING_IMG_PRODUKTI_POD_KARTO: string | null = "/vo-produkti-pod-karto.png";
+export const MARKETING_IMG_PRODUKTI_POD_KARTO =
+  "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1400&q=80";
 
-/** Kontakt — nad obrazcem (stran brez slike) */
 export const MARKETING_IMG_KONTAKT_UVOD: string | null = null;
