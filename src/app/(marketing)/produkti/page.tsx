@@ -24,7 +24,7 @@ export default function ProduktiPage() {
           <ProductShowcaseCard
             priorityImage
             imageSrc={MARKETING_IMG_PORTAL_SOFTWARE}
-            imageAlt="VisionOne portal — nadzorna plošča s statusom objektov in kamer"
+            imageAlt="Pregled nadzorne plošče in analitike na prenosniku"
             label="Produkt"
             title="VisionOne portal"
             description="Spletni portal za spremljanje videonadzora in infrastrukture: stanje kamer, snemalnikov (NVR), stikal in diskov v realnem času, opomniki, zahtevki in telemetrija z agenta na lokaciji. Namenjen je podjetjem in vzdrževalcem, ki želijo enoten pregled več objektov."
@@ -37,7 +37,7 @@ export default function ProduktiPage() {
           <MarketingImageSlot
             codeLabel="MARKETING_IMG_PRODUKTI_POD_KARTO"
             src={MARKETING_IMG_PRODUKTI_POD_KARTO}
-            alt="VisionOne portal — pregled objektov, kamer in alarmov"
+            alt="VisionOne produkti — analitika in nadzor"
             className="rounded-2xl border-0"
           />
         </div>

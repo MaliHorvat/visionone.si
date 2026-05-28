@@ -1,53 +1,65 @@
-/**
- * Marketing slike — lokalne datoteke v `public/images/marketing/`.
- * Portal: resničen posnetek (stranke anonimizirane). Storitve: tematske fotografije.
- */
-
-const img = (file: string) => `/images/marketing/${file}`;
-
-/** Domov — hero ozadje (poslovna arhitektura) */
-export const MARKETING_IMG_HERO = img("hero.jpg");
-
-/** Domov + Storitve — split levo (videonadzor) */
-export const MARKETING_IMG_CCTV = img("cctv.jpg");
-
-/** Produkti — kartica portala (resničen VisionOne portal) */
-export const MARKETING_IMG_PORTAL_SOFTWARE = img("portal.jpg");
-
-/** Domov — pasica pred „Zakaj portal“ */
-export const MARKETING_IMG_DOMOV_ZAKAJ_INTRO = img("domov-zakaj.jpg");
-
-/** Domov — nad „Kaj nudimo“ */
-export const MARKETING_IMG_DOMOV_KAJ_NUDIMO = img("domov-kaj-nudimo.jpg");
-
-/** Domov — podpora sekcija */
-export const MARKETING_IMG_DOMOV_PODPORA = img("domov-podpora.jpg");
-
-export const MARKETING_IMG_STORITVE_UVOD: string | null = null;
-
-/** Alarm — tipkovnica / sirena */
-export const MARKETING_IMG_STORITVE_ALARM = img("alarm.jpg");
-
-/** Požar — požarna centrala / signalizacija */
-export const MARKETING_IMG_STORITVE_POZAR = img("pozar.jpg");
-
-/** Domofon — sodoben objekt z IP varnostjo */
-export const MARKETING_IMG_STORITVE_DOMOFON = img("domofon.jpg");
-
-/** Omrežje — strukturirano kabliranje / stikala */
-export const MARKETING_IMG_STORITVE_MREZA = img("mreza.jpg");
-
-/** Wi‑Fi — pokritost in povezane naprave */
-export const MARKETING_IMG_STORITVE_WIFI = img("wifi.jpg");
-
-/** Servis — VisionOne portal (proaktivni nadzor) */
-export const MARKETING_IMG_STORITVE_SERVIS = img("servis.jpg");
-
-/** Ostale montaže — rack / kabliranje */
-export const MARKETING_IMG_STORITVE_OSTALO = img("ostalo.jpg");
-
-/** Produkti — širši posnetek portala */
-export const MARKETING_IMG_PRODUKTI_POD_KARTO = img("produkti.jpg");
-
-export const MARKETING_IMG_KONTAKT_UVOD = img("kontakt.jpg");
-
+/**
+ * =============================================================================
+ * MARKETING SLIKE — pregled (vse poti: mapa `public/`, začetek z `/`)
+ * =============================================================================
+ *
+ * Datoteke `vo-*.png` so pripravljene ilustracije; jih lahko zamenjaš s svojimi.
+ *
+ * Že vezane na strani:
+ *  MARKETING_IMG_HERO              → Domov: hero ozadje (page.tsx)
+ *  MARKETING_IMG_CCTV             → Domov + Storitve: velik split levo (ServiceImageSplit)
+ *  MARKETING_IMG_PORTAL_SOFTWARE  → Produkti: kartica VisionOne portal
+ *  (DOMOV_* / STORITVE_* / PRODUKTI_* → glej spodaj in JSX „SLIKA“)
+ *
+ * =============================================================================
+ */
+
+/** Domov — hero, polno širina za napisom */
+export const MARKETING_IMG_HERO = "12.png";
+
+/** Domov + Storitve — velika kartica (split), leva polovica */
+export const MARKETING_IMG_CCTV = "image1.png";
+
+/** Produkti — kartica portala, levi stolpec */
+export const MARKETING_IMG_PORTAL_SOFTWARE = "/vo-produkti-portal-card.png";
+
+// --- Dodatna mesta ---
+
+/** Domov — med številkami (100+ / 24/7) in naslovom „Zakaj VisionOne portal“ (široka pasica) */
+export const MARKETING_IMG_DOMOV_ZAKAJ_INTRO: string | null = "/vo-domov-zakaj-intro.png";
+
+/** Domov — nad mrežo „Kaj nudimo“ (polna širina) */
+export const MARKETING_IMG_DOMOV_KAJ_NUDIMO: string | null = "/vo-domov-kaj-nudimo.png";
+
+/** Domov — v sekciji „24/7 proaktivna podpora“ (pod besedilom) */
+export const MARKETING_IMG_DOMOV_PODPORA: string | null = "/vo-domov-podpora.png";
+
+/** Storitve — uvodna pasica (trenutno brez slike na strani) */
+export const MARKETING_IMG_STORITVE_UVOD: string | null = null;
+
+/** Storitve — pod blokom „Brezžični in hibridni alarmni sistemi“ */
+export const MARKETING_IMG_STORITVE_ALARM: string | null = "/vo-storitve-alarm.png";
+
+/** Storitve — pod blokom „Požarna signalizacija“ */
+export const MARKETING_IMG_STORITVE_POZAR: string | null = "/vo-storitve-pozar.png";
+
+/** Storitve — pod blokom „Domofonija“ */
+export const MARKETING_IMG_STORITVE_DOMOFON: string | null = "/vo-storitve-domofon.png";
+
+/** Storitve — pod blokom „Omrežne montaže“ */
+export const MARKETING_IMG_STORITVE_MREZA: string | null = "/vo-storitve-mreza.png";
+
+/** Storitve — pod blokom „Wi‑Fi in pokritost“ */
+export const MARKETING_IMG_STORITVE_WIFI: string | null = "/vo-storitve-wifi.png";
+
+/** Storitve — pod blokom „Podpora in servis“ */
+export const MARKETING_IMG_STORITVE_SERVIS: string | null = "/vo-storitve-servis.png";
+
+/** Storitve — pod blokom „Ostale montaže“ */
+export const MARKETING_IMG_STORITVE_OSTALO: string | null = "/vo-storitve-ostalo.png";
+
+/** Produkti — pod kartico portala (polna širina) */
+export const MARKETING_IMG_PRODUKTI_POD_KARTO: string | null = "/vo-produkti-pod-karto.png";
+
+/** Kontakt — nad obrazcem (stran brez slike) */
+export const MARKETING_IMG_KONTAKT_UVOD: string | null = null;
