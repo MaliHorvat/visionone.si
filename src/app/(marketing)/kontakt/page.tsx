@@ -1,21 +1,29 @@
 import type { Metadata } from "next";
 import { PageHero } from "@/components/public/PageHero";
+import { getMarketingSiteContent } from "@/lib/marketing-site/fetch";
 import { ContactForm } from "./ContactForm";
 
 export const metadata: Metadata = {
   title: "Kontakt",
 };
 
-export default function KontaktPage() {
+export default async function KontaktPage() {
+  const site = await getMarketingSiteContent();
+  const kontakt = site.pages.kontakt;
+  const hero = kontakt?.hero && "description" in kontakt.hero ? kontakt.hero : null;
+
   return (
     <>
       <PageHero
-        eyebrow="Kontakt"
-        title="Pogovorimo se o vašem objektu"
-        description="Pišite nam za ogled lokacije, ponudbo ali hitri servis. Odgovorimo v najkrajšem možnem času."
+        eyebrow={hero?.eyebrow ?? "Kontakt"}
+        title={hero?.title ?? "Pogovorimo se o vašem objektu"}
+        description={hero?.description ?? ""}
       />
 
       <div className="mx-auto max-w-6xl px-4 py-10 sm:py-14 md:px-6">
+        {kontakt?.contactIntro ? (
+          <p className="mb-8 max-w-2xl text-sm leading-relaxed text-[var(--vo-muted)]">{kontakt.contactIntro}</p>
+        ) : null}
         <div className="grid gap-10 lg:grid-cols-[1fr_minmax(0,320px)]">
           <ContactForm />
 

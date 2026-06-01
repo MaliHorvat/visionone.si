@@ -15,22 +15,36 @@ import {
 import { ServiceImageSplit } from "@/components/public/ServiceImageSplit";
 import { VisualBand } from "@/components/public/VisualBand";
 import { MarketingImageSlot } from "@/components/public/MarketingImageSlot";
-import {
-  MARKETING_IMG_CCTV,
-  MARKETING_IMG_DOMOV_KAJ_NUDIMO,
-  MARKETING_IMG_DOMOV_PODPORA,
-  MARKETING_IMG_DOMOV_ZAKAJ_INTRO,
-  MARKETING_IMG_HERO,
-} from "@/lib/marketing-images";
+import { getMarketingSiteContent, imageSrc } from "@/lib/marketing-site/fetch";
 
-const trustPills = ["24/7 nadzor", "Certificirani monterji", "VisionOne portal", "Hiter odziv"];
-
-export default function HomePage() {
+export default async function HomePage() {
+  const site = await getMarketingSiteContent();
+  const home = site.pages.home;
+  const hero = home?.hero && "trustPills" in home.hero ? home.hero : null;
+  const split = home?.splitCctv;
+  const stats = home?.stats ?? [];
+  const imgHero = imageSrc(site, "MARKETING_IMG_HERO") ?? "12.png";
+  const imgCctv = imageSrc(site, "MARKETING_IMG_CCTV") ?? "image1.png";
+  const imgZakaj = imageSrc(site, "MARKETING_IMG_DOMOV_ZAKAJ_INTRO");
+  const imgKaj = imageSrc(site, "MARKETING_IMG_DOMOV_KAJ_NUDIMO");
+  const imgPodpora = imageSrc(site, "MARKETING_IMG_DOMOV_PODPORA");
+  const heroImgCfg = site.images.MARKETING_IMG_HERO;
   return (
     <>
       <section className="relative min-h-[min(92vh,820px)] overflow-hidden border-b border-[var(--vo-border)]">
         <div className="pointer-events-none absolute inset-0 bg-[var(--vo-surface-2)]">
-          <Image src={MARKETING_IMG_HERO} alt="" fill priority className="object-cover object-center md:object-right" sizes="100vw" />
+          <Image
+            src={imgHero}
+            alt={heroImgCfg?.alt ?? ""}
+            fill
+            priority
+            className="object-cover object-center md:object-right"
+            style={{
+              objectFit: heroImgCfg?.objectFit ?? "cover",
+              objectPosition: heroImgCfg?.objectPosition ?? "center right",
+            }}
+            sizes="100vw"
+          />
           <div className="absolute inset-0 bg-[var(--vo-surface)]/90 md:bg-gradient-to-r md:from-[var(--vo-surface)] md:from-15% md:via-[var(--vo-surface)]/75 md:via-45% md:to-transparent md:to-80%" aria-hidden />
           <div className="vo-hero-glow absolute inset-0" aria-hidden />
         </div>
@@ -38,19 +52,19 @@ export default function HomePage() {
         <div className="relative mx-auto max-w-6xl px-4 py-16 sm:py-20 md:px-6 md:py-28">
           <div className="inline-flex items-center gap-2 rounded-full border border-[var(--vo-accent)]/30 bg-[var(--vo-surface)]/80 px-3 py-1.5 text-xs font-semibold text-[var(--vo-accent)] shadow-sm backdrop-blur-sm">
             <Sparkles className="h-3.5 w-3.5" aria-hidden />
-            Varnost, ki deluje — ne le na papirju
+            {hero?.eyebrow ?? "Varnost, ki deluje — ne le na papirju"}
           </div>
 
           <h1 className="mt-5 max-w-3xl text-balance text-4xl font-extrabold tracking-tight text-[var(--vo-fg)] sm:text-5xl md:text-[3.25rem] md:leading-[1.08]">
-            Videonadzor, mreža in proaktivni nadzor v{" "}
+            {hero?.title ?? "Videonadzor, mreža in proaktivni nadzor v"}{" "}
             <span className="bg-gradient-to-r from-[var(--vo-accent)] to-[var(--vo-accent-2)] bg-clip-text text-transparent">
-              enem sistemu
+              {hero?.titleHighlight ?? "enem sistemu"}
             </span>
           </h1>
 
           <p className="mt-6 max-w-2xl text-base leading-relaxed text-[var(--vo-muted)] sm:text-lg">
-            Od postavitve kamer in snemalnikov do 24/7 spremljanja dosegljivosti. VisionOne portal v realnem času
-            pokaže stanje kamer, snemalnikov, stikal in diskov — vi ukrepate prej, ko izpad postane kritičen.
+            {hero?.description ??
+              "Od postavitve kamer in snemalnikov do 24/7 spremljanja dosegljivosti. VisionOne portal v realnem času pokaže stanje kamer, snemalnikov, stikal in diskov — vi ukrepate prej, ko izpad postane kritičen."}
           </p>
 
           <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
@@ -58,19 +72,19 @@ export default function HomePage() {
               href="/kontakt#ponudba"
               className="vo-btn-primary inline-flex min-h-12 items-center justify-center gap-2 rounded-xl px-6 py-3 text-sm font-bold text-white"
             >
-              Brezplačna ponudba
+              {hero?.ctaPrimary ?? "Brezplačna ponudba"}
               <ArrowRight className="h-4 w-4" aria-hidden />
             </Link>
             <Link
               href="/produkti"
               className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl border border-[var(--vo-border)] bg-[var(--vo-surface)]/90 px-6 py-3 text-sm font-bold text-[var(--vo-fg)] backdrop-blur-sm transition hover:border-[var(--vo-accent)]/40 hover:bg-[var(--vo-surface)]"
             >
-              Spoznaj portal
+              {hero?.ctaSecondary ?? "Spoznaj portal"}
             </Link>
           </div>
 
           <ul className="mt-10 flex flex-wrap gap-2">
-            {trustPills.map((pill) => (
+            {(hero?.trustPills ?? ["24/7 nadzor", "Certificirani monterji", "VisionOne portal", "Hiter odziv"]).map((pill) => (
               <li
                 key={pill}
                 className="inline-flex items-center gap-1.5 rounded-lg border border-[var(--vo-border)] bg-[var(--vo-surface)]/85 px-3 py-1.5 text-xs font-semibold text-[var(--vo-fg)] backdrop-blur-sm"
@@ -84,19 +98,13 @@ export default function HomePage() {
       </section>
 
       <section className="mx-auto max-w-6xl px-4 pb-10 pt-12 md:px-6 md:pb-14 md:pt-16">
-        <ServiceImageSplit imageSrc={MARKETING_IMG_CCTV} imageAlt="Videonadzor in varnostni sistemi na objektu" priority>
-          <p className="text-xs font-bold uppercase tracking-[0.2em] text-[var(--vo-accent)]">Celostna skrb za objekt</p>
-          <h2 className="mt-3 text-2xl font-bold text-[var(--vo-fg)] md:text-3xl">
-            Montaža, zagon, podpora — videonadzor, alarmi, požar, domofoni, omrežja
-          </h2>
-          <p className="mt-4 text-sm leading-relaxed text-[var(--vo-muted)] md:text-base">
-            Na terenu izvedemo montažo in zagon videonadzora, brezžičnih in hibridnih alarmnih sistemov, požarne
-            signalizacije, domofonije ter LAN/Wi‑Fi. Nudimo dokumentacijo, servis in proaktivno spremljanje — vključno z
-            VisionOne portalom za živ pregled kamer, snemalnikov, stikal in diskov.
-          </p>
+        <ServiceImageSplit imageSrc={imgCctv} imageAlt={site.images.MARKETING_IMG_CCTV?.alt ?? "Videonadzor na objektu"} priority>
+          <p className="text-xs font-bold uppercase tracking-[0.2em] text-[var(--vo-accent)]">{split?.kicker ?? "Celostna skrb za objekt"}</p>
+          <h2 className="mt-3 text-2xl font-bold text-[var(--vo-fg)] md:text-3xl">{split?.title ?? "Montaža, zagon, podpora"}</h2>
+          <p className="mt-4 text-sm leading-relaxed text-[var(--vo-muted)] md:text-base">{split?.body ?? ""}</p>
           <div className="mt-6 flex flex-wrap gap-4">
-            <Link href="/storitve" className="inline-flex items-center gap-1 text-sm font-bold text-[var(--vo-accent)] hover:underline">
-              Vse storitve <ArrowRight className="h-4 w-4" />
+            <Link href={split?.linkHref ?? "/storitve"} className="inline-flex items-center gap-1 text-sm font-bold text-[var(--vo-accent)] hover:underline">
+              {split?.linkLabel ?? "Vse storitve"} <ArrowRight className="h-4 w-4" />
             </Link>
             <Link href="/kontakt" className="inline-flex items-center gap-1 text-sm font-bold text-[var(--vo-accent)] hover:underline">
               Rezerviraj ogled <ArrowRight className="h-4 w-4" />
@@ -105,24 +113,23 @@ export default function HomePage() {
         </ServiceImageSplit>
 
         <div className="mt-10 grid gap-4 sm:grid-cols-3">
-          {[
-            { k: "100+", v: "Aktivnih objektov v nadzoru", icon: ShieldCheck },
-            { k: "24/7", v: "Spremljanje dosegljivosti", icon: Zap },
-            { k: "< 15 min", v: "Povprečen prvi odziv (SLA)", icon: RadioTower },
-          ].map(({ k, v, icon: Icon }) => (
-            <div key={v} className="vo-stat-card vo-card-hover rounded-2xl border border-[var(--vo-border)] px-5 py-5">
+          {stats.map((stat, i) => {
+            const Icon = [ShieldCheck, Zap, RadioTower][i] ?? ShieldCheck;
+            return (
+            <div key={stat.label} className="vo-stat-card vo-card-hover rounded-2xl border border-[var(--vo-border)] px-5 py-5">
               <Icon className="h-6 w-6 text-[var(--vo-accent)]" aria-hidden />
-              <p className="mt-3 text-3xl font-extrabold text-[var(--vo-fg)]">{k}</p>
-              <p className="mt-1 text-sm text-[var(--vo-muted)]">{v}</p>
+              <p className="mt-3 text-3xl font-extrabold text-[var(--vo-fg)]">{stat.value}</p>
+              <p className="mt-1 text-sm text-[var(--vo-muted)]">{stat.label}</p>
             </div>
-          ))}
+          );
+          })}
         </div>
 
         <div className="mt-14">
-          {MARKETING_IMG_DOMOV_ZAKAJ_INTRO ? (
+          {imgZakaj ? (
             <MarketingImageSlot
               codeLabel="MARKETING_IMG_DOMOV_ZAKAJ_INTRO"
-              src={MARKETING_IMG_DOMOV_ZAKAJ_INTRO}
+              src={imgZakaj}
               alt="VisionOne — zakaj portal"
             />
           ) : (
@@ -176,11 +183,11 @@ export default function HomePage() {
 
       <section className="vo-section-alt border-y border-[var(--vo-border)] py-16 md:py-20">
         <div className="mx-auto max-w-6xl px-4 md:px-6">
-          {MARKETING_IMG_DOMOV_KAJ_NUDIMO ? (
+          {imgKaj ? (
             <div className="mb-10">
               <MarketingImageSlot
                 codeLabel="MARKETING_IMG_DOMOV_KAJ_NUDIMO"
-                src={MARKETING_IMG_DOMOV_KAJ_NUDIMO}
+                src={imgKaj}
                 alt="VisionOne storitve"
               />
             </div>
@@ -228,7 +235,7 @@ export default function HomePage() {
           <div className="w-full max-w-3xl overflow-hidden rounded-2xl border border-[var(--vo-border)] shadow-[var(--vo-card-shadow)]">
             <MarketingImageSlot
               codeLabel="MARKETING_IMG_DOMOV_PODPORA"
-              src={MARKETING_IMG_DOMOV_PODPORA}
+              src={imgPodpora ?? "/vo-domov-podpora.png"}
               alt="VisionOne — podpora in nadzor"
               aspectClass="aspect-video min-h-[180px] w-full sm:min-h-[220px]"
               className="rounded-2xl border-0"
