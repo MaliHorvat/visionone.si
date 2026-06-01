@@ -25,18 +25,31 @@ export function resolveMarketingImageSrc(src: string): string {
   return src.startsWith("/") ? src : `/${src}`;
 }
 
+const CMS_REVALIDATE_SEC = Number(process.env.MARKETING_CONTENT_REVALIDATE_SEC ?? "15") || 15;
+
 export async function getMarketingSiteContent(): Promise<MarketingSiteContent> {
   const url =
     process.env.MARKETING_CONTENT_URL?.trim() ||
     process.env.NEXT_PUBLIC_MARKETING_CONTENT_URL?.trim() ||
     "";
-  if (!url) return DEFAULT_MARKETING_SITE_CONTENT;
+  if (!url) {
+    if (process.env.NODE_ENV === "production") {
+      console.warn("[marketing] MARKETING_CONTENT_URL ni nastavljen — prikazane so privzete vsebine.");
+    }
+    return DEFAULT_MARKETING_SITE_CONTENT;
+  }
   try {
-    const res = await fetch(url, { next: { revalidate: 60, tags: ["marketing-site"] } });
-    if (!res.ok) return DEFAULT_MARKETING_SITE_CONTENT;
+    const res = await fetch(url, {
+      next: { revalidate: CMS_REVALIDATE_SEC, tags: ["marketing-site"] },
+    });
+    if (!res.ok) {
+      console.warn(`[marketing] API ${url} → ${res.status}, uporabljam privzete vsebine.`);
+      return DEFAULT_MARKETING_SITE_CONTENT;
+    }
     const j = (await res.json()) as { content?: unknown };
     return mergeMarketingContent(j.content ?? null);
-  } catch {
+  } catch (e) {
+    console.warn("[marketing] Napaka pri branju CMS:", e);
     return DEFAULT_MARKETING_SITE_CONTENT;
   }
 }
