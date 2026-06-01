@@ -6,16 +6,22 @@ import { useAuth, UserButton } from "@clerk/nextjs";
 import { Menu, X } from "lucide-react";
 import { useEffect, useState } from "react";
 
-const links = [
+const DEFAULT_LINKS = [
   { href: "/", label: "Domov" },
   { href: "/storitve", label: "Storitve" },
   { href: "/produkti", label: "Produkti" },
-  /* Časovno skrito — stran še obstaja na /vzdrzevalni-paketi za ponovno aktivacijo. */
-  // { href: "/vzdrzevalni-paketi", label: "Vzdrževalni paketi" },
   { href: "/kontakt", label: "Kontakt" },
 ];
 
-export function PublicNav() {
+type NavLink = { href: string; label: string };
+type HeaderCta = { label: string; href: string; show: boolean };
+
+type Props = {
+  links?: NavLink[];
+  headerCta?: HeaderCta;
+};
+
+export function PublicNav({ links = DEFAULT_LINKS, headerCta }: Props) {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
   const { isSignedIn } = useAuth();
@@ -62,12 +68,14 @@ export function PublicNav() {
         </nav>
 
         <div className="flex shrink-0 items-center gap-1.5 sm:gap-2">
-          <Link
-            href="/kontakt#ponudba"
-            className="hidden rounded-lg border border-[var(--vo-border)] bg-[var(--vo-surface-2)] px-3 py-2 text-sm font-semibold text-[var(--vo-fg)] transition hover:border-[var(--vo-accent)]/40 lg:inline-flex"
-          >
-            Dogovor za ogled
-          </Link>
+          {headerCta?.show !== false ? (
+            <Link
+              href={headerCta?.href ?? "/kontakt#ponudba"}
+              className="hidden rounded-lg border border-[var(--vo-border)] bg-[var(--vo-surface-2)] px-3 py-2 text-sm font-semibold text-[var(--vo-fg)] transition hover:border-[var(--vo-accent)]/40 lg:inline-flex"
+            >
+              {headerCta?.label ?? "Dogovor za ogled"}
+            </Link>
+          ) : null}
           {isSignedIn ? (
             <>
               <UserButton />
@@ -118,13 +126,15 @@ export function PublicNav() {
                   </Link>
                 );
               })}
-              <Link
-                href="/kontakt#ponudba"
-                onClick={() => setOpen(false)}
-                className="min-h-11 rounded-lg border border-[var(--vo-border)] px-3 py-2.5 text-center text-base font-semibold text-[var(--vo-fg)] hover:bg-[var(--vo-surface-2)]"
-              >
-                Dogovor za ogled
-              </Link>
+              {headerCta?.show !== false ? (
+                <Link
+                  href={headerCta?.href ?? "/kontakt#ponudba"}
+                  onClick={() => setOpen(false)}
+                  className="min-h-11 rounded-lg border border-[var(--vo-border)] px-3 py-2.5 text-center text-base font-semibold text-[var(--vo-fg)] hover:bg-[var(--vo-surface-2)]"
+                >
+                  {headerCta?.label ?? "Dogovor za ogled"}
+                </Link>
+              ) : null}
             </div>
             <div className="mt-3 flex flex-col gap-2 border-t border-[var(--vo-border)] pt-3">
               {isSignedIn ? (

@@ -1,6 +1,9 @@
 import { DEFAULT_MARKETING_SITE_CONTENT } from "./default-content";
+import { buildNavLinks, findRouteBySlugPath, routePublicPath } from "./helpers";
 import { mergeMarketingContent } from "./merge";
 import type { MarketingSiteContent } from "./types";
+
+export { buildNavLinks, findRouteBySlugPath, routePublicPath };
 
 /** Osnova URL za slike naložene prek portala (/marketing/...). */
 export function getMarketingMediaBase(): string {
