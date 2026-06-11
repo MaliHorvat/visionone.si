@@ -63,7 +63,9 @@ function resolveMailer(): MailCfg {
     return {
       mode: "resend",
       to: envFirst("CONTACT_FORM_TO") || DEFAULT_CONTACT_FORM_TO,
-      from: envFirst("CONTACT_FORM_FROM") || DEFAULT_CONTACT_FORM_FROM,
+      // Brez verificirane domene Resend dovoli pošiljanje le prek onboarding@resend.dev.
+      // Ko verificirate domeno, nastavite CONTACT_FORM_FROM=VisionOne <info@visionone.si>.
+      from: envFirst("CONTACT_FORM_FROM") || "VisionOne <onboarding@resend.dev>",
       apiKey: envFirst("RESEND_API_KEY"),
     };
   }
@@ -254,7 +256,7 @@ export async function sendContactMail(
       console.error("[contact] Resend error", res.status, body);
       const hint =
         res.status === 422 || res.status === 403
-          ? "Resend je zavrnil zahtevo — preverite CONTACT_FORM_FROM (preverjena domena) in RESEND_API_KEY."
+          ? "Resend je zavrnil zahtevo. Brez verificirane domene lahko pošiljate le na e-naslov, s katerim ste registrirani na Resend — nastavite CONTACT_FORM_TO na ta naslov (ali verificirajte domeno in nastavite CONTACT_FORM_FROM)."
           : "Pošiljanje prek Resend ni uspelo.";
       return { ok: false, status: 502, message: hint };
     }
