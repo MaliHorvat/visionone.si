@@ -263,7 +263,8 @@ export async function sendContactMail(
 
   try {
     const transport = await createSmtpTransport(cfg);
-    await transport.sendMail({
+    // Skupni časovni limit, da funkcija ne preseže Vercel limita (in vrne čisto napako, ne 502).
+    const sendPromise = transport.sendMail({
       from: cfg.from,
       to: cfg.to,
       replyTo: content.replyTo,
@@ -271,9 +272,22 @@ export async function sendContactMail(
       text: content.text,
       html: content.html,
     });
+    const timeout = new Promise<never>((_, reject) =>
+      setTimeout(() => reject(new Error("SMTP_OVERALL_TIMEOUT")), 8_000),
+    );
+    await Promise.race([sendPromise, timeout]);
     return { ok: true };
   } catch (e) {
     console.error("[contact] SMTP error", e);
+    const err = e as { message?: string };
+    if (err.message === "SMTP_OVERALL_TIMEOUT") {
+      return {
+        ok: false,
+        status: 504,
+        message:
+          "Poštni strežnik se ni odzval pravočasno. Pišite nam neposredno na info@visionone.si.",
+      };
+    }
     return {
       ok: false,
       status: 502,
