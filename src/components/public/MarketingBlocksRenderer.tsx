@@ -45,25 +45,29 @@ function btnClass(variant: "primary" | "secondary" | "outline") {
   return "border border-[var(--vo-border)] bg-[var(--vo-surface)] text-[var(--vo-fg)] font-bold hover:border-[var(--vo-accent)]/40";
 }
 
-function TestimonialsSection({ dict }: { dict: SiteDictionary }) {
+function ProcessSection({ dict }: { dict: SiteDictionary }) {
   return (
     <section className="border-y border-[var(--vo-border)] bg-[var(--vo-surface)] py-16 md:py-20">
       <div className="mx-auto max-w-6xl px-4 md:px-6">
-        <p className="text-center text-xs font-bold uppercase tracking-[0.2em] text-[var(--vo-accent)]">
-          {dict.trustStrip.label}
-        </p>
-        <div className="mt-10 grid gap-6 md:grid-cols-2">
-          {dict.testimonials.map((t) => (
-            <blockquote
-              key={t.author}
-              className="vo-card-hover rounded-2xl border border-[var(--vo-border)] bg-[var(--vo-bg)] p-6 shadow-[var(--vo-card-shadow)]"
+        <div className="text-center">
+          <p className="text-xs font-bold uppercase tracking-[0.22em] text-[var(--vo-accent)]">
+            {dict.process.kicker}
+          </p>
+          <h2 className="mt-2 text-3xl font-bold text-[var(--vo-fg)]">{dict.process.title}</h2>
+          <p className="mx-auto mt-3 max-w-xl text-[var(--vo-muted)]">{dict.process.subtitle}</p>
+        </div>
+        <div className="mt-12 grid gap-5 md:grid-cols-3">
+          {dict.process.steps.map((step, i) => (
+            <div
+              key={step.title}
+              className="vo-card-hover relative overflow-hidden rounded-2xl border border-[var(--vo-border)] bg-[var(--vo-bg)] p-6 shadow-[var(--vo-card-shadow)]"
             >
-              <p className="text-base leading-relaxed text-[var(--vo-fg)]">&ldquo;{t.quote}&rdquo;</p>
-              <footer className="mt-4 border-t border-[var(--vo-border)] pt-4">
-                <p className="text-sm font-semibold text-[var(--vo-fg)]">{t.author}</p>
-                <p className="text-xs text-[var(--vo-muted)]">{t.role}</p>
-              </footer>
-            </blockquote>
+              <span className="absolute -right-2 -top-4 select-none text-7xl font-extrabold text-[var(--vo-accent)]/10">
+                {i + 1}
+              </span>
+              <h3 className="relative text-lg font-bold text-[var(--vo-fg)]">{step.title}</h3>
+              <p className="relative mt-2 text-sm leading-relaxed text-[var(--vo-muted)]">{step.body}</p>
+            </div>
           ))}
         </div>
       </div>
@@ -271,7 +275,8 @@ export function MarketingBlocksRenderer({
                     return (
                       <div
                         key={item.id}
-                        className="vo-card-hover overflow-hidden rounded-2xl border border-[var(--vo-border)] bg-[var(--vo-surface)] shadow-[var(--vo-card-shadow)]"
+                        id={item.id}
+                        className="vo-card-hover scroll-mt-24 overflow-hidden rounded-2xl border border-[var(--vo-border)] bg-[var(--vo-surface)] shadow-[var(--vo-card-shadow)]"
                       >
                         <div className="grid gap-6 p-6 md:grid-cols-[auto_1fr] md:p-8">
                           <Icon className="h-10 w-10 shrink-0 text-[var(--vo-accent)]" aria-hidden />
@@ -351,7 +356,7 @@ export function MarketingBlocksRenderer({
             return null;
         }
       })}
-      {pageId === "home" ? <TestimonialsSection dict={dict} /> : null}
+      {pageId === "home" ? <ProcessSection dict={dict} /> : null}
     </>
   );
 }

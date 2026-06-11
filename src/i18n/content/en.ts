@@ -65,22 +65,29 @@ export const en: SiteDictionary = {
     },
   },
   trustStrip: {
-    label: "Trusted by security-conscious businesses across Slovenia and the EU",
-    items: ["24/7 monitoring", "Certified installers", "VisionOne portal", "SLA-backed response"],
+    label: "",
+    items: ["24/7 monitoring", "VisionOne portal", "SLA-backed response"],
   },
-  testimonials: [
-    {
-      quote:
-        "We finally see camera and NVR status before users call us. VisionOne portal changed how we run maintenance.",
-      author: "Operations manager",
-      role: "Logistics · 40+ cameras",
-    },
-    {
-      quote: "Professional installation, clean documentation, and a support team that actually answers.",
-      author: "Facility director",
-      role: "Retail chain · multi-site",
-    },
+  testimonials: [],
+  servicesMenu: [
+    { id: "alarm", label: "Alarm systems" },
+    { id: "pozar", label: "Fire detection" },
+    { id: "domofon", label: "Intercoms & access" },
+    { id: "mreza", label: "Structured cabling" },
+    { id: "wifi", label: "Wi‑Fi coverage" },
+    { id: "servis", label: "Support & service" },
+    { id: "ostalo", label: "Additional works" },
   ],
+  process: {
+    kicker: "How it works",
+    title: "From enquiry to a working system",
+    subtitle: "A transparent process with no surprises — we guide you every step.",
+    steps: [
+      { title: "1 · Consult & survey", body: "We assess the site, risks and goals, then prepare a clear quote." },
+      { title: "2 · Install & commission", body: "Certified engineers deploy the system, configure it and hand over documentation." },
+      { title: "3 · Monitor & support", body: "VisionOne portal watches status 24/7 — we act before downtime hits." },
+    ],
+  },
   routes: [
     { slug: "", label: "Home" },
     { slug: "storitve", label: "Services" },
@@ -102,7 +109,7 @@ export const en: SiteDictionary = {
         ctaPrimaryHref: "/kontakt#ponudba",
         ctaSecondary: "Explore the portal",
         ctaSecondaryHref: "/produkti",
-        trustPills: ["24/7 monitoring", "Certified installers", "VisionOne portal", "Fast SLA response"],
+        trustPills: ["24/7 monitoring", "VisionOne portal", "Fast SLA response"],
       },
       {
         id: "blk_split_home",

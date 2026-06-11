@@ -64,21 +64,29 @@ export const sl: SiteDictionary = {
     },
   },
   trustStrip: {
-    label: "Zaupajo nam varnostno ozaveščena podjetja v Sloveniji in EU",
-    items: ["24/7 nadzor", "Certificirani monterji", "VisionOne portal", "Hiter SLA odziv"],
+    label: "",
+    items: ["24/7 nadzor", "VisionOne portal", "Hiter SLA odziv"],
   },
-  testimonials: [
-    {
-      quote: "Končno vidimo stanje kamer in NVR-jev, preden nas pokličejo. VisionOne portal je spremenil naše vzdrževanje.",
-      author: "Vodja operacij",
-      role: "Logistika · 40+ kamer",
-    },
-    {
-      quote: "Profesionalna montaža, čista dokumentacija in podpora, ki dejansko odgovori.",
-      author: "Direktor objekta",
-      role: "Trgovska veriga · več lokacij",
-    },
+  testimonials: [],
+  servicesMenu: [
+    { id: "alarm", label: "Alarmni sistemi" },
+    { id: "pozar", label: "Požarna signalizacija" },
+    { id: "domofon", label: "Domofonija" },
+    { id: "mreza", label: "Omrežne montaže" },
+    { id: "wifi", label: "Wi‑Fi pokritost" },
+    { id: "servis", label: "Podpora in servis" },
+    { id: "ostalo", label: "Ostale montaže" },
   ],
+  process: {
+    kicker: "Kako poteka",
+    title: "Od povpraševanja do delujočega sistema",
+    subtitle: "Pregleden proces brez presenečenj — vodimo vas na vsakem koraku.",
+    steps: [
+      { title: "1 · Posvet in ogled", body: "Spoznamo objekt, tveganja in želje ter pripravimo okvirno ponudbo." },
+      { title: "2 · Montaža in zagon", body: "Certificirani monterji postavijo sistem, ga nastavijo in predajo dokumentacijo." },
+      { title: "3 · Nadzor in podpora", body: "VisionOne portal spremlja stanje 24/7, mi pa ukrepamo pred izpadom." },
+    ],
+  },
   routes: [
     { slug: "", label: "Domov" },
     { slug: "storitve", label: "Storitve" },
@@ -100,7 +108,7 @@ export const sl: SiteDictionary = {
         ctaPrimaryHref: "/kontakt#ponudba",
         ctaSecondary: "Spoznaj portal",
         ctaSecondaryHref: "/produkti",
-        trustPills: ["24/7 nadzor", "Certificirani monterji", "VisionOne portal", "Hiter odziv"],
+        trustPills: ["24/7 nadzor", "VisionOne portal", "Hiter odziv"],
       },
       {
         id: "blk_split_home",

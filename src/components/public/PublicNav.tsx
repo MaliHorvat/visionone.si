@@ -3,8 +3,8 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useAuth } from "@clerk/nextjs";
-import { Menu, X } from "lucide-react";
-import { useEffect, useState } from "react";
+import { ChevronDown, Menu, X } from "lucide-react";
+import { useEffect, useRef, useState } from "react";
 import { VisionOneLogo } from "@/components/brand/VisionOneLogo";
 import { LanguageSwitcher } from "@/components/public/LanguageSwitcher";
 import { localizedPath } from "@/i18n/config";
@@ -22,8 +22,10 @@ type Props = {
 export function PublicNav({ links = [], headerCta, portalLoginLabel }: Props) {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
+  const [servicesOpen, setServicesOpen] = useState(false);
+  const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const { isSignedIn } = useAuth();
-  const { locale } = useLocale();
+  const { locale, dict } = useLocale();
 
   useEffect(() => {
     document.body.style.overflow = open ? "hidden" : "";
@@ -33,6 +35,17 @@ export function PublicNav({ links = [], headerCta, portalLoginLabel }: Props) {
   }, [open]);
 
   const homeHref = localizedPath(locale, "/");
+  const servicesHref = localizedPath(locale, "/storitve");
+  const servicesMenu = dict.servicesMenu ?? [];
+
+  const openServices = () => {
+    if (closeTimer.current) clearTimeout(closeTimer.current);
+    setServicesOpen(true);
+  };
+  const scheduleCloseServices = () => {
+    if (closeTimer.current) clearTimeout(closeTimer.current);
+    closeTimer.current = setTimeout(() => setServicesOpen(false), 120);
+  };
 
   return (
     <header className="sticky top-0 z-50 border-b border-[var(--vo-border)]/60 bg-[var(--vo-surface)]/80 backdrop-blur-xl">
@@ -44,6 +57,51 @@ export function PublicNav({ links = [], headerCta, portalLoginLabel }: Props) {
         <nav className="hidden min-w-0 items-center gap-0.5 lg:flex">
           {links.map(({ href, label }) => {
             const active = href === homeHref ? pathname === homeHref || pathname === `${homeHref}/` : pathname.startsWith(href);
+            const isServices = href === servicesHref && servicesMenu.length > 0;
+
+            if (isServices) {
+              return (
+                <div
+                  key={href}
+                  className="relative"
+                  onMouseEnter={openServices}
+                  onMouseLeave={scheduleCloseServices}
+                >
+                  <Link
+                    href={href}
+                    aria-expanded={servicesOpen}
+                    className={`inline-flex items-center gap-1 rounded-lg px-3 py-2 text-sm font-medium transition ${
+                      active
+                        ? "bg-[var(--vo-accent-muted)] text-[var(--vo-accent)]"
+                        : "text-[var(--vo-muted)] hover:bg-[var(--vo-surface-2)] hover:text-[var(--vo-fg)]"
+                    }`}
+                  >
+                    {label}
+                    <ChevronDown
+                      className={`h-3.5 w-3.5 transition-transform ${servicesOpen ? "rotate-180" : ""}`}
+                      aria-hidden
+                    />
+                  </Link>
+                  {servicesOpen ? (
+                    <div className="absolute left-0 top-full pt-2">
+                      <div className="w-64 overflow-hidden rounded-2xl border border-[var(--vo-border)] bg-[var(--vo-surface)] p-2 shadow-[var(--vo-card-shadow)]">
+                        {servicesMenu.map((item) => (
+                          <Link
+                            key={item.id}
+                            href={`${servicesHref}#${item.id}`}
+                            onClick={() => setServicesOpen(false)}
+                            className="block rounded-xl px-3 py-2 text-sm font-medium text-[var(--vo-muted)] transition hover:bg-[var(--vo-surface-2)] hover:text-[var(--vo-accent)]"
+                          >
+                            {item.label}
+                          </Link>
+                        ))}
+                      </div>
+                    </div>
+                  ) : null}
+                </div>
+              );
+            }
+
             return (
               <Link
                 key={href}
@@ -103,17 +161,33 @@ export function PublicNav({ links = [], headerCta, portalLoginLabel }: Props) {
             <div className="flex flex-col gap-1">
               {links.map(({ href, label }) => {
                 const active = href === homeHref ? pathname === homeHref : pathname.startsWith(href);
+                const isServices = href === servicesHref && servicesMenu.length > 0;
                 return (
-                  <Link
-                    key={href}
-                    href={href}
-                    onClick={() => setOpen(false)}
-                    className={`min-h-11 rounded-xl px-3 py-2.5 text-base font-medium ${
-                      active ? "bg-[var(--vo-accent-muted)] text-[var(--vo-accent)]" : "hover:bg-[var(--vo-surface-2)]"
-                    }`}
-                  >
-                    {label}
-                  </Link>
+                  <div key={href}>
+                    <Link
+                      href={href}
+                      onClick={() => setOpen(false)}
+                      className={`min-h-11 rounded-xl px-3 py-2.5 text-base font-medium ${
+                        active ? "bg-[var(--vo-accent-muted)] text-[var(--vo-accent)]" : "hover:bg-[var(--vo-surface-2)]"
+                      } flex items-center`}
+                    >
+                      {label}
+                    </Link>
+                    {isServices ? (
+                      <div className="ml-3 mt-1 flex flex-col gap-0.5 border-l border-[var(--vo-border)] pl-3">
+                        {servicesMenu.map((item) => (
+                          <Link
+                            key={item.id}
+                            href={`${servicesHref}#${item.id}`}
+                            onClick={() => setOpen(false)}
+                            className="min-h-10 rounded-lg px-3 py-2 text-sm font-medium text-[var(--vo-muted)] hover:bg-[var(--vo-surface-2)] hover:text-[var(--vo-accent)]"
+                          >
+                            {item.label}
+                          </Link>
+                        ))}
+                      </div>
+                    ) : null}
+                  </div>
                 );
               })}
             </div>

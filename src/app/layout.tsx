@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Inter, Plus_Jakarta_Sans } from "next/font/google";
+import { Inter, Sora } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
 import { Providers } from "./providers";
 import "./globals.css";
@@ -9,10 +9,10 @@ const inter = Inter({
   subsets: ["latin", "latin-ext"],
 });
 
-const display = Plus_Jakarta_Sans({
+const display = Sora({
   variable: "--font-display",
   subsets: ["latin", "latin-ext"],
-  weight: ["600", "700", "800"],
+  weight: ["500", "600", "700", "800"],
 });
 
 export const viewport: Viewport = {
