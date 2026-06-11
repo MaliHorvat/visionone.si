@@ -1,18 +1,19 @@
 "use client";
 
-import { usePathname, useRouter } from "next/navigation";
+import { usePathname } from "next/navigation";
 import { ChevronDown } from "lucide-react";
 import { useState, useRef, useEffect } from "react";
-import { DEFAULT_LOCALE, LOCALE_META, LOCALES, localizedPath, parseLocaleFromSlug, type Locale } from "@/i18n/config";
+import { LOCALE_META, LOCALES, localizedPath, parseLocaleFromSlug, type Locale } from "@/i18n/config";
+import { useLocale } from "@/context/LocaleContext";
 
 export function LanguageSwitcher() {
   const pathname = usePathname();
-  const router = useRouter();
+  const { locale: currentLocale } = useLocale();
   const [open, setOpen] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
 
   const segments = pathname.split("/").filter(Boolean);
-  const { locale: currentLocale, slugPath } = parseLocaleFromSlug(segments);
+  const { slugPath } = parseLocaleFromSlug(segments);
   const slug = slugPath.length ? slugPath.join("/") : "";
 
   useEffect(() => {
@@ -24,14 +25,19 @@ export function LanguageSwitcher() {
   }, []);
 
   function switchLocale(next: Locale) {
+    if (next === currentLocale) {
+      setOpen(false);
+      return;
+    }
     const path = slug ? `/${slug}` : "/";
     const href = localizedPath(next, path);
     document.cookie = `vo_locale=${next};path=/;max-age=31536000;SameSite=Lax`;
     setOpen(false);
-    router.push(href);
+    // Polna osvežitev — da se prevede tudi deljena postavitev (nav, noga, obrazec).
+    window.location.assign(href);
   }
 
-  const current = LOCALE_META[currentLocale] ?? LOCALE_META[DEFAULT_LOCALE];
+  const current = LOCALE_META[currentLocale];
 
   return (
     <div ref={ref} className="relative">

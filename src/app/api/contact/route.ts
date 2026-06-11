@@ -1,6 +1,9 @@
 import { NextResponse } from "next/server";
 import { sendContactMail } from "@/lib/contact-email";
 
+export const runtime = "nodejs";
+export const maxDuration = 30;
+
 const MAX_NAME = 200;
 const MAX_EMAIL = 320;
 const MAX_MESSAGE = 10000;

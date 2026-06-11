@@ -48,6 +48,7 @@ export type SiteDictionary = {
   trustStrip: { label: string; items: string[] };
   testimonials: { quote: string; author: string; role: string }[];
   servicesMenu: { id: string; label: string }[];
+  productsMenu: { id: string; label: string }[];
   process: {
     kicker: string;
     title: string;

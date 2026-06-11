@@ -69,6 +69,7 @@ export const hr: SiteDictionary = {
   },
   testimonials: [],
   servicesMenu: [
+    { id: "videonadzor", label: "Videonadzor (CCTV)" },
     { id: "alarm", label: "Alarmni sustavi" },
     { id: "pozar", label: "Vatrodojava" },
     { id: "domofon", label: "Interfoni i pristup" },
@@ -77,6 +78,7 @@ export const hr: SiteDictionary = {
     { id: "servis", label: "Podrška i servis" },
     { id: "ostalo", label: "Ostali radovi" },
   ],
+  productsMenu: [{ id: "portal", label: "VisionOne portal" }],
   process: {
     kicker: "Kako teče",
     title: "Od upita do funkcionalnog sustava",
@@ -185,6 +187,7 @@ export const hr: SiteDictionary = {
         id: "blk_svc_storitve",
         type: "serviceBlocks",
         items: [
+          { id: "videonadzor", title: "Videonadzor (CCTV)", body: "Projektiranje i montaža kamera i snimača (NVR/DVR), daljinski pristup i arhiviranje snimki. Unutarnji i vanjski nadzor za tvrtke i objekte.", imageKey: "MARKETING_IMG_CCTV" },
           { id: "alarm", title: "Bežični i hibridni alarmni sustavi", body: "Projektiranje, montaža senzora, centrale, sirene i puštanje u rad. Integracija s vratima i mrežama.", imageKey: "MARKETING_IMG_STORITVE_ALARM" },
           { id: "pozar", title: "Vatrodojava", body: "Projektiranje i montaža prema propisima i dogovorenom opsegu. Održavanje prema planu.", imageKey: "MARKETING_IMG_STORITVE_POZAR" },
           { id: "domofon", title: "Interfoni i pristup", body: "IP interfoni, paneli, preusmjeravanje poziva i daljinsko otključavanje gdje je potrebno.", imageKey: "MARKETING_IMG_STORITVE_DOMOFON" },
@@ -211,7 +214,7 @@ export const hr: SiteDictionary = {
         description: "Softver za nadzor objekata — stanje u stvarnom vremenu, upozorenja i servisni tokovi.",
       },
       {
-        id: "blk_split_produkti",
+        id: "portal",
         type: "split",
         imageKey: "MARKETING_IMG_PORTAL_SOFTWARE",
         kicker: "VisionOne portal",

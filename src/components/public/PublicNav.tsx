@@ -22,7 +22,7 @@ type Props = {
 export function PublicNav({ links = [], headerCta, portalLoginLabel }: Props) {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
-  const [servicesOpen, setServicesOpen] = useState(false);
+  const [openMenu, setOpenMenu] = useState<string | null>(null);
   const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const { isSignedIn } = useAuth();
   const { locale, dict } = useLocale();
@@ -36,15 +36,25 @@ export function PublicNav({ links = [], headerCta, portalLoginLabel }: Props) {
 
   const homeHref = localizedPath(locale, "/");
   const servicesHref = localizedPath(locale, "/storitve");
-  const servicesMenu = dict.servicesMenu ?? [];
+  const productsHref = localizedPath(locale, "/produkti");
 
-  const openServices = () => {
-    if (closeTimer.current) clearTimeout(closeTimer.current);
-    setServicesOpen(true);
+  const submenuFor = (href: string): { baseHref: string; items: { id: string; label: string }[] } | null => {
+    if (href === servicesHref && (dict.servicesMenu?.length ?? 0) > 0) {
+      return { baseHref: servicesHref, items: dict.servicesMenu };
+    }
+    if (href === productsHref && (dict.productsMenu?.length ?? 0) > 0) {
+      return { baseHref: productsHref, items: dict.productsMenu };
+    }
+    return null;
   };
-  const scheduleCloseServices = () => {
+
+  const openSub = (id: string) => {
     if (closeTimer.current) clearTimeout(closeTimer.current);
-    closeTimer.current = setTimeout(() => setServicesOpen(false), 120);
+    setOpenMenu(id);
+  };
+  const scheduleCloseSub = () => {
+    if (closeTimer.current) clearTimeout(closeTimer.current);
+    closeTimer.current = setTimeout(() => setOpenMenu(null), 120);
   };
 
   return (
@@ -57,19 +67,20 @@ export function PublicNav({ links = [], headerCta, portalLoginLabel }: Props) {
         <nav className="hidden min-w-0 items-center gap-0.5 lg:flex">
           {links.map(({ href, label }) => {
             const active = href === homeHref ? pathname === homeHref || pathname === `${homeHref}/` : pathname.startsWith(href);
-            const isServices = href === servicesHref && servicesMenu.length > 0;
+            const sub = submenuFor(href);
 
-            if (isServices) {
+            if (sub) {
+              const isOpen = openMenu === href;
               return (
                 <div
                   key={href}
                   className="relative"
-                  onMouseEnter={openServices}
-                  onMouseLeave={scheduleCloseServices}
+                  onMouseEnter={() => openSub(href)}
+                  onMouseLeave={scheduleCloseSub}
                 >
                   <Link
                     href={href}
-                    aria-expanded={servicesOpen}
+                    aria-expanded={isOpen}
                     className={`inline-flex items-center gap-1 rounded-lg px-3 py-2 text-sm font-medium transition ${
                       active
                         ? "bg-[var(--vo-accent-muted)] text-[var(--vo-accent)]"
@@ -78,18 +89,18 @@ export function PublicNav({ links = [], headerCta, portalLoginLabel }: Props) {
                   >
                     {label}
                     <ChevronDown
-                      className={`h-3.5 w-3.5 transition-transform ${servicesOpen ? "rotate-180" : ""}`}
+                      className={`h-3.5 w-3.5 transition-transform ${isOpen ? "rotate-180" : ""}`}
                       aria-hidden
                     />
                   </Link>
-                  {servicesOpen ? (
+                  {isOpen ? (
                     <div className="absolute left-0 top-full pt-2">
                       <div className="w-64 overflow-hidden rounded-2xl border border-[var(--vo-border)] bg-[var(--vo-surface)] p-2 shadow-[var(--vo-card-shadow)]">
-                        {servicesMenu.map((item) => (
+                        {sub.items.map((item) => (
                           <Link
                             key={item.id}
-                            href={`${servicesHref}#${item.id}`}
-                            onClick={() => setServicesOpen(false)}
+                            href={`${sub.baseHref}#${item.id}`}
+                            onClick={() => setOpenMenu(null)}
                             className="block rounded-xl px-3 py-2 text-sm font-medium text-[var(--vo-muted)] transition hover:bg-[var(--vo-surface-2)] hover:text-[var(--vo-accent)]"
                           >
                             {item.label}
@@ -161,7 +172,7 @@ export function PublicNav({ links = [], headerCta, portalLoginLabel }: Props) {
             <div className="flex flex-col gap-1">
               {links.map(({ href, label }) => {
                 const active = href === homeHref ? pathname === homeHref : pathname.startsWith(href);
-                const isServices = href === servicesHref && servicesMenu.length > 0;
+                const sub = submenuFor(href);
                 return (
                   <div key={href}>
                     <Link
@@ -173,12 +184,12 @@ export function PublicNav({ links = [], headerCta, portalLoginLabel }: Props) {
                     >
                       {label}
                     </Link>
-                    {isServices ? (
+                    {sub ? (
                       <div className="ml-3 mt-1 flex flex-col gap-0.5 border-l border-[var(--vo-border)] pl-3">
-                        {servicesMenu.map((item) => (
+                        {sub.items.map((item) => (
                           <Link
                             key={item.id}
-                            href={`${servicesHref}#${item.id}`}
+                            href={`${sub.baseHref}#${item.id}`}
                             onClick={() => setOpen(false)}
                             className="min-h-10 rounded-lg px-3 py-2 text-sm font-medium text-[var(--vo-muted)] hover:bg-[var(--vo-surface-2)] hover:text-[var(--vo-accent)]"
                           >

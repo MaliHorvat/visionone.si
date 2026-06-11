@@ -70,6 +70,7 @@ export const en: SiteDictionary = {
   },
   testimonials: [],
   servicesMenu: [
+    { id: "videonadzor", label: "Video surveillance (CCTV)" },
     { id: "alarm", label: "Alarm systems" },
     { id: "pozar", label: "Fire detection" },
     { id: "domofon", label: "Intercoms & access" },
@@ -78,6 +79,7 @@ export const en: SiteDictionary = {
     { id: "servis", label: "Support & service" },
     { id: "ostalo", label: "Additional works" },
   ],
+  productsMenu: [{ id: "portal", label: "VisionOne portal" }],
   process: {
     kicker: "How it works",
     title: "From enquiry to a working system",
@@ -186,6 +188,7 @@ export const en: SiteDictionary = {
         id: "blk_svc_storitve",
         type: "serviceBlocks",
         items: [
+          { id: "videonadzor", title: "Video surveillance (CCTV)", body: "Design and installation of cameras and recorders (NVR/DVR), remote access and archive retention. Indoor and outdoor coverage for businesses and sites.", imageKey: "MARKETING_IMG_CCTV" },
           { id: "alarm", title: "Wireless & hybrid alarm systems", body: "Design, sensor installation, panels, sirens and commissioning. Integration with doors and networks.", imageKey: "MARKETING_IMG_STORITVE_ALARM" },
           { id: "pozar", title: "Fire detection", body: "Design and installation aligned with regulations and agreed scope. Maintenance on schedule.", imageKey: "MARKETING_IMG_STORITVE_POZAR" },
           { id: "domofon", title: "Intercoms & access", body: "IP intercoms, panels, call routing and remote unlock where required.", imageKey: "MARKETING_IMG_STORITVE_DOMOFON" },
@@ -212,7 +215,7 @@ export const en: SiteDictionary = {
         description: "Software to monitor estates — live status, alerts and service workflows.",
       },
       {
-        id: "blk_split_produkti",
+        id: "portal",
         type: "split",
         imageKey: "MARKETING_IMG_PORTAL_SOFTWARE",
         kicker: "VisionOne portal",

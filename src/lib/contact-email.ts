@@ -111,9 +111,21 @@ export function getContactMailStatus(): {
   };
 }
 
+/** DNS na Vercelu zna obviseti — vsako poizvedbo omejimo s časovnim limitom. */
+function withTimeout<T>(p: Promise<T>, ms: number, fallback: T): Promise<T> {
+  return Promise.race([
+    p,
+    new Promise<T>((resolve) => setTimeout(() => resolve(fallback), ms)),
+  ]);
+}
+
 async function resolveIpv4Host(hostname: string): Promise<string> {
   try {
-    const result = await dns.promises.lookup(hostname, { family: 4 });
+    const result = await withTimeout(
+      dns.promises.lookup(hostname, { family: 4 }),
+      4_000,
+      { address: hostname, family: 4 },
+    );
     return result.address;
   } catch {
     return hostname;
@@ -132,7 +144,7 @@ function looksLikeCdnProxy(ip: string): boolean {
 
 async function tlsServernameForIp(ip: string, fallback: string): Promise<string> {
   try {
-    const ptr = await dns.promises.reverse(ip);
+    const ptr = await withTimeout(dns.promises.reverse(ip), 3_000, [] as string[]);
     const host = ptr[0]?.replace(/\.$/, "");
     if (host) return host;
   } catch {
@@ -156,7 +168,10 @@ async function resolveSmtpEndpoint(
   }
 
   try {
-    const mx = await dns.promises.resolveMx(domain);
+    const mx = await withTimeout(dns.promises.resolveMx(domain), 4_000, []);
+    if (!mx.length) {
+      return { connectHost: directIp, tlsServername: configHost };
+    }
     mx.sort((a, b) => a.priority - b.priority);
     const mxHost = mx[0]?.exchange?.replace(/\.$/, "");
     if (!mxHost) {
@@ -180,9 +195,9 @@ async function createSmtpTransport(cfg: Extract<MailCfg, { mode: "smtp" }>) {
     port: cfg.port,
     secure: cfg.secure,
     auth: { user: cfg.user, pass: cfg.pass },
-    connectionTimeout: 12_000,
-    greetingTimeout: 12_000,
-    socketTimeout: 20_000,
+    connectionTimeout: 8_000,
+    greetingTimeout: 8_000,
+    socketTimeout: 12_000,
     tls: {
       minVersion: "TLSv1.2",
       servername: tlsServername,

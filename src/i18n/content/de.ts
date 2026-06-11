@@ -69,6 +69,7 @@ export const de: SiteDictionary = {
   },
   testimonials: [],
   servicesMenu: [
+    { id: "videonadzor", label: "Videoüberwachung (CCTV)" },
     { id: "alarm", label: "Alarmanlagen" },
     { id: "pozar", label: "Brandmeldetechnik" },
     { id: "domofon", label: "Gegensprechanlagen" },
@@ -77,6 +78,7 @@ export const de: SiteDictionary = {
     { id: "servis", label: "Support & Service" },
     { id: "ostalo", label: "Weitere Arbeiten" },
   ],
+  productsMenu: [{ id: "portal", label: "VisionOne Portal" }],
   process: {
     kicker: "Ablauf",
     title: "Von der Anfrage zum laufenden System",
@@ -185,6 +187,7 @@ export const de: SiteDictionary = {
         id: "blk_svc_storitve",
         type: "serviceBlocks",
         items: [
+          { id: "videonadzor", title: "Videoüberwachung (CCTV)", body: "Planung und Installation von Kameras und Rekordern (NVR/DVR), Fernzugriff und Archivierung. Innen- und Außenüberwachung für Unternehmen und Objekte.", imageKey: "MARKETING_IMG_CCTV" },
           { id: "alarm", title: "Drahtlose & hybride Alarmanlagen", body: "Planung, Sensorinstallation, Zentralen, Sirenen und Inbetriebnahme. Integration mit Türen und Netzwerken.", imageKey: "MARKETING_IMG_STORITVE_ALARM" },
           { id: "pozar", title: "Brandmeldetechnik", body: "Planung und Installation gemäß Vorschriften und Umfang. Wartung nach Plan.", imageKey: "MARKETING_IMG_STORITVE_POZAR" },
           { id: "domofon", title: "Gegensprechanlagen & Zutritt", body: "IP-Gegensprechanlagen, Panels, Anrufweiterleitung und Fernöffnung bei Bedarf.", imageKey: "MARKETING_IMG_STORITVE_DOMOFON" },
@@ -211,7 +214,7 @@ export const de: SiteDictionary = {
         description: "Software zur Objektüberwachung — Live-Status, Alarme und Service-Workflows.",
       },
       {
-        id: "blk_split_produkti",
+        id: "portal",
         type: "split",
         imageKey: "MARKETING_IMG_PORTAL_SOFTWARE",
         kicker: "VisionOne Portal",

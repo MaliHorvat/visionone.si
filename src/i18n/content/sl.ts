@@ -69,6 +69,7 @@ export const sl: SiteDictionary = {
   },
   testimonials: [],
   servicesMenu: [
+    { id: "videonadzor", label: "Videonadzor (CCTV)" },
     { id: "alarm", label: "Alarmni sistemi" },
     { id: "pozar", label: "Požarna signalizacija" },
     { id: "domofon", label: "Domofonija" },
@@ -77,6 +78,7 @@ export const sl: SiteDictionary = {
     { id: "servis", label: "Podpora in servis" },
     { id: "ostalo", label: "Ostale montaže" },
   ],
+  productsMenu: [{ id: "portal", label: "VisionOne portal" }],
   process: {
     kicker: "Kako poteka",
     title: "Od povpraševanja do delujočega sistema",
@@ -185,6 +187,7 @@ export const sl: SiteDictionary = {
         id: "blk_svc_storitve",
         type: "serviceBlocks",
         items: [
+          { id: "videonadzor", title: "Videonadzor (CCTV)", body: "Načrtovanje in montaža kamer, snemalnikov (NVR/DVR), oddaljen dostop in arhiviranje posnetkov. Notranji in zunanji nadzor za podjetja in objekte.", imageKey: "MARKETING_IMG_CCTV" },
           { id: "alarm", title: "Alarmni sistemi", body: "Načrtovanje, montaža senzorjev, central in zagon.", imageKey: "MARKETING_IMG_STORITVE_ALARM" },
           { id: "pozar", title: "Požarna signalizacija", body: "Projektiranje in izvedba po dogovoru in predpisih.", imageKey: "MARKETING_IMG_STORITVE_POZAR" },
           { id: "domofon", title: "Domofonija", body: "IP domofoni, paneli in oddaljeno odklepanje.", imageKey: "MARKETING_IMG_STORITVE_DOMOFON" },
@@ -211,7 +214,7 @@ export const sl: SiteDictionary = {
         description: "Programska oprema za spremljanje objektov — od živega statusa do alarmov.",
       },
       {
-        id: "blk_split_produkti",
+        id: "portal",
         type: "split",
         imageKey: "MARKETING_IMG_PORTAL_SOFTWARE",
         kicker: "VisionOne portal",

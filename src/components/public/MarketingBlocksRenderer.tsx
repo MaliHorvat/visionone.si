@@ -184,7 +184,7 @@ export function MarketingBlocksRenderer({
           case "split": {
             const src = imageSrc(site, block.imageKey) ?? "";
             return (
-              <section key={block.id} className="mx-auto max-w-6xl px-4 py-10 md:px-6">
+              <section key={block.id} id={block.id} className="scroll-mt-24 mx-auto max-w-6xl px-4 py-10 md:px-6">
                 <ServiceImageSplit imageSrc={src} imageAlt={site.images[block.imageKey]?.alt ?? ""}>
                   {block.kicker ? (
                     <p className="text-xs font-bold uppercase tracking-[0.2em] text-[var(--vo-accent)]">{block.kicker}</p>

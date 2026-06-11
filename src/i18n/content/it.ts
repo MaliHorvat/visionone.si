@@ -69,6 +69,7 @@ export const it: SiteDictionary = {
   },
   testimonials: [],
   servicesMenu: [
+    { id: "videonadzor", label: "Videosorveglianza (CCTV)" },
     { id: "alarm", label: "Sistemi di allarme" },
     { id: "pozar", label: "Rilevazione incendi" },
     { id: "domofon", label: "Citofoni e accessi" },
@@ -77,6 +78,7 @@ export const it: SiteDictionary = {
     { id: "servis", label: "Supporto e assistenza" },
     { id: "ostalo", label: "Altri lavori" },
   ],
+  productsMenu: [{ id: "portal", label: "Portale VisionOne" }],
   process: {
     kicker: "Come funziona",
     title: "Dalla richiesta al sistema operativo",
@@ -185,6 +187,7 @@ export const it: SiteDictionary = {
         id: "blk_svc_storitve",
         type: "serviceBlocks",
         items: [
+          { id: "videonadzor", title: "Videosorveglianza (CCTV)", body: "Progettazione e installazione di telecamere e registratori (NVR/DVR), accesso remoto e archiviazione. Copertura interna ed esterna per aziende e siti.", imageKey: "MARKETING_IMG_CCTV" },
           { id: "alarm", title: "Sistemi di allarme wireless e ibridi", body: "Progettazione, installazione sensori, centrali, sirene e collaudo. Integrazione con porte e reti.", imageKey: "MARKETING_IMG_STORITVE_ALARM" },
           { id: "pozar", title: "Rilevazione incendi", body: "Progettazione e installazione secondo normative e ambito concordato. Manutenzione programmata.", imageKey: "MARKETING_IMG_STORITVE_POZAR" },
           { id: "domofon", title: "Citofoni e accessi", body: "Citofoni IP, pannelli, instradamento chiamate e apertura remota dove richiesto.", imageKey: "MARKETING_IMG_STORITVE_DOMOFON" },
@@ -211,7 +214,7 @@ export const it: SiteDictionary = {
         description: "Software per monitorare i siti — stato in tempo reale, allarmi e flussi di assistenza.",
       },
       {
-        id: "blk_split_produkti",
+        id: "portal",
         type: "split",
         imageKey: "MARKETING_IMG_PORTAL_SOFTWARE",
         kicker: "Portale VisionOne",
