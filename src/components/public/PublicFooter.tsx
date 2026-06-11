@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { CookieSettingsButton } from "@/components/public/CookieSettingsButton";
+import { SITE_CONTACT, sitePhoneHref, sitePhoneLabel } from "@/lib/site-contact";
 
 const footerLinks = [
   { href: "/", label: "Domov" },
@@ -9,6 +10,9 @@ const footerLinks = [
 ];
 
 export function PublicFooter() {
+  const phoneHref = sitePhoneHref();
+  const phoneLabel = sitePhoneLabel();
+
   return (
     <footer className="mt-auto border-t border-[var(--vo-border)] bg-[var(--vo-fg)] text-[#c8d0dc]">
       <div className="mx-auto max-w-6xl px-4 py-12 md:px-6 md:py-14">
@@ -38,10 +42,15 @@ export function PublicFooter() {
 
           <div>
             <p className="text-xs font-bold uppercase tracking-[0.18em] text-[var(--vo-accent-2)]">Kontakt</p>
-            <a className="mt-4 block text-sm font-semibold text-white hover:text-[var(--vo-accent-2)]" href="mailto:info@visionone.si">
-              info@visionone.si
+            <a className="mt-4 block text-sm font-semibold text-white hover:text-[var(--vo-accent-2)]" href={`mailto:${SITE_CONTACT.email}`}>
+              {SITE_CONTACT.email}
             </a>
-            <Link className="mt-3 inline-block text-sm text-[#94a3b8] hover:text-white" href="/kontakt">
+            {phoneHref && phoneLabel ? (
+              <a className="mt-2 block text-sm text-[#94a3b8] hover:text-white" href={phoneHref}>
+                {phoneLabel}
+              </a>
+            ) : null}
+            <Link className="mt-3 inline-block text-sm text-[#94a3b8] hover:text-white" href="/kontakt#ponudba">
               Kontaktni obrazec →
             </Link>
           </div>

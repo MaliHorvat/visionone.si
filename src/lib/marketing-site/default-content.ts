@@ -40,6 +40,29 @@ const DEFAULT_PAGES: MarketingSiteContent["pages"] = {
       title: "Ena nadzorna plošča za celoten objekt",
       body: "Kamere, snemalniki, stikala in diski — status, alarmi in zgodovina na enem mestu. Manj klicev »ali deluje?«, več preventivnega ukrepanja.",
     },
+    cards: {
+      kicker: "Kaj nudimo",
+      title: "Od projekta do 24/7 nadzora",
+      subtitle: "Celoten cikel — načrtovanje, montaža, zagon in dolgoročna podpora.",
+      items: [
+        {
+          title: "Videonadzor",
+          body: "Kamere, snemalniki, dostop na daljavo in arhiv posnetkov po dogovoru.",
+        },
+        {
+          title: "Montaža na terenu",
+          body: "Certificirani monterji, kabliranje, konfiguracija in predaja dokumentacije.",
+        },
+        {
+          title: "Omrežja in Wi‑Fi",
+          body: "LAN, PoE, stikala in pokritost za objekte z več nadstropji.",
+        },
+        {
+          title: "Proaktivni nadzor",
+          body: "VisionOne portal in Care Box — opozorila, preden izpad postane kritičen.",
+        },
+      ],
+    },
   },
   storitve: {
     hero: {
@@ -105,6 +128,36 @@ const DEFAULT_PAGES: MarketingSiteContent["pages"] = {
       eyebrow: "Produkti",
       title: "VisionOne portal in povezane rešitve",
       description: "Programska oprema za spremljanje objektov — od živega statusa do alarmov in poročil.",
+    },
+    splitCctv: {
+      kicker: "VisionOne portal",
+      title: "Živ pregled objekta — kamere, NVR, stikala, diski",
+      body: "Portal za monterje in stranke: stanje naprav v realnem času, opomniki vzdrževanja, zahtevki za servis in dokumentacija na enem mestu. Ob dogovoru povezava z Care Box za 24/7 spremljanje dosegljivosti.",
+      linkLabel: "Zahtevajte predstavitev",
+      linkHref: "/kontakt#ponudba",
+    },
+    cards: {
+      kicker: "Zmogljivosti",
+      title: "Kaj portal pokriva",
+      subtitle: "Operativno središče za varnostne sisteme — ne le seznam kamer.",
+      items: [
+        {
+          title: "Status naprav",
+          body: "Kamere, snemalniki, stikala in diski — online/offline in zgodovina preverjanj.",
+        },
+        {
+          title: "Care Box",
+          body: "Edge monitoring na objektu z alarmi in Telegram obvestili ob izpadu.",
+        },
+        {
+          title: "Strankin portal",
+          body: "moj.visionone.si — pregled stanja, zahtevki in vzdrževalni roki.",
+        },
+        {
+          title: "Dokumentacija",
+          body: "Sheme, ponudbe, popisi in servisna zgodovina po stranki.",
+        },
+      ],
     },
   },
   kontakt: {

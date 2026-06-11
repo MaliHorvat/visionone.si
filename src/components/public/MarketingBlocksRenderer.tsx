@@ -25,6 +25,7 @@ import { ServiceImageSplit } from "@/components/public/ServiceImageSplit";
 import { ContactForm } from "@/app/(marketing)/kontakt/ContactForm";
 import type { MarketingBlock, MarketingSiteContent } from "@/lib/marketing-site/types";
 import { imageSrc } from "@/lib/marketing-site/fetch";
+import { SITE_CONTACT, sitePhoneHref, sitePhoneLabel } from "@/lib/site-contact";
 
 const SERVICE_ICONS: Record<string, LucideIcon> = {
   alarm: Bell,
@@ -273,21 +274,47 @@ export function MarketingBlocksRenderer({
                 </div>
               </section>
             );
-          case "contactForm":
+          case "contactForm": {
+            const phoneHref = sitePhoneHref();
+            const phoneLabel = sitePhoneLabel();
             return (
               <section key={block.id} className="mx-auto max-w-6xl px-4 py-10 sm:py-14 md:px-6">
-                {block.intro ? <p className="mb-8 max-w-2xl text-sm leading-relaxed text-[var(--vo-muted)]">{block.intro}</p> : null}
-                <div className="grid gap-10 lg:grid-cols-[1fr_minmax(0,320px)]">
+                {block.intro ? (
+                  <p className="mb-8 max-w-2xl text-base leading-relaxed text-[var(--vo-muted)]">{block.intro}</p>
+                ) : null}
+                <div className="grid gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,300px)]">
                   <ContactForm />
-                  <div className="vo-card-hover rounded-2xl border border-[var(--vo-border)] bg-[var(--vo-surface)] p-6 shadow-[var(--vo-card-shadow)] lg:sticky lg:top-24 lg:self-start">
-                    <h2 className="text-lg font-bold text-[var(--vo-fg)]">E-pošta</h2>
-                    <a className="mt-4 inline-block text-lg font-bold text-[var(--vo-accent)] hover:underline" href="mailto:info@visionone.si">
-                      info@visionone.si
-                    </a>
-                  </div>
+                  <aside className="vo-card-hover space-y-6 rounded-2xl border border-[var(--vo-border)] bg-[var(--vo-surface)] p-6 shadow-[var(--vo-card-shadow)] lg:sticky lg:top-24 lg:self-start">
+                    <div>
+                      <h2 className="text-sm font-bold uppercase tracking-[0.14em] text-[var(--vo-accent)]">Kontakt</h2>
+                      <a
+                        className="mt-3 inline-block text-lg font-bold text-[var(--vo-fg)] hover:text-[var(--vo-accent)]"
+                        href={`mailto:${SITE_CONTACT.email}`}
+                      >
+                        {SITE_CONTACT.email}
+                      </a>
+                    </div>
+                    {phoneHref && phoneLabel ? (
+                      <div>
+                        <p className="text-sm font-medium text-[var(--vo-muted)]">Telefon</p>
+                        <a className="mt-1 inline-block text-lg font-bold text-[var(--vo-fg)] hover:text-[var(--vo-accent)]" href={phoneHref}>
+                          {phoneLabel}
+                        </a>
+                      </div>
+                    ) : null}
+                    <div>
+                      <p className="text-sm font-medium text-[var(--vo-muted)]">Delovni čas</p>
+                      <p className="mt-1 text-sm text-[var(--vo-fg)]">{SITE_CONTACT.hours}</p>
+                    </div>
+                    <div>
+                      <p className="text-sm font-medium text-[var(--vo-muted)]">Lokacija</p>
+                      <p className="mt-1 text-sm text-[var(--vo-fg)]">{SITE_CONTACT.address}</p>
+                    </div>
+                  </aside>
                 </div>
               </section>
             );
+          }
           default:
             return null;
         }

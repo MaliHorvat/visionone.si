@@ -23,6 +23,7 @@ const TIMELINE_LABELS: Record<string, string> = {
 type Body = {
   name?: string;
   email?: string;
+  phone?: string;
   siteType?: string;
   cameraCount?: number | string;
   timeline?: string;
@@ -50,6 +51,7 @@ export async function POST(request: Request) {
 
   const name = trim(String(body.name ?? ""), MAX_NAME);
   const email = trim(String(body.email ?? ""), MAX_EMAIL);
+  const phone = trim(String(body.phone ?? ""), 40);
   const siteType = String(body.siteType ?? "");
   const timeline = String(body.timeline ?? "");
   const message = trim(String(body.message ?? ""), MAX_MESSAGE);
@@ -80,19 +82,23 @@ export async function POST(request: Request) {
     ``,
     `Ime: ${name}`,
     `E-pošta (Reply-To): ${email}`,
+    phone ? `Telefon: ${phone}` : null,
     `Tip objekta: ${siteLabel}`,
     `Število kamer (ocena): ${cameraCount}`,
     `Rok: ${timeLabel}`,
     ``,
     `Sporočilo:`,
     message,
-  ].join("\n");
+  ]
+    .filter((line): line is string => line != null)
+    .join("\n");
 
   const html = `
     <p><strong>Nova zahteva</strong> s kontaktnega obrazca. Stranki se ne pošlje avtomatskega odgovora.</p>
     <table style="border-collapse:collapse;font-family:sans-serif;font-size:14px">
       <tr><td style="padding:6px 12px 6px 0;color:#666">Ime</td><td>${escapeHtml(name)}</td></tr>
       <tr><td style="padding:6px 12px 6px 0;color:#666">E-pošta</td><td><a href="mailto:${escapeHtml(email)}">${escapeHtml(email)}</a></td></tr>
+      ${phone ? `<tr><td style="padding:6px 12px 6px 0;color:#666">Telefon</td><td>${escapeHtml(phone)}</td></tr>` : ""}
       <tr><td style="padding:6px 12px 6px 0;color:#666">Tip objekta</td><td>${escapeHtml(siteLabel)}</td></tr>
       <tr><td style="padding:6px 12px 6px 0;color:#666">Število kamer</td><td>${cameraCount}</td></tr>
       <tr><td style="padding:6px 12px 6px 0;color:#666">Rok</td><td>${escapeHtml(timeLabel)}</td></tr>

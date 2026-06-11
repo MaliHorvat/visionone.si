@@ -1,6 +1,10 @@
+import dns from "node:dns";
 import nodemailer from "nodemailer";
 
-/** Če CONTACT_FORM_* ni v okolju (npr. Vercel), SMTP še vedno pošlje sem (prepiše z .env). */
+if (typeof dns.setDefaultResultOrder === "function") {
+  dns.setDefaultResultOrder("ipv4first");
+}
+
 const DEFAULT_CONTACT_FORM_TO = "info@visionone.si";
 const DEFAULT_CONTACT_FORM_FROM = "VisionOne <info@visionone.si>";
 
@@ -11,29 +15,45 @@ export type ContactMailContent = {
   html: string;
 };
 
+function envFirst(...keys: string[]): string {
+  for (const key of keys) {
+    const v = process.env[key]?.trim();
+    if (v) return v;
+  }
+  return "";
+}
+
 function missingForResend(): string[] {
   const m: string[] = [];
-  if (!process.env.RESEND_API_KEY?.trim()) m.push("RESEND_API_KEY");
+  if (!envFirst("RESEND_API_KEY")) m.push("RESEND_API_KEY");
   return m;
 }
 
 function missingForSmtp(): string[] {
   const m: string[] = [];
-  if (!process.env.SMTP_HOST?.trim()) m.push("SMTP_HOST");
-  if (!process.env.SMTP_USER?.trim()) m.push("SMTP_USER");
-  const pass = process.env.SMTP_PASSWORD?.trim() || process.env.SMTP_PASS?.trim();
-  if (!pass) m.push("SMTP_PASSWORD");
+  if (!envFirst("SMTP_HOST", "PORTAL_SMTP_HOST")) m.push("SMTP_HOST");
+  if (!envFirst("SMTP_USER", "PORTAL_SMTP_USER")) m.push("SMTP_USER");
+  if (!envFirst("SMTP_PASSWORD", "SMTP_PASS", "PORTAL_SMTP_PASS")) m.push("SMTP_PASSWORD");
   return m;
 }
 
 type MailCfg =
   | { mode: "resend"; to: string; from: string; apiKey: string }
-  | { mode: "smtp"; to: string; from: string; transport: nodemailer.Transporter }
+  | {
+      mode: "smtp";
+      to: string;
+      from: string;
+      host: string;
+      port: number;
+      secure: boolean;
+      user: string;
+      pass: string;
+    }
   | { mode: "none"; hint: string };
 
 function resolveMailer(): MailCfg {
-  const hasResend = Boolean(process.env.RESEND_API_KEY?.trim());
-  const hasSmtp = Boolean(process.env.SMTP_HOST?.trim());
+  const hasResend = Boolean(envFirst("RESEND_API_KEY"));
+  const hasSmtp = Boolean(envFirst("SMTP_HOST", "PORTAL_SMTP_HOST"));
 
   if (hasResend) {
     const miss = missingForResend();
@@ -42,9 +62,9 @@ function resolveMailer(): MailCfg {
     }
     return {
       mode: "resend",
-      to: process.env.CONTACT_FORM_TO?.trim() || DEFAULT_CONTACT_FORM_TO,
-      from: process.env.CONTACT_FORM_FROM?.trim() || DEFAULT_CONTACT_FORM_FROM,
-      apiKey: process.env.RESEND_API_KEY!.trim(),
+      to: envFirst("CONTACT_FORM_TO") || DEFAULT_CONTACT_FORM_TO,
+      from: envFirst("CONTACT_FORM_FROM") || DEFAULT_CONTACT_FORM_FROM,
+      apiKey: envFirst("RESEND_API_KEY"),
     };
   }
 
@@ -53,31 +73,135 @@ function resolveMailer(): MailCfg {
     if (miss.length) {
       return { mode: "none", hint: `Za SMTP manjkajo: ${miss.join(", ")}.` };
     }
-    const pass = process.env.SMTP_PASSWORD?.trim() || process.env.SMTP_PASS?.trim() || "";
-    const port = Number(process.env.SMTP_PORT || 587);
-    const secure = process.env.SMTP_SECURE === "true" || port === 465;
-    const transport = nodemailer.createTransport({
-      host: process.env.SMTP_HOST!.trim(),
-      port,
-      secure,
-      auth: {
-        user: process.env.SMTP_USER!.trim(),
-        pass,
-      },
-    });
+    const port = Number(envFirst("SMTP_PORT", "PORTAL_SMTP_PORT") || 587);
+    const secureExplicit = envFirst("SMTP_SECURE", "PORTAL_SMTP_SECURE");
+    const secure = secureExplicit === "true" || (secureExplicit !== "false" && port === 465);
     return {
       mode: "smtp",
-      to: process.env.CONTACT_FORM_TO?.trim() || DEFAULT_CONTACT_FORM_TO,
-      from: process.env.CONTACT_FORM_FROM?.trim() || DEFAULT_CONTACT_FORM_FROM,
-      transport,
+      to: envFirst("CONTACT_FORM_TO") || DEFAULT_CONTACT_FORM_TO,
+      from: envFirst("CONTACT_FORM_FROM", "PORTAL_SMTP_FROM") || DEFAULT_CONTACT_FORM_FROM,
+      host: envFirst("SMTP_HOST", "PORTAL_SMTP_HOST"),
+      port,
+      secure,
+      user: envFirst("SMTP_USER", "PORTAL_SMTP_USER"),
+      pass: envFirst("SMTP_PASSWORD", "SMTP_PASS", "PORTAL_SMTP_PASS"),
     };
   }
 
   return {
     mode: "none",
     hint:
-      "Pošta ni nastavljena. Dodajte bodisi RESEND_API_KEY bodisi SMTP (SMTP_HOST, SMTP_USER, SMTP_PASSWORD). Prejemnik in pošiljatelj sta privzeto info@visionone.si — zamenjajta z CONTACT_FORM_TO in CONTACT_FORM_FROM. Glej .env.example.",
+      "Pošta ni nastavljena. Dodajte RESEND_API_KEY ali SMTP (SMTP_HOST, SMTP_USER, SMTP_PASSWORD). Glej .env.example.",
   };
+}
+
+export function getContactMailStatus(): {
+  configured: boolean;
+  mode: "resend" | "smtp" | "none";
+  hint: string;
+} {
+  const cfg = resolveMailer();
+  if (cfg.mode === "none") {
+    return { configured: false, mode: "none", hint: cfg.hint };
+  }
+  return {
+    configured: true,
+    mode: cfg.mode,
+    hint: cfg.mode === "resend" ? "Resend" : `SMTP ${cfg.host}`,
+  };
+}
+
+async function resolveIpv4Host(hostname: string): Promise<string> {
+  try {
+    const result = await dns.promises.lookup(hostname, { family: 4 });
+    return result.address;
+  } catch {
+    return hostname;
+  }
+}
+
+/** mail.domena.si pogosto kaže na Cloudflare/CDN — SMTP tam ne deluje. */
+function looksLikeCdnProxy(ip: string): boolean {
+  return (
+    ip.startsWith("188.114.") ||
+    ip.startsWith("104.16.") ||
+    ip.startsWith("172.64.") ||
+    ip.startsWith("173.245.")
+  );
+}
+
+async function tlsServernameForIp(ip: string, fallback: string): Promise<string> {
+  try {
+    const ptr = await dns.promises.reverse(ip);
+    const host = ptr[0]?.replace(/\.$/, "");
+    if (host) return host;
+  } catch {
+    // PTR ni na voljo — uporabi fallback
+  }
+  return fallback;
+}
+
+async function resolveSmtpEndpoint(
+  configHost: string,
+  smtpUser: string,
+): Promise<{ connectHost: string; tlsServername: string }> {
+  const directIp = await resolveIpv4Host(configHost);
+  if (!looksLikeCdnProxy(directIp)) {
+    return { connectHost: directIp, tlsServername: configHost };
+  }
+
+  const domain = smtpUser.includes("@") ? smtpUser.split("@")[1] : "";
+  if (!domain) {
+    return { connectHost: directIp, tlsServername: configHost };
+  }
+
+  try {
+    const mx = await dns.promises.resolveMx(domain);
+    mx.sort((a, b) => a.priority - b.priority);
+    const mxHost = mx[0]?.exchange?.replace(/\.$/, "");
+    if (!mxHost) {
+      return { connectHost: directIp, tlsServername: configHost };
+    }
+    const mxIp = await resolveIpv4Host(mxHost);
+    const tlsServername = await tlsServernameForIp(mxIp, mxHost);
+    console.warn(
+      `[contact] ${configHost} (${directIp}) je za CDN — SMTP prek ${tlsServername} (${mxIp})`,
+    );
+    return { connectHost: mxIp, tlsServername };
+  } catch {
+    return { connectHost: directIp, tlsServername: configHost };
+  }
+}
+
+async function createSmtpTransport(cfg: Extract<MailCfg, { mode: "smtp" }>) {
+  const { connectHost, tlsServername } = await resolveSmtpEndpoint(cfg.host, cfg.user);
+  return nodemailer.createTransport({
+    host: connectHost,
+    port: cfg.port,
+    secure: cfg.secure,
+    auth: { user: cfg.user, pass: cfg.pass },
+    connectionTimeout: 12_000,
+    greetingTimeout: 12_000,
+    socketTimeout: 20_000,
+    tls: {
+      minVersion: "TLSv1.2",
+      servername: tlsServername,
+    },
+  });
+}
+
+function smtpErrorMessage(e: unknown): string {
+  const err = e as { code?: string; errno?: number };
+  if (err.code === "ESOCKET" || err.errno === -4062) {
+    return "Povezava do poštnega strežnika ni uspela. Preverite SMTP_HOST in vrata (465 SSL ali 587 STARTTLS).";
+  }
+  if (err.code === "EAUTH") {
+    return "SMTP avtentikacija ni uspela. Preverite SMTP_USER in SMTP_PASSWORD.";
+  }
+  if (err.code === "ETIMEDOUT" || err.code === "ECONNREFUSED") {
+    return "Poštni strežnik ni dosegljiv. Preverite SMTP_HOST, vrata in požarni zid.";
+  }
+  return "Pošiljanje prek SMTP ni uspelo. Preverite nastavitve v .env ali na Vercelu.";
 }
 
 export async function sendContactMail(
@@ -115,15 +239,16 @@ export async function sendContactMail(
       console.error("[contact] Resend error", res.status, body);
       const hint =
         res.status === 422 || res.status === 403
-          ? "Resend je zavrnil zahtevo — preverite CONTACT_FORM_FROM (preverjena domena v nadzorni plošči Resend) in RESEND_API_KEY."
-          : "Pošiljanje prek Resend ni uspelo. Poskusite znova ali uporabite SMTP nastavitve.";
+          ? "Resend je zavrnil zahtevo — preverite CONTACT_FORM_FROM (preverjena domena) in RESEND_API_KEY."
+          : "Pošiljanje prek Resend ni uspelo.";
       return { ok: false, status: 502, message: hint };
     }
     return { ok: true };
   }
 
   try {
-    await cfg.transport.sendMail({
+    const transport = await createSmtpTransport(cfg);
+    await transport.sendMail({
       from: cfg.from,
       to: cfg.to,
       replyTo: content.replyTo,
@@ -137,8 +262,7 @@ export async function sendContactMail(
     return {
       ok: false,
       status: 502,
-      message:
-        "Pošiljanje prek SMTP ni uspelo. Preverite SMTP_HOST, vrata, uporabnika in geslo (npr. geslo aplikacije pri Microsoft 365).",
+      message: smtpErrorMessage(e),
     };
   }
 }

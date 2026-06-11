@@ -179,11 +179,19 @@ export type MarketingPageHero = {
   description: string;
 };
 
+export type MarketingCardsContent = {
+  kicker: string;
+  title: string;
+  subtitle: string;
+  items: { title: string; body: string }[];
+};
+
 export type MarketingPageContent = {
   hero?: MarketingHero | MarketingPageHero;
   splitCctv?: MarketingTextBlock;
   stats?: MarketingStat[];
   whyIntro?: MarketingTextBlock;
+  cards?: MarketingCardsContent;
   serviceBlocks?: MarketingServiceBlock[];
   contactIntro?: string;
 };
