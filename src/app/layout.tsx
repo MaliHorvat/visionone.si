@@ -36,7 +36,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="sl" suppressHydrationWarning>
+    <html lang="sl" className="dark" suppressHydrationWarning>
       <body className={`${inter.variable} ${display.variable} min-h-screen min-w-0 overflow-x-clip antialiased`}>
         <Providers>{children}</Providers>
         <Analytics />

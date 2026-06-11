@@ -299,7 +299,7 @@ export function MarketingBlocksRenderer({
           case "ctaBand":
             return (
               <section key={block.id} className="mx-auto max-w-6xl px-4 py-12 md:px-6">
-                <div className="rounded-2xl border border-[var(--vo-border)] bg-[var(--vo-accent-muted)] px-6 py-8 text-center md:px-10">
+                <div className="vo-beam rounded-2xl border border-[var(--vo-border)] bg-[var(--vo-surface)] px-6 py-8 text-center md:px-10">
                   <h2 className="text-xl font-bold text-[var(--vo-fg)]">{block.title}</h2>
                   <p className="mt-2 text-sm text-[var(--vo-muted)]">{block.body}</p>
                   <div className="mt-6 flex flex-wrap justify-center gap-3">

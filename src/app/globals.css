@@ -1,47 +1,37 @@
 @import "tailwindcss";
 
-:root {
-  --vo-bg: #eef2f8;
-  --vo-surface: #ffffff;
-  --vo-surface-2: #e4eaf3;
-  --vo-fg: #071018;
-  --vo-muted: #4a5568;
-  --vo-border: #cdd6e4;
-  --vo-accent: #0a8f8f;
-  --vo-accent-2: #06b6d4;
-  --vo-accent-hover: #087272;
-  --vo-accent-muted: rgba(10, 143, 143, 0.14);
-  --vo-accent-gradient: linear-gradient(135deg, #0a8f8f 0%, #0891b2 50%, #0e7490 100%);
-  --vo-danger: #c02626;
-  --vo-danger-muted: rgba(192, 38, 38, 0.12);
-  --vo-ok: #15803d;
-  --vo-ok-muted: rgba(21, 128, 61, 0.12);
-  --vo-warn: #b45309;
-  --vo-card-shadow: 0 2px 8px rgba(7, 16, 24, 0.06), 0 12px 32px rgba(7, 16, 24, 0.08);
-  --vo-glow-sm: 0 0 0 1px rgba(10, 143, 143, 0.12), 0 8px 24px rgba(10, 143, 143, 0.18);
-  --vo-glow-md: 0 0 0 1px rgba(10, 143, 143, 0.15), 0 16px 48px rgba(10, 143, 143, 0.22);
-}
-
+/* ————————————————————————————————————————————
+   VisionOne „Obsidian Void" — temna skrivnostna tema
+   Globoka vijolično-črna osnova + teal/cyan/vijolična svetloba
+   ———————————————————————————————————————————— */
+:root,
 .dark {
-  --vo-bg: #060a10;
-  --vo-surface: #0f141c;
-  --vo-surface-2: #151c27;
-  --vo-fg: #e8edf5;
-  --vo-muted: #94a3b8;
-  --vo-border: #243044;
+  --vo-bg: #06050f;
+  --vo-surface: #0d0b1e;
+  --vo-surface-2: #16132e;
+  --vo-fg: #edebff;
+  --vo-muted: #9d99c4;
+  --vo-border: #282352;
   --vo-accent: #2dd4bf;
   --vo-accent-2: #22d3ee;
+  --vo-accent-3: #a78bfa;
   --vo-accent-hover: #5eead4;
-  --vo-accent-muted: rgba(45, 212, 191, 0.12);
-  --vo-accent-gradient: linear-gradient(135deg, #2dd4bf 0%, #22d3ee 100%);
+  --vo-accent-muted: rgba(45, 212, 191, 0.13);
+  --vo-accent-gradient: linear-gradient(135deg, #2dd4bf 0%, #22d3ee 45%, #818cf8 100%);
   --vo-danger: #f87171;
   --vo-danger-muted: rgba(248, 113, 113, 0.12);
   --vo-ok: #4ade80;
   --vo-ok-muted: rgba(74, 222, 128, 0.12);
   --vo-warn: #fbbf24;
-  --vo-card-shadow: 0 1px 2px rgba(0, 0, 0, 0.35), 0 12px 40px rgba(0, 0, 0, 0.45);
-  --vo-glow-sm: 0 0 24px rgba(45, 212, 191, 0.15);
-  --vo-glow-md: 0 0 48px rgba(45, 212, 191, 0.2);
+  --vo-card-shadow: 0 1px 2px rgba(0, 0, 0, 0.4), 0 16px 48px rgba(2, 0, 16, 0.55);
+  --vo-glow-sm:
+    0 0 0 1px rgba(45, 212, 191, 0.16),
+    0 8px 32px rgba(34, 211, 238, 0.14),
+    0 4px 24px rgba(139, 92, 246, 0.12);
+  --vo-glow-md:
+    0 0 0 1px rgba(45, 212, 191, 0.22),
+    0 16px 56px rgba(34, 211, 238, 0.2),
+    0 8px 40px rgba(139, 92, 246, 0.18);
 }
 
 @theme inline {
@@ -51,6 +41,7 @@
 
 html {
   scroll-behavior: smooth;
+  color-scheme: dark;
 }
 
 body {
@@ -69,13 +60,78 @@ h3 {
   letter-spacing: -0.02em;
 }
 
-/* Mesh ozadje */
+::selection {
+  background: rgba(45, 212, 191, 0.35);
+  color: #ffffff;
+}
+
+/* Tanek, temen drsnik */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #2e2a55 transparent;
+}
+
+*::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+*::-webkit-scrollbar-thumb {
+  border-radius: 999px;
+  background: #2e2a55;
+}
+
+/* —— Aurora mesh ozadje (počasno dihanje) —— */
 .vo-mesh-bg {
+  position: relative;
   background-color: var(--vo-bg);
   background-image:
-    radial-gradient(ellipse 80% 60% at 10% -10%, rgba(10, 143, 143, 0.18), transparent 55%),
-    radial-gradient(ellipse 60% 50% at 90% 20%, rgba(6, 182, 212, 0.12), transparent 50%),
-    radial-gradient(ellipse 50% 40% at 50% 100%, rgba(10, 143, 143, 0.08), transparent 45%);
+    radial-gradient(ellipse 75% 55% at 12% -8%, rgba(45, 212, 191, 0.14), transparent 55%),
+    radial-gradient(ellipse 55% 45% at 88% 8%, rgba(99, 102, 241, 0.16), transparent 55%),
+    radial-gradient(ellipse 45% 40% at 70% 55%, rgba(139, 92, 246, 0.07), transparent 50%),
+    radial-gradient(ellipse 60% 50% at 40% 110%, rgba(34, 211, 238, 0.09), transparent 50%);
+  background-size: 160% 160%;
+  animation: vo-aurora 24s ease-in-out infinite;
+}
+
+@keyframes vo-aurora {
+  0%,
+  100% {
+    background-position: 0% 0%;
+  }
+  33% {
+    background-position: 60% 30%;
+  }
+  66% {
+    background-position: 20% 70%;
+  }
+}
+
+/* Zvezdni prah — drobne svetleče pike čez ozadje */
+.vo-mesh-bg::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    radial-gradient(1px 1px at 22% 18%, rgba(167, 139, 250, 0.5), transparent 100%),
+    radial-gradient(1px 1px at 68% 9%, rgba(45, 212, 191, 0.55), transparent 100%),
+    radial-gradient(1.5px 1.5px at 84% 32%, rgba(34, 211, 238, 0.4), transparent 100%),
+    radial-gradient(1px 1px at 9% 52%, rgba(255, 255, 255, 0.22), transparent 100%),
+    radial-gradient(1px 1px at 45% 74%, rgba(167, 139, 250, 0.35), transparent 100%),
+    radial-gradient(1.5px 1.5px at 92% 78%, rgba(45, 212, 191, 0.3), transparent 100%),
+    radial-gradient(1px 1px at 33% 38%, rgba(255, 255, 255, 0.16), transparent 100%);
+  background-size: 1400px 900px;
+  animation: vo-twinkle 7s ease-in-out infinite alternate;
+}
+
+@keyframes vo-twinkle {
+  from {
+    opacity: 0.45;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
 .vo-page-hero {
@@ -83,41 +139,123 @@ h3 {
 }
 
 .vo-visual-band {
-  background: linear-gradient(135deg, var(--vo-surface) 0%, rgba(10, 143, 143, 0.06) 100%);
+  background: linear-gradient(135deg, var(--vo-surface) 0%, rgba(139, 92, 246, 0.07) 100%);
 }
 
 .vo-hero-glow {
-  background: radial-gradient(ellipse at 70% 30%, rgba(10, 143, 143, 0.2), transparent 55%);
+  background:
+    radial-gradient(ellipse at 70% 30%, rgba(45, 212, 191, 0.18), transparent 55%),
+    radial-gradient(ellipse at 25% 70%, rgba(139, 92, 246, 0.14), transparent 50%);
+  animation: vo-glow-breathe 9s ease-in-out infinite;
 }
 
+@keyframes vo-glow-breathe {
+  0%,
+  100% {
+    opacity: 0.85;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+/* —— Kartice: dvig + spotlight + svetleči rob —— */
 .vo-card-hover {
-  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+  position: relative;
+  transition: transform 0.25s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.25s ease, border-color 0.25s ease;
+}
+
+.vo-card-hover::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  opacity: 0;
+  background: radial-gradient(420px circle at 50% -10%, rgba(139, 92, 246, 0.14), transparent 60%);
+  transition: opacity 0.3s ease;
 }
 
 .vo-card-hover:hover {
-  transform: translateY(-3px);
+  transform: translateY(-4px);
   box-shadow: var(--vo-glow-sm);
-  border-color: rgba(10, 143, 143, 0.35);
+  border-color: rgba(139, 92, 246, 0.45);
 }
 
+.vo-card-hover:hover::after {
+  opacity: 1;
+}
+
+/* —— Gumbi: živ gradient + sij —— */
 .vo-btn-primary {
   background: var(--vo-accent-gradient);
+  background-size: 200% 200%;
   box-shadow: var(--vo-glow-sm);
+  animation: vo-grad-shift 6s ease infinite;
   transition: transform 0.15s ease, box-shadow 0.15s ease, filter 0.15s ease;
 }
 
+@keyframes vo-grad-shift {
+  0%,
+  100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
 .vo-btn-primary:hover {
-  filter: brightness(1.05);
+  filter: brightness(1.12);
   box-shadow: var(--vo-glow-md);
   transform: translateY(-1px);
 }
 
 .vo-stat-card {
-  background: linear-gradient(145deg, var(--vo-surface) 0%, rgba(10, 143, 143, 0.04) 100%);
+  background: linear-gradient(145deg, var(--vo-surface) 0%, rgba(139, 92, 246, 0.06) 100%);
 }
 
 .vo-section-alt {
   background: linear-gradient(180deg, var(--vo-surface-2) 0%, var(--vo-bg) 100%);
+}
+
+/* —— Vrteči se svetlobni rob (border beam) —— */
+@property --vo-angle {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+}
+
+@keyframes vo-rotate-angle {
+  to {
+    --vo-angle: 360deg;
+  }
+}
+
+.vo-beam {
+  position: relative;
+}
+
+.vo-beam::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: conic-gradient(
+    from var(--vo-angle),
+    transparent 0%,
+    rgba(45, 212, 191, 0.9) 10%,
+    rgba(34, 211, 238, 0.9) 18%,
+    rgba(139, 92, 246, 0.9) 26%,
+    transparent 36%
+  );
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask-composite: exclude;
+  animation: vo-rotate-angle 7s linear infinite;
+  pointer-events: none;
 }
 
 @keyframes vo-float {
@@ -145,7 +283,7 @@ h3 {
   color-scheme: dark;
 }
 
-/* Brand logotip (kot v portalu) */
+/* Brand logotip — na temni temi vedno svetel */
 .vo-brand {
   line-height: 0;
 }
@@ -165,13 +303,13 @@ h3 {
   width: 100%;
 }
 
-.vo-brand--auto .vo-brand-img,
 .vo-brand--on-light .vo-brand-img {
   filter: brightness(0);
 }
 
-.dark .vo-brand--auto .vo-brand-img,
-.vo-brand--on-dark .vo-brand-img {
+.vo-brand--auto .vo-brand-img,
+.vo-brand--on-dark .vo-brand-img,
+.dark .vo-brand--auto .vo-brand-img {
   filter: brightness(0) invert(1);
 }
 
@@ -194,10 +332,62 @@ h3 {
 }
 
 .vo-gradient-text {
-  background: linear-gradient(90deg, var(--vo-accent), var(--vo-accent-2), var(--vo-accent));
-  background-size: 200% auto;
+  background: linear-gradient(90deg, var(--vo-accent), var(--vo-accent-2), var(--vo-accent-3), var(--vo-accent));
+  background-size: 250% auto;
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
-  animation: vo-shimmer 6s linear infinite;
+  animation: vo-shimmer 7s linear infinite;
+}
+
+/* —— Razkrivanje sekcij ob drsenju (samo moderni brskalniki) —— */
+@supports (animation-timeline: view()) {
+  main section {
+    animation: vo-rise both;
+    animation-timeline: view();
+    animation-range: entry 0% entry 40%;
+  }
+
+  @keyframes vo-rise {
+    from {
+      opacity: 0.2;
+      transform: translateY(26px);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+}
+
+/* Utripajoča statusna pika */
+.vo-pulse-dot {
+  position: relative;
+  display: inline-flex;
+  height: 0.5rem;
+  width: 0.5rem;
+  border-radius: 999px;
+  background: var(--vo-accent);
+  box-shadow: 0 0 10px rgba(45, 212, 191, 0.9);
+}
+
+.vo-pulse-dot::after {
+  content: "";
+  position: absolute;
+  inset: -4px;
+  border-radius: 999px;
+  border: 1px solid rgba(45, 212, 191, 0.5);
+  animation: vo-ping 2.2s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
+
+@keyframes vo-ping {
+  0% {
+    transform: scale(0.6);
+    opacity: 1;
+  }
+  80%,
+  100% {
+    transform: scale(1.8);
+    opacity: 0;
+  }
 }

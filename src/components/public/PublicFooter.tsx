@@ -16,7 +16,7 @@ export function PublicFooter({ locale, dict }: { locale: Locale; dict: SiteDicti
   }));
 
   return (
-    <footer className="mt-auto border-t border-white/10 bg-[#050a12] text-[#c8d0dc]">
+    <footer className="mt-auto border-t border-white/10 bg-[#08061a] text-[#c8d0dc]">
       <div className="mx-auto max-w-6xl px-4 py-14 md:px-6 md:py-16">
         <div className="grid gap-12 md:grid-cols-[1.5fr_1fr_1fr]">
           <div>
