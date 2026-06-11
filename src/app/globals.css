@@ -144,3 +144,60 @@ h3 {
 .dark .cl-rootBox {
   color-scheme: dark;
 }
+
+/* Brand logotip (kot v portalu) */
+.vo-brand {
+  line-height: 0;
+}
+
+.vo-brand-img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+.vo-brand-link {
+  align-items: center;
+}
+
+.vo-brand-link .vo-brand {
+  min-width: 0;
+  width: 100%;
+}
+
+.vo-brand--auto .vo-brand-img,
+.vo-brand--on-light .vo-brand-img {
+  filter: brightness(0);
+}
+
+.dark .vo-brand--auto .vo-brand-img,
+.vo-brand--on-dark .vo-brand-img {
+  filter: brightness(0) invert(1);
+}
+
+.vo-hero-section::after {
+  content: "";
+  position: absolute;
+  inset: auto 0 0 0;
+  height: 120px;
+  background: linear-gradient(to top, var(--vo-bg), transparent);
+  pointer-events: none;
+}
+
+@keyframes vo-shimmer {
+  0% {
+    background-position: 200% center;
+  }
+  100% {
+    background-position: -200% center;
+  }
+}
+
+.vo-gradient-text {
+  background: linear-gradient(90deg, var(--vo-accent), var(--vo-accent-2), var(--vo-accent));
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: vo-shimmer 6s linear infinite;
+}

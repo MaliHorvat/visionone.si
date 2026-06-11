@@ -23,6 +23,8 @@ import { MarketingImageSlot } from "@/components/public/MarketingImageSlot";
 import { PageHero } from "@/components/public/PageHero";
 import { ServiceImageSplit } from "@/components/public/ServiceImageSplit";
 import { ContactForm } from "@/app/(marketing)/kontakt/ContactForm";
+import type { Locale } from "@/i18n/config";
+import type { SiteDictionary } from "@/i18n/types";
 import type { MarketingBlock, MarketingSiteContent } from "@/lib/marketing-site/types";
 import { imageSrc } from "@/lib/marketing-site/fetch";
 import { SITE_CONTACT, sitePhoneHref, sitePhoneLabel } from "@/lib/site-contact";
@@ -43,12 +45,43 @@ function btnClass(variant: "primary" | "secondary" | "outline") {
   return "border border-[var(--vo-border)] bg-[var(--vo-surface)] text-[var(--vo-fg)] font-bold hover:border-[var(--vo-accent)]/40";
 }
 
+function TestimonialsSection({ dict }: { dict: SiteDictionary }) {
+  return (
+    <section className="border-y border-[var(--vo-border)] bg-[var(--vo-surface)] py-16 md:py-20">
+      <div className="mx-auto max-w-6xl px-4 md:px-6">
+        <p className="text-center text-xs font-bold uppercase tracking-[0.2em] text-[var(--vo-accent)]">
+          {dict.trustStrip.label}
+        </p>
+        <div className="mt-10 grid gap-6 md:grid-cols-2">
+          {dict.testimonials.map((t) => (
+            <blockquote
+              key={t.author}
+              className="vo-card-hover rounded-2xl border border-[var(--vo-border)] bg-[var(--vo-bg)] p-6 shadow-[var(--vo-card-shadow)]"
+            >
+              <p className="text-base leading-relaxed text-[var(--vo-fg)]">&ldquo;{t.quote}&rdquo;</p>
+              <footer className="mt-4 border-t border-[var(--vo-border)] pt-4">
+                <p className="text-sm font-semibold text-[var(--vo-fg)]">{t.author}</p>
+                <p className="text-xs text-[var(--vo-muted)]">{t.role}</p>
+              </footer>
+            </blockquote>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
 export function MarketingBlocksRenderer({
   blocks,
   site,
+  dict,
+  pageId,
 }: {
   blocks: MarketingBlock[];
   site: MarketingSiteContent;
+  locale: Locale;
+  dict: SiteDictionary;
+  pageId: string;
 }) {
   const statIcons = [ShieldCheck, Zap, RadioTower];
 
@@ -60,7 +93,7 @@ export function MarketingBlocksRenderer({
             const heroImg = imageSrc(site, block.imageKey) ?? "12.png";
             const cfg = site.images[block.imageKey];
             return (
-              <section key={block.id} className="relative min-h-[min(92vh,820px)] overflow-hidden border-b border-[var(--vo-border)]">
+              <section key={block.id} className="vo-hero-section relative min-h-[min(94vh,860px)] overflow-hidden border-b border-[var(--vo-border)]">
                 <div className="pointer-events-none absolute inset-0 bg-[var(--vo-surface-2)]">
                   <Image
                     src={heroImg}
@@ -82,7 +115,7 @@ export function MarketingBlocksRenderer({
                     <Sparkles className="h-3.5 w-3.5" aria-hidden />
                     {block.eyebrow}
                   </div>
-                  <h1 className="mt-5 max-w-3xl text-balance text-4xl font-extrabold tracking-tight text-[var(--vo-fg)] sm:text-5xl md:text-[3.25rem] md:leading-[1.08]">
+                  <h1 className="mt-5 max-w-3xl text-balance text-4xl font-extrabold tracking-tight text-[var(--vo-fg)] sm:text-5xl md:text-[3.5rem] md:leading-[1.06]">
                     {block.title}{" "}
                     <span className="bg-gradient-to-r from-[var(--vo-accent)] to-[var(--vo-accent-2)] bg-clip-text text-transparent">
                       {block.titleHighlight}
@@ -286,7 +319,7 @@ export function MarketingBlocksRenderer({
                   <ContactForm />
                   <aside className="vo-card-hover space-y-6 rounded-2xl border border-[var(--vo-border)] bg-[var(--vo-surface)] p-6 shadow-[var(--vo-card-shadow)] lg:sticky lg:top-24 lg:self-start">
                     <div>
-                      <h2 className="text-sm font-bold uppercase tracking-[0.14em] text-[var(--vo-accent)]">Kontakt</h2>
+                      <h2 className="text-sm font-bold uppercase tracking-[0.14em] text-[var(--vo-accent)]">{dict.footer.contact}</h2>
                       <a
                         className="mt-3 inline-block text-lg font-bold text-[var(--vo-fg)] hover:text-[var(--vo-accent)]"
                         href={`mailto:${SITE_CONTACT.email}`}
@@ -296,18 +329,17 @@ export function MarketingBlocksRenderer({
                     </div>
                     {phoneHref && phoneLabel ? (
                       <div>
-                        <p className="text-sm font-medium text-[var(--vo-muted)]">Telefon</p>
+                        <p className="text-sm font-medium text-[var(--vo-muted)]">{dict.contactForm.phone}</p>
                         <a className="mt-1 inline-block text-lg font-bold text-[var(--vo-fg)] hover:text-[var(--vo-accent)]" href={phoneHref}>
                           {phoneLabel}
                         </a>
                       </div>
                     ) : null}
                     <div>
-                      <p className="text-sm font-medium text-[var(--vo-muted)]">Delovni čas</p>
-                      <p className="mt-1 text-sm text-[var(--vo-fg)]">{SITE_CONTACT.hours}</p>
+                      <p className="mt-3 text-sm text-[var(--vo-fg)]">{dict.footer.hours}</p>
                     </div>
                     <div>
-                      <p className="text-sm font-medium text-[var(--vo-muted)]">Lokacija</p>
+                      <p className="text-sm font-medium text-[var(--vo-muted)]">{dict.footer.location}</p>
                       <p className="mt-1 text-sm text-[var(--vo-fg)]">{SITE_CONTACT.address}</p>
                     </div>
                   </aside>
@@ -319,6 +351,7 @@ export function MarketingBlocksRenderer({
             return null;
         }
       })}
+      {pageId === "home" ? <TestimonialsSection dict={dict} /> : null}
     </>
   );
 }
