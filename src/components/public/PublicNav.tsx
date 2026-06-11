@@ -7,6 +7,7 @@ import { ChevronDown, Menu, X } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import { VisionOneLogo } from "@/components/brand/VisionOneLogo";
 import { LanguageSwitcher } from "@/components/public/LanguageSwitcher";
+import { ThemeToggle } from "@/components/theme/ThemeToggle";
 import { localizedPath } from "@/i18n/config";
 import { useLocale } from "@/context/LocaleContext";
 
@@ -130,6 +131,7 @@ export function PublicNav({ links = [], headerCta, portalLoginLabel }: Props) {
         </nav>
 
         <div className="flex shrink-0 items-center gap-1.5 sm:gap-2">
+          <ThemeToggle />
           <LanguageSwitcher />
           {headerCta?.show !== false ? (
             <Link

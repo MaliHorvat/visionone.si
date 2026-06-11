@@ -16,14 +16,14 @@ export function PublicFooter({ locale, dict }: { locale: Locale; dict: SiteDicti
   }));
 
   return (
-    <footer className="mt-auto border-t border-white/10 bg-[#08061a] text-[#c8d0dc]">
+    <footer className="mt-auto border-t border-white/10 bg-[var(--vo-footer-bg)] text-[var(--vo-footer-fg)]">
       <div className="mx-auto max-w-6xl px-4 py-14 md:px-6 md:py-16">
         <div className="grid gap-12 md:grid-cols-[1.5fr_1fr_1fr]">
           <div>
             <Link href={localizedPath(locale, "/")} className="vo-brand-link inline-flex max-w-full items-center">
               <VisionOneLogo variant="both" tone="on-dark" size="lg" />
             </Link>
-            <p className="mt-5 max-w-md text-sm leading-relaxed text-[#94a3b8]">{dict.footer.tagline}</p>
+            <p className="mt-5 max-w-md text-sm leading-relaxed text-[var(--vo-footer-muted)]">{dict.footer.tagline}</p>
             <div className="mt-6 flex flex-wrap gap-2">
               {dict.trustStrip.items.map((item) => (
                 <span
@@ -62,8 +62,8 @@ export function PublicFooter({ locale, dict }: { locale: Locale; dict: SiteDicti
                 {phoneLabel}
               </a>
             ) : null}
-            <p className="mt-3 text-xs text-[#64748b]">{dict.footer.hours}</p>
-            <p className="text-xs text-[#64748b]">{dict.footer.location}</p>
+            <p className="mt-3 text-xs text-[var(--vo-footer-muted)]">{dict.footer.hours}</p>
+            <p className="text-xs text-[var(--vo-footer-muted)]">{dict.footer.location}</p>
             <Link
               className="mt-4 inline-block text-sm font-medium text-[var(--vo-accent-2)] hover:text-white"
               href={localizedPath(locale, "/kontakt#ponudba")}
@@ -73,7 +73,7 @@ export function PublicFooter({ locale, dict }: { locale: Locale; dict: SiteDicti
           </div>
         </div>
 
-        <div className="mt-12 flex flex-col gap-4 border-t border-white/10 pt-8 text-xs text-[#64748b] sm:flex-row sm:items-center sm:justify-between">
+        <div className="mt-12 flex flex-col gap-4 border-t border-white/10 pt-8 text-xs text-[var(--vo-footer-muted)] sm:flex-row sm:items-center sm:justify-between">
           <div className="flex flex-wrap items-center gap-x-4 gap-y-2">
             <Link className="hover:text-white" href="/zasebnost">
               {dict.footer.privacy}

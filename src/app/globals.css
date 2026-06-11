@@ -1,10 +1,33 @@
 @import "tailwindcss";
 
-/* ————————————————————————————————————————————
-   VisionOne „Obsidian Void" — temna skrivnostna tema
-   Globoka vijolično-črna osnova + teal/cyan/vijolična svetloba
-   ———————————————————————————————————————————— */
-:root,
+/* —— Svetla tema (privzeto) —— */
+:root {
+  --vo-bg: #eef2f8;
+  --vo-surface: #ffffff;
+  --vo-surface-2: #e4eaf3;
+  --vo-fg: #071018;
+  --vo-muted: #4a5568;
+  --vo-border: #cdd6e4;
+  --vo-accent: #0a8f8f;
+  --vo-accent-2: #06b6d4;
+  --vo-accent-3: #6366f1;
+  --vo-accent-hover: #087272;
+  --vo-accent-muted: rgba(10, 143, 143, 0.14);
+  --vo-accent-gradient: linear-gradient(135deg, #0a8f8f 0%, #0891b2 50%, #0e7490 100%);
+  --vo-danger: #c02626;
+  --vo-danger-muted: rgba(192, 38, 38, 0.12);
+  --vo-ok: #15803d;
+  --vo-ok-muted: rgba(21, 128, 61, 0.12);
+  --vo-warn: #b45309;
+  --vo-card-shadow: 0 2px 8px rgba(7, 16, 24, 0.06), 0 12px 32px rgba(7, 16, 24, 0.08);
+  --vo-glow-sm: 0 0 0 1px rgba(10, 143, 143, 0.12), 0 8px 24px rgba(10, 143, 143, 0.18);
+  --vo-glow-md: 0 0 0 1px rgba(10, 143, 143, 0.15), 0 16px 48px rgba(10, 143, 143, 0.22);
+  --vo-footer-bg: #050a12;
+  --vo-footer-fg: #c8d0dc;
+  --vo-footer-muted: #94a3b8;
+}
+
+/* —— Temna tema „Obsidian Void" —— */
 .dark {
   --vo-bg: #06050f;
   --vo-surface: #0d0b1e;
@@ -32,6 +55,10 @@
     0 0 0 1px rgba(45, 212, 191, 0.22),
     0 16px 56px rgba(34, 211, 238, 0.2),
     0 8px 40px rgba(139, 92, 246, 0.18);
+  --vo-footer-bg: #08061a;
+  --vo-footer-fg: #c8d0dc;
+  --vo-footer-muted: #94a3b8;
+  color-scheme: dark;
 }
 
 @theme inline {
@@ -41,7 +68,7 @@
 
 html {
   scroll-behavior: smooth;
-  color-scheme: dark;
+  color-scheme: light;
 }
 
 body {
@@ -65,26 +92,32 @@ h3 {
   color: #ffffff;
 }
 
-/* Tanek, temen drsnik */
-* {
+.dark * {
   scrollbar-width: thin;
   scrollbar-color: #2e2a55 transparent;
 }
 
-*::-webkit-scrollbar {
+.dark *::-webkit-scrollbar {
   width: 8px;
   height: 8px;
 }
 
-*::-webkit-scrollbar-thumb {
+.dark *::-webkit-scrollbar-thumb {
   border-radius: 999px;
   background: #2e2a55;
 }
 
-/* —— Aurora mesh ozadje (počasno dihanje) —— */
+/* —— Mesh ozadje —— */
 .vo-mesh-bg {
   position: relative;
   background-color: var(--vo-bg);
+  background-image:
+    radial-gradient(ellipse 80% 60% at 10% -10%, rgba(10, 143, 143, 0.18), transparent 55%),
+    radial-gradient(ellipse 60% 50% at 90% 20%, rgba(6, 182, 212, 0.12), transparent 50%),
+    radial-gradient(ellipse 50% 40% at 50% 100%, rgba(10, 143, 143, 0.08), transparent 45%);
+}
+
+.dark .vo-mesh-bg {
   background-image:
     radial-gradient(ellipse 75% 55% at 12% -8%, rgba(45, 212, 191, 0.14), transparent 55%),
     radial-gradient(ellipse 55% 45% at 88% 8%, rgba(99, 102, 241, 0.16), transparent 55%),
@@ -107,8 +140,8 @@ h3 {
   }
 }
 
-/* Zvezdni prah — drobne svetleče pike čez ozadje */
-.vo-mesh-bg::before {
+/* Zvezdni prah — samo temna tema */
+.dark .vo-mesh-bg::before {
   content: "";
   position: absolute;
   inset: 0;
@@ -139,10 +172,18 @@ h3 {
 }
 
 .vo-visual-band {
+  background: linear-gradient(135deg, var(--vo-surface) 0%, rgba(10, 143, 143, 0.06) 100%);
+}
+
+.dark .vo-visual-band {
   background: linear-gradient(135deg, var(--vo-surface) 0%, rgba(139, 92, 246, 0.07) 100%);
 }
 
 .vo-hero-glow {
+  background: radial-gradient(ellipse at 70% 30%, rgba(10, 143, 143, 0.2), transparent 55%);
+}
+
+.dark .vo-hero-glow {
   background:
     radial-gradient(ellipse at 70% 30%, rgba(45, 212, 191, 0.18), transparent 55%),
     radial-gradient(ellipse at 25% 70%, rgba(139, 92, 246, 0.14), transparent 50%);
@@ -165,7 +206,13 @@ h3 {
   transition: transform 0.25s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.25s ease, border-color 0.25s ease;
 }
 
-.vo-card-hover::after {
+.vo-card-hover:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--vo-glow-sm);
+  border-color: rgba(10, 143, 143, 0.35);
+}
+
+.dark .vo-card-hover::after {
   content: "";
   position: absolute;
   inset: 0;
@@ -176,13 +223,11 @@ h3 {
   transition: opacity 0.3s ease;
 }
 
-.vo-card-hover:hover {
-  transform: translateY(-4px);
-  box-shadow: var(--vo-glow-sm);
+.dark .vo-card-hover:hover {
   border-color: rgba(139, 92, 246, 0.45);
 }
 
-.vo-card-hover:hover::after {
+.dark .vo-card-hover:hover::after {
   opacity: 1;
 }
 
@@ -212,6 +257,10 @@ h3 {
 }
 
 .vo-stat-card {
+  background: linear-gradient(145deg, var(--vo-surface) 0%, rgba(10, 143, 143, 0.04) 100%);
+}
+
+.dark .vo-stat-card {
   background: linear-gradient(145deg, var(--vo-surface) 0%, rgba(139, 92, 246, 0.06) 100%);
 }
 
@@ -303,13 +352,13 @@ h3 {
   width: 100%;
 }
 
-.vo-brand--on-light .vo-brand-img {
+.vo-brand--on-light .vo-brand-img,
+.vo-brand--auto .vo-brand-img {
   filter: brightness(0);
 }
 
-.vo-brand--auto .vo-brand-img,
-.vo-brand--on-dark .vo-brand-img,
-.dark .vo-brand--auto .vo-brand-img {
+.dark .vo-brand--auto .vo-brand-img,
+.vo-brand--on-dark .vo-brand-img {
   filter: brightness(0) invert(1);
 }
 

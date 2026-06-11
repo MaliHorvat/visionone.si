@@ -36,7 +36,14 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="sl" className="dark" suppressHydrationWarning>
+    <html lang="sl" suppressHydrationWarning>
+      <head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `(function(){try{var k="vo-website-theme",t=localStorage.getItem(k),d=false;if(t==="dark")d=true;else if(t==="system")d=window.matchMedia("(prefers-color-scheme: dark)").matches;document.documentElement.classList.toggle("dark",d)}catch(e){}})();`,
+          }}
+        />
+      </head>
       <body className={`${inter.variable} ${display.variable} min-h-screen min-w-0 overflow-x-clip antialiased`}>
         <Providers>{children}</Providers>
         <Analytics />
