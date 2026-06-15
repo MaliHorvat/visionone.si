@@ -19,7 +19,14 @@ export function localizeBlocks(blocks: MarketingBlock[], locale: Locale): Market
           ctaSecondaryHref: locHref(locale, block.ctaSecondaryHref),
         };
       case "split":
-        return { ...block, linkHref: block.linkHref ? locHref(locale, block.linkHref) : "" };
+        return {
+          ...block,
+          linkHref: block.linkHref
+            ? block.linkHref.startsWith("http")
+              ? block.linkHref
+              : locHref(locale, block.linkHref)
+            : "",
+        };
       case "buttons":
         return {
           ...block,
@@ -28,7 +35,10 @@ export function localizeBlocks(blocks: MarketingBlock[], locale: Locale): Market
       case "ctaBand":
         return {
           ...block,
-          buttons: block.buttons.map((b) => ({ ...b, href: locHref(locale, b.href) })),
+          buttons: block.buttons.map((b) => ({
+            ...b,
+            href: b.href.startsWith("http") ? b.href : locHref(locale, b.href),
+          })),
         };
       case "productShowcase":
         return {
@@ -47,6 +57,8 @@ export function localizeBlocks(blocks: MarketingBlock[], locale: Locale): Market
 export function pageIdFromSlugParts(slugPath: string[]): string | null {
   const path = slugPath.join("/");
   if (!path) return "home";
+  if (path === "produkti/portal") return "produkti-portal";
+  if (path === "produkti/anketa") return "produkti-anketa";
   if (path === "storitve" || path === "produkti" || path === "kontakt") return path;
   return null;
 }

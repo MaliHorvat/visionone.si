@@ -193,9 +193,20 @@ export function MarketingBlocksRenderer({
                   <h2 className="mt-3 text-2xl font-bold text-[var(--vo-fg)] md:text-3xl">{block.title}</h2>
                   <p className="mt-4 text-sm leading-relaxed text-[var(--vo-muted)] md:text-base">{block.body}</p>
                   {block.linkHref ? (
-                    <Link href={block.linkHref} className="mt-6 inline-flex text-sm font-bold text-[var(--vo-accent)] hover:underline">
-                      {block.linkLabel || "Več"} <ArrowRight className="ml-1 h-4 w-4" />
-                    </Link>
+                    block.linkHref.startsWith("http") ? (
+                      <a
+                        href={block.linkHref}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="mt-6 inline-flex text-sm font-bold text-[var(--vo-accent)] hover:underline"
+                      >
+                        {block.linkLabel || "Več"} <ArrowRight className="ml-1 h-4 w-4" />
+                      </a>
+                    ) : (
+                      <Link href={block.linkHref} className="mt-6 inline-flex text-sm font-bold text-[var(--vo-accent)] hover:underline">
+                        {block.linkLabel || "Več"} <ArrowRight className="ml-1 h-4 w-4" />
+                      </Link>
+                    )
                   ) : null}
                 </ServiceImageSplit>
               </section>
@@ -328,11 +339,27 @@ export function MarketingBlocksRenderer({
                   <h2 className="text-xl font-bold text-[var(--vo-fg)]">{block.title}</h2>
                   <p className="mt-2 text-sm text-[var(--vo-muted)]">{block.body}</p>
                   <div className="mt-6 flex flex-wrap justify-center gap-3">
-                    {block.buttons.map((btn) => (
-                      <Link key={btn.id} href={btn.href} className={`${btnClass(btn.variant)} inline-flex min-h-11 items-center justify-center rounded-xl px-6 py-3 text-sm`}>
-                        {btn.label}
-                      </Link>
-                    ))}
+                    {block.buttons.map((btn) =>
+                      btn.href.startsWith("http") ? (
+                        <a
+                          key={btn.id}
+                          href={btn.href}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className={`${btnClass(btn.variant)} inline-flex min-h-11 items-center justify-center rounded-xl px-6 py-3 text-sm`}
+                        >
+                          {btn.label}
+                        </a>
+                      ) : (
+                        <Link
+                          key={btn.id}
+                          href={btn.href}
+                          className={`${btnClass(btn.variant)} inline-flex min-h-11 items-center justify-center rounded-xl px-6 py-3 text-sm`}
+                        >
+                          {btn.label}
+                        </Link>
+                      ),
+                    )}
                   </div>
                 </div>
               </section>

@@ -27,10 +27,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const locale = await resolveLocale(slug);
   const dict = getDictionary(locale);
   const pageId = pageIdFromSlugParts(slugPath);
-  const title = pageId && pageId !== "home" ? dict.routes.find((r) => r.slug === pageId)?.label : dict.meta.title;
+  const pageMeta = pageId ? dict.pageMeta?.[pageId] : undefined;
+  const routeLabel = pageId && pageId !== "home" ? dict.routes.find((r) => r.slug === pageId)?.label : undefined;
   return {
-    title: title ?? dict.meta.title,
-    description: dict.meta.description,
+    title: pageId === "home" || !pageId ? dict.meta.title : (pageMeta?.title ?? routeLabel ?? dict.meta.title),
+    description: pageId === "home" || !pageId ? dict.meta.description : (pageMeta?.description ?? dict.meta.description),
     alternates: {
       languages: Object.fromEntries(
         (["sl", "en", "de", "it", "hr"] as Locale[]).map((l) => [LOCALE_META[l].hrefLang, `/${l === "sl" ? "" : l}`]),

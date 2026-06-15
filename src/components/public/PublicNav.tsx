@@ -39,9 +39,14 @@ export function PublicNav({ links = [], headerCta, portalLoginLabel }: Props) {
   const servicesHref = localizedPath(locale, "/storitve");
   const productsHref = localizedPath(locale, "/produkti");
 
-  const submenuFor = (href: string): { baseHref: string; items: { id: string; label: string }[] } | null => {
+  const submenuFor = (
+    href: string,
+  ): { baseHref: string; items: { id: string; label: string; href?: string }[] } | null => {
     if (href === servicesHref && (dict.servicesMenu?.length ?? 0) > 0) {
-      return { baseHref: servicesHref, items: dict.servicesMenu };
+      return {
+        baseHref: servicesHref,
+        items: dict.servicesMenu.map((item) => ({ ...item, href: `${servicesHref}#${item.id}` })),
+      };
     }
     if (href === productsHref && (dict.productsMenu?.length ?? 0) > 0) {
       return { baseHref: productsHref, items: dict.productsMenu };
@@ -100,7 +105,7 @@ export function PublicNav({ links = [], headerCta, portalLoginLabel }: Props) {
                         {sub.items.map((item) => (
                           <Link
                             key={item.id}
-                            href={`${sub.baseHref}#${item.id}`}
+                            href={item.href ? localizedPath(locale, item.href) : `${sub.baseHref}#${item.id}`}
                             onClick={() => setOpenMenu(null)}
                             className="block rounded-xl px-3 py-2 text-sm font-medium text-[var(--vo-muted)] transition hover:bg-[var(--vo-surface-2)] hover:text-[var(--vo-accent)]"
                           >
@@ -191,7 +196,7 @@ export function PublicNav({ links = [], headerCta, portalLoginLabel }: Props) {
                         {sub.items.map((item) => (
                           <Link
                             key={item.id}
-                            href={`${sub.baseHref}#${item.id}`}
+                            href={item.href ? localizedPath(locale, item.href) : `${sub.baseHref}#${item.id}`}
                             onClick={() => setOpen(false)}
                             className="min-h-10 rounded-lg px-3 py-2 text-sm font-medium text-[var(--vo-muted)] hover:bg-[var(--vo-surface-2)] hover:text-[var(--vo-accent)]"
                           >
