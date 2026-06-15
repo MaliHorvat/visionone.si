@@ -78,7 +78,10 @@ export const hr: SiteDictionary = {
     { id: "servis", label: "Podrška i servis" },
     { id: "ostalo", label: "Ostali radovi" },
   ],
-  productsMenu: [{ id: "portal", label: "VisionOne portal" }],
+  productsMenu: [
+    { id: "portal", label: "VisionOne portal" },
+    { id: "anketa", label: "Anonimna anketa" },
+  ],
   process: {
     kicker: "Kako teče",
     title: "Od upita do funkcionalnog sustava",
@@ -210,24 +213,48 @@ export const hr: SiteDictionary = {
         id: "blk_page_hero",
         type: "pageHero",
         eyebrow: "Proizvodi",
-        title: "VisionOne portal i povezana rješenja",
-        description: "Softver za nadzor objekata — stanje u stvarnom vremenu, upozorenja i servisni tokovi.",
+        title: "VisionOne portal i digitalni alati",
+        description:
+          "Softver za nadzor objekata i anonimno prikupljanje povratnih informacija — bez složenih integracija.",
       },
       {
-        id: "portal",
-        type: "split",
-        imageKey: "MARKETING_IMG_PORTAL_SOFTWARE",
-        kicker: "VisionOne portal",
-        title: "Pregled uživo — kamere, NVR, preklopnici, diskovi",
-        body: "Portal za tehničare i klijente: stanje uređaja u stvarnom vremenu, podsjetnici za održavanje, servisni tiketi i dokumentacija. Opcijski Care Box edge nadzor za 24/7 dostupnost.",
-        linkLabel: "Naručite demo",
-        linkHref: "/kontakt#ponudba",
+        id: "blk_product_showcase",
+        type: "productShowcase",
+        items: [
+          {
+            id: "portal",
+            imageKey: "MARKETING_IMG_PORTAL_SOFTWARE",
+            label: "VisionOne portal",
+            title: "Pregled uživo — kamere, NVR, preklopnici, diskovi",
+            description:
+              "Portal za tehničare i klijente: stanje uređaja u stvarnom vremenu, podsjetnici za održavanje, servisni tiketi i dokumentacija na jednom mjestu. Opcijski Care Box edge nadzor za 24/7 dostupnost.",
+            ctaLabel: "Naručite demo",
+            ctaHref: "/kontakt#ponudba",
+          },
+          {
+            id: "anketa",
+            imageKey: "MARKETING_IMG_ANKETA",
+            label: "Anonimna anketa",
+            title: "Rani signali o izgaranju i opterećenju",
+            description:
+              "Tri kratka pitanja (ocjena 1–5), bez imena i e-pošte. Zaposlenici odgovaraju anonimno; vodstvo vidi agregirane prosjeke i trendove na zaštićenoj nadzornoj ploči — idealno za redovite pulse-check ankete.",
+            ctaLabel: "Otvori anketu",
+            ctaHref: "https://anketa.visionone.si",
+          },
+        ],
+      },
+      {
+        id: "blk_img_produkti",
+        type: "image",
+        imageKey: "MARKETING_IMG_PRODUKTI_POD_KARTO",
+        caption: "VisionOne rješenja za operativni nadzor i prevenciju na objektu.",
+        aspect: "wide",
       },
       {
         id: "blk_cards_produkti",
         type: "cards",
-        kicker: "Mogućnosti",
-        title: "Što portal pokriva",
+        kicker: "Mogućnosti portala",
+        title: "Što VisionOne portal pokriva",
         subtitle: "Operativno središte za sigurnosne sustave — ne samo popis kamera.",
         items: [
           { title: "Stanje uređaja", body: "Kamere, snimači, preklopnici i diskovi — online/offline s poviješću provjera." },
@@ -239,8 +266,8 @@ export const hr: SiteDictionary = {
       {
         id: "blk_produkti_cta",
         type: "ctaBand",
-        title: "Želite prikaz portala?",
-        body: "Pokazat ćemo kako radi za vašu vrstu objekta.",
+        title: "Želite demo portala ili uvođenje ankete?",
+        body: "Pokazat ćemo kako alati rade u vašoj organizaciji.",
         buttons: [{ id: "btn_produkti_cta", label: "Dogovorite poziv", href: "/kontakt#ponudba", variant: "primary" }],
       },
     ],

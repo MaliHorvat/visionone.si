@@ -21,6 +21,7 @@ import {
 import type { LucideIcon } from "lucide-react";
 import { MarketingImageSlot } from "@/components/public/MarketingImageSlot";
 import { PageHero } from "@/components/public/PageHero";
+import { ProductShowcaseCard } from "@/components/public/ProductShowcaseCard";
 import { ServiceImageSplit } from "@/components/public/ServiceImageSplit";
 import { ContactForm } from "@/app/(marketing)/kontakt/ContactForm";
 import type { Locale } from "@/i18n/config";
@@ -294,6 +295,30 @@ export function MarketingBlocksRenderer({
                     );
                   })}
                 </div>
+              </section>
+            );
+          case "productShowcase":
+            return (
+              <section key={block.id} className="mx-auto max-w-6xl space-y-8 px-4 py-10 md:px-6">
+                {block.items.map((item, i) => {
+                  const src = imageSrc(site, item.imageKey);
+                  if (!src) return null;
+                  const cfg = site.images[item.imageKey];
+                  return (
+                    <div key={item.id} id={item.id} className="scroll-mt-24">
+                      <ProductShowcaseCard
+                        imageSrc={src}
+                        imageAlt={cfg?.alt ?? item.title}
+                        label={item.label}
+                        title={item.title}
+                        description={item.description}
+                        ctaHref={item.ctaHref}
+                        ctaLabel={item.ctaLabel}
+                        priorityImage={i === 0}
+                      />
+                    </div>
+                  );
+                })}
               </section>
             );
           case "ctaBand":

@@ -78,7 +78,10 @@ export const it: SiteDictionary = {
     { id: "servis", label: "Supporto e assistenza" },
     { id: "ostalo", label: "Altri lavori" },
   ],
-  productsMenu: [{ id: "portal", label: "Portale VisionOne" }],
+  productsMenu: [
+    { id: "portal", label: "Portale VisionOne" },
+    { id: "anketa", label: "Sondaggio anonimo" },
+  ],
   process: {
     kicker: "Come funziona",
     title: "Dalla richiesta al sistema operativo",
@@ -210,24 +213,48 @@ export const it: SiteDictionary = {
         id: "blk_page_hero",
         type: "pageHero",
         eyebrow: "Prodotti",
-        title: "Portale VisionOne e soluzioni connesse",
-        description: "Software per monitorare i siti — stato in tempo reale, allarmi e flussi di assistenza.",
+        title: "Portale VisionOne e strumenti digitali",
+        description:
+          "Software per monitorare i siti e raccogliere feedback anonimo — senza integrazioni complesse.",
       },
       {
-        id: "portal",
-        type: "split",
-        imageKey: "MARKETING_IMG_PORTAL_SOFTWARE",
-        kicker: "Portale VisionOne",
-        title: "Panoramica live — telecamere, NVR, switch, dischi",
-        body: "Portale per tecnici e clienti: stato dei dispositivi in tempo reale, promemoria di manutenzione, ticket di assistenza e documentazione. Care Box opzionale per il monitoraggio edge 24/7.",
-        linkLabel: "Prenota una demo",
-        linkHref: "/kontakt#ponudba",
+        id: "blk_product_showcase",
+        type: "productShowcase",
+        items: [
+          {
+            id: "portal",
+            imageKey: "MARKETING_IMG_PORTAL_SOFTWARE",
+            label: "Portale VisionOne",
+            title: "Panoramica live — telecamere, NVR, switch, dischi",
+            description:
+              "Portale per tecnici e clienti: stato dei dispositivi in tempo reale, promemoria di manutenzione, ticket di assistenza e documentazione in un unico posto. Care Box opzionale per il monitoraggio edge 24/7.",
+            ctaLabel: "Prenota una demo",
+            ctaHref: "/kontakt#ponudba",
+          },
+          {
+            id: "anketa",
+            imageKey: "MARKETING_IMG_ANKETA",
+            label: "Sondaggio anonimo",
+            title: "Segnali precoci su burnout e carico di lavoro",
+            description:
+              "Tre domande brevi (voto 1–5), senza nome né e-mail. Il personale risponde in anonimo; la direzione vede medie aggregate e trend su una dashboard protetta — ideale per pulse check periodici.",
+            ctaLabel: "Apri sondaggio",
+            ctaHref: "https://anketa.visionone.si",
+          },
+        ],
+      },
+      {
+        id: "blk_img_produkti",
+        type: "image",
+        imageKey: "MARKETING_IMG_PRODUKTI_POD_KARTO",
+        caption: "Soluzioni VisionOne per monitoraggio operativo e prevenzione in loco.",
+        aspect: "wide",
       },
       {
         id: "blk_cards_produkti",
         type: "cards",
-        kicker: "Funzionalità",
-        title: "Cosa copre il portale",
+        kicker: "Funzionalità del portale",
+        title: "Cosa copre il portale VisionOne",
         subtitle: "Un centro operativo per i sistemi di sicurezza — non solo un elenco di telecamere.",
         items: [
           { title: "Stato dispositivi", body: "Telecamere, registratori, switch e dischi — online/offline con cronologia." },
@@ -239,8 +266,8 @@ export const it: SiteDictionary = {
       {
         id: "blk_produkti_cta",
         type: "ctaBand",
-        title: "Vuoi una panoramica del portale?",
-        body: "Ti mostriamo come funziona per il tuo tipo di sito.",
+        title: "Vuoi una demo del portale o l'introduzione del sondaggio?",
+        body: "Ti mostriamo come funzionano gli strumenti nella tua organizzazione.",
         buttons: [{ id: "btn_produkti_cta", label: "Fissa una chiamata", href: "/kontakt#ponudba", variant: "primary" }],
       },
     ],

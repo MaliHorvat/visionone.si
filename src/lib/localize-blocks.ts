@@ -30,6 +30,14 @@ export function localizeBlocks(blocks: MarketingBlock[], locale: Locale): Market
           ...block,
           buttons: block.buttons.map((b) => ({ ...b, href: locHref(locale, b.href) })),
         };
+      case "productShowcase":
+        return {
+          ...block,
+          items: block.items.map((item) => ({
+            ...item,
+            ctaHref: item.ctaHref.startsWith("http") ? item.ctaHref : locHref(locale, item.ctaHref),
+          })),
+        };
       default:
         return block;
     }

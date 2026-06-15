@@ -251,6 +251,12 @@ export const DEFAULT_MARKETING_SITE_CONTENT: MarketingSiteContent = {
       "/vo-produkti-pod-karto.png",
       "",
     ),
+    MARKETING_IMG_ANKETA: img(
+      "MARKETING_IMG_ANKETA",
+      "Produkti — anonimna anketa",
+      "/vo-produkti-anketa-card.png",
+      "Anonimna anketa o izgorelosti",
+    ),
   },
   pages: DEFAULT_PAGES,
   routes: routesFromLegacyContent({ pages: DEFAULT_PAGES }),

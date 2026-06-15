@@ -78,7 +78,10 @@ export const de: SiteDictionary = {
     { id: "servis", label: "Support & Service" },
     { id: "ostalo", label: "Weitere Arbeiten" },
   ],
-  productsMenu: [{ id: "portal", label: "VisionOne Portal" }],
+  productsMenu: [
+    { id: "portal", label: "VisionOne Portal" },
+    { id: "anketa", label: "Anonyme Umfrage" },
+  ],
   process: {
     kicker: "Ablauf",
     title: "Von der Anfrage zum laufenden System",
@@ -210,24 +213,48 @@ export const de: SiteDictionary = {
         id: "blk_page_hero",
         type: "pageHero",
         eyebrow: "Produkte",
-        title: "VisionOne Portal & vernetzte Lösungen",
-        description: "Software zur Objektüberwachung — Live-Status, Alarme und Service-Workflows.",
+        title: "VisionOne Portal & digitale Tools",
+        description:
+          "Software zur Objektüberwachung und anonymen Feedback-Erhebung — ohne komplexe Integrationen.",
       },
       {
-        id: "portal",
-        type: "split",
-        imageKey: "MARKETING_IMG_PORTAL_SOFTWARE",
-        kicker: "VisionOne Portal",
-        title: "Live-Überblick — Kameras, NVR, Switches, Festplatten",
-        body: "Portal für Techniker und Kunden: Echtzeit-Gerätestatus, Wartungserinnerungen, Service-Tickets und Dokumentation. Optionales Care Box Edge-Monitoring für 24/7 Verfügbarkeit.",
-        linkLabel: "Demo buchen",
-        linkHref: "/kontakt#ponudba",
+        id: "blk_product_showcase",
+        type: "productShowcase",
+        items: [
+          {
+            id: "portal",
+            imageKey: "MARKETING_IMG_PORTAL_SOFTWARE",
+            label: "VisionOne Portal",
+            title: "Live-Überblick — Kameras, NVR, Switches, Festplatten",
+            description:
+              "Portal für Techniker und Kunden: Echtzeit-Gerätestatus, Wartungserinnerungen, Service-Tickets und Dokumentation an einem Ort. Optionales Care Box Edge-Monitoring für 24/7 Verfügbarkeit.",
+            ctaLabel: "Demo buchen",
+            ctaHref: "/kontakt#ponudba",
+          },
+          {
+            id: "anketa",
+            imageKey: "MARKETING_IMG_ANKETA",
+            label: "Anonyme Umfrage",
+            title: "Frühe Signale zu Burnout und Arbeitsbelastung",
+            description:
+              "Drei kurze Fragen (Bewertung 1–5), ohne Name und E-Mail. Mitarbeitende antworten anonym; die Führung sieht aggregierte Durchschnitte und Trends auf einem geschützten Dashboard — ideal für regelmäßige Pulse-Checks.",
+            ctaLabel: "Umfrage öffnen",
+            ctaHref: "https://anketa.visionone.si",
+          },
+        ],
+      },
+      {
+        id: "blk_img_produkti",
+        type: "image",
+        imageKey: "MARKETING_IMG_PRODUKTI_POD_KARTO",
+        caption: "VisionOne-Lösungen für operatives Monitoring und Prävention vor Ort.",
+        aspect: "wide",
       },
       {
         id: "blk_cards_produkti",
         type: "cards",
-        kicker: "Funktionen",
-        title: "Was das Portal abdeckt",
+        kicker: "Portal-Funktionen",
+        title: "Was das VisionOne Portal abdeckt",
         subtitle: "Eine Einsatzzentrale für Sicherheitssysteme — nicht nur eine Kameraliste.",
         items: [
           { title: "Gerätestatus", body: "Kameras, Rekorder, Switches und Festplatten — online/offline mit Historie." },
@@ -239,8 +266,8 @@ export const de: SiteDictionary = {
       {
         id: "blk_produkti_cta",
         type: "ctaBand",
-        title: "Eine Portal-Führung?",
-        body: "Wir zeigen, wie es für Ihren Objekttyp funktioniert.",
+        title: "Portal-Führung oder Umfrage-Einführung gewünscht?",
+        body: "Wir zeigen, wie die Tools in Ihrer Organisation funktionieren.",
         buttons: [{ id: "btn_produkti_cta", label: "Termin vereinbaren", href: "/kontakt#ponudba", variant: "primary" }],
       },
     ],

@@ -27,6 +27,7 @@ export type MarketingBlockType =
   | "stats"
   | "cards"
   | "serviceBlocks"
+  | "productShowcase"
   | "ctaBand"
   | "contactForm";
 
@@ -102,6 +103,21 @@ export type MarketingServiceBlocksBlock = MarketingBlockBase & {
   items: { id: string; title: string; body: string; imageKey: string }[];
 };
 
+export type MarketingProductShowcaseItem = {
+  id: string;
+  imageKey: string;
+  label: string;
+  title: string;
+  description: string;
+  ctaHref: string;
+  ctaLabel: string;
+};
+
+export type MarketingProductShowcaseBlock = MarketingBlockBase & {
+  type: "productShowcase";
+  items: MarketingProductShowcaseItem[];
+};
+
 export type MarketingCtaBandBlock = MarketingBlockBase & {
   type: "ctaBand";
   title: string;
@@ -124,6 +140,7 @@ export type MarketingBlock =
   | MarketingStatsBlock
   | MarketingCardsBlock
   | MarketingServiceBlocksBlock
+  | MarketingProductShowcaseBlock
   | MarketingCtaBandBlock
   | MarketingContactFormBlock;
 
