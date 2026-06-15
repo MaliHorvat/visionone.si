@@ -254,8 +254,14 @@ export const DEFAULT_MARKETING_SITE_CONTENT: MarketingSiteContent = {
     MARKETING_IMG_ANKETA: img(
       "MARKETING_IMG_ANKETA",
       "Produkti — anonimna anketa",
-      "/vo-produkti-anketa-card.png",
-      "Anonimna anketa o izgorelosti",
+      "/vo-produkti-anketa-ui.png",
+      "Anonimna anketa — obrazec za zaposlene",
+    ),
+    MARKETING_IMG_ANKETA_DASHBOARD: img(
+      "MARKETING_IMG_ANKETA_DASHBOARD",
+      "Produkti — anketa nadzorna plošča",
+      "/vo-produkti-anketa-dashboard.png",
+      "Nadzorna plošča s povprečji anonimne ankete",
     ),
   },
   pages: DEFAULT_PAGES,

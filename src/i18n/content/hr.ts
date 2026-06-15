@@ -360,10 +360,10 @@ export const hr: SiteDictionary = {
       {
         id: "blk_anketa_split2",
         type: "split",
-        imageKey: "MARKETING_IMG_PRODUKTI_POD_KARTO",
-        kicker: "Za koga je anketa",
+        imageKey: "MARKETING_IMG_ANKETA_DASHBOARD",
+        kicker: "Nadzorna plošča",
         title: "Organizacije koje žele prevenciju, ne samo krizu",
-        body: "Anketa nije dijagnostički alat i ne zamjenjuje razgovore sa zaposlenicima. To je rani signal: ako prosjeci padaju ili opterećenje raste, znate da je vrijeme za djelovanje. Prikladna za timove od 10 osoba; mjesečno ponavljanje pokazuje trendove kroz vrijeme.",
+        body: "Anketa nije dijagnostički alat i ne zamjenjuje razgovore sa zaposlenicima. To je rani signal: ako prosjeci padaju ili opterećenje raste, znate da je vrijeme za djelovanje. Vodstvo na zaštićenoj ploči vidi agregirane prosjeke i nedavne unose — bez identiteta. Prikladna za timove od 10 osoba; mjesečno ponavljanje pokazuje trendove kroz vrijeme.",
         linkLabel: "Pomoć pri uvođenju",
         linkHref: "/kontakt#ponudba",
       },

@@ -360,10 +360,10 @@ export const en: SiteDictionary = {
       {
         id: "blk_anketa_split2",
         type: "split",
-        imageKey: "MARKETING_IMG_PRODUKTI_POD_KARTO",
-        kicker: "Who it's for",
+        imageKey: "MARKETING_IMG_ANKETA_DASHBOARD",
+        kicker: "Dashboard",
         title: "Organisations that want prevention, not just crisis",
-        body: "The survey is not a diagnostic tool and does not replace conversations with staff. It is an early signal: if averages drop or workload rises, you know it's time to act. Suitable for teams from 10 people; repeating monthly reveals trends over time.",
+        body: "The survey is not a diagnostic tool and does not replace conversations with staff. It is an early signal: if averages drop or workload rises, you know it's time to act. Leadership sees aggregated averages and recent submissions on a protected dashboard — no identities. Suitable for teams from 10 people; repeating monthly reveals trends over time.",
         linkLabel: "Help with rollout",
         linkHref: "/kontakt#ponudba",
       },

@@ -360,10 +360,10 @@ export const it: SiteDictionary = {
       {
         id: "blk_anketa_split2",
         type: "split",
-        imageKey: "MARKETING_IMG_PRODUKTI_POD_KARTO",
-        kicker: "Per chi è il sondaggio",
+        imageKey: "MARKETING_IMG_ANKETA_DASHBOARD",
+        kicker: "Dashboard",
         title: "Organizzazioni che vogliono prevenzione, non solo crisi",
-        body: "Il sondaggio non è uno strumento diagnostico e non sostituisce i colloqui con il personale. È un segnale precoce: se le medie scendono o il carico aumenta, sapete che è ora di agire. Adatto a team da 10 persone; ripeterlo mensilmente rivela trend nel tempo.",
+        body: "Il sondaggio non è uno strumento diagnostico e non sostituisce i colloqui con il personale. È un segnale precoce: se le medie scendono o il carico aumenta, sapete che è ora di agire. La direzione vede medie aggregate e invii recenti su una dashboard protetta — senza identità. Adatto a team da 10 persone; ripeterlo mensilmente rivela trend nel tempo.",
         linkLabel: "Aiuto per l'implementazione",
         linkHref: "/kontakt#ponudba",
       },

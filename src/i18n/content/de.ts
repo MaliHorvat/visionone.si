@@ -360,10 +360,10 @@ export const de: SiteDictionary = {
       {
         id: "blk_anketa_split2",
         type: "split",
-        imageKey: "MARKETING_IMG_PRODUKTI_POD_KARTO",
-        kicker: "Für wen ist die Umfrage",
+        imageKey: "MARKETING_IMG_ANKETA_DASHBOARD",
+        kicker: "Dashboard",
         title: "Organisationen, die Prävention wollen, nicht nur Krisen",
-        body: "Die Umfrage ist kein Diagnoseinstrument und ersetzt keine Gespräche mit Mitarbeitenden. Sie ist ein Frühwarnsignal: Wenn Durchschnitte sinken oder die Belastung steigt, wissen Sie, dass Handeln nötig ist. Geeignet für Teams ab 10 Personen; monatliche Wiederholung zeigt Trends über die Zeit.",
+        body: "Die Umfrage ist kein Diagnoseinstrument und ersetzt keine Gespräche mit Mitarbeitenden. Sie ist ein Frühwarnsignal: Wenn Durchschnitte sinken oder die Belastung steigt, wissen Sie, dass Handeln nötig ist. Die Führung sieht aggregierte Durchschnitte und letzte Einsendungen auf einem geschützten Dashboard — ohne Identitäten. Geeignet für Teams ab 10 Personen; monatliche Wiederholung zeigt Trends über die Zeit.",
         linkLabel: "Hilfe bei der Einführung",
         linkHref: "/kontakt#ponudba",
       },

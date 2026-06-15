@@ -360,10 +360,10 @@ export const sl: SiteDictionary = {
       {
         id: "blk_anketa_split2",
         type: "split",
-        imageKey: "MARKETING_IMG_PRODUKTI_POD_KARTO",
-        kicker: "Za koga je anketa",
+        imageKey: "MARKETING_IMG_ANKETA_DASHBOARD",
+        kicker: "Nadzorna plošča",
         title: "Podjetja, ki želijo preventivo, ne šele krize",
-        body: "Anketa ni diagnostično orodje in ne nadomešča pogovorov z zaposlenimi. Je zgodnji signal: če povprečja padajo ali obremenitev raste, veste, da je čas za ukrepanje. Primerno za ekipe od 10 naprej, redno (npr. mesečno) ponavljanje pa pokaže trende skozi čas.",
+        body: "Anketa ni diagnostično orodje in ne nadomešča pogovorov z zaposlenimi. Je zgodnji signal: če povprečja padajo ali obremenitev raste, veste, da je čas za ukrepanje. Vodstvo na zaščiteni plošči vidi zbrane povprečje in zadnje oddaje — brez identitet. Primerno za ekipe od 10 naprej; redno (npr. mesečno) ponavljanje pokaže trende skozi čas.",
         linkLabel: "Pomoč pri uvajanju",
         linkHref: "/kontakt#ponudba",
       },
