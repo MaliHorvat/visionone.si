@@ -373,7 +373,7 @@ export function MarketingBlocksRenderer({
                   <p className="mb-8 max-w-2xl text-base leading-relaxed text-[var(--vo-muted)]">{block.intro}</p>
                 ) : null}
                 <div className="grid gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,300px)]">
-                  <ContactForm />
+                  <ContactForm product={block.product ?? "cctv"} />
                   <aside className="vo-card-hover space-y-6 rounded-2xl border border-[var(--vo-border)] bg-[var(--vo-surface)] p-6 shadow-[var(--vo-card-shadow)] lg:sticky lg:top-24 lg:self-start">
                     <div>
                       <h2 className="text-sm font-bold uppercase tracking-[0.14em] text-[var(--vo-accent)]">{dict.footer.contact}</h2>

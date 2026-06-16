@@ -128,6 +128,8 @@ export type MarketingCtaBandBlock = MarketingBlockBase & {
 export type MarketingContactFormBlock = MarketingBlockBase & {
   type: "contactForm";
   intro: string;
+  /** Kateri produkt — določa polja obrazca (kamera samo za CCTV/portal). */
+  product?: import("@/lib/contact-form-products").ContactProduct;
 };
 
 export type MarketingBlock =

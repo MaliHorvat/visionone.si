@@ -44,6 +44,20 @@ export type SiteDictionary = {
     successBody: string;
     sendAnother: string;
     errors: Record<string, string>;
+    company: string;
+    companyPlaceholder: string;
+    employeeCount: string;
+    employeePlaceholder: string;
+    products: Record<
+      "cctv" | "anketa" | "portal" | "general",
+      {
+        title: string;
+        subtitle: string;
+        cameraCount?: string;
+        cameraPlaceholder?: string;
+        messagePlaceholder?: string;
+      }
+    >;
   };
   trustStrip: { label: string; items: string[] };
   testimonials: { quote: string; author: string; role: string }[];

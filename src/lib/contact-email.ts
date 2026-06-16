@@ -218,7 +218,7 @@ function smtpErrorMessage(e: unknown): string {
   if (err.code === "ETIMEDOUT" || err.code === "ECONNREFUSED") {
     return "Poštni strežnik ni dosegljiv. Preverite SMTP_HOST, vrata in požarni zid.";
   }
-  return "Pošiljanje prek SMTP ni uspelo. Preverite nastavitve v .env ali na Vercelu.";
+  return "Pošiljanje prek SMTP ni uspelo. Na Vercelu uporabite Resend (RESEND_API_KEY) — mail.visionone.si prek Cloudflare ne podpira izhodne pošte. Glej .env.example.";
 }
 
 export async function sendContactMail(

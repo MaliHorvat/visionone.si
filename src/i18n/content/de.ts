@@ -62,6 +62,16 @@ export const de: SiteDictionary = {
       network: "Verbindung fehlgeschlagen. Bitte erneut versuchen oder info@visionone.si schreiben.",
       generic: "Senden fehlgeschlagen. Bitte erneut versuchen oder info@visionone.si schreiben.",
     },
+    company: "Unternehmen / Organisation *",
+    companyPlaceholder: "z. B. Aktiva GmbH",
+    employeeCount: "Anzahl Mitarbeiter (ca.) *",
+    employeePlaceholder: "z. B. 45",
+    products: {
+      cctv: { title: "Angebot anfordern", subtitle: "Beschreiben Sie das Objekt — Antwort innerhalb eines Werktags.", messagePlaceholder: "Kurze Beschreibung …" },
+      general: { title: "Angebot anfordern", subtitle: "Beschreiben Sie das Objekt — Antwort innerhalb eines Werktags.", messagePlaceholder: "Kurze Beschreibung …" },
+      anketa: { title: "Angebot für anonyme Umfrage", subtitle: "Burnout Tracker SaaS — ohne Kamerafelder.", messagePlaceholder: "Organisation und Ziele …" },
+      portal: { title: "Angebot für VisionOne Portal", subtitle: "Portal-Demo für Ihr Objekt.", cameraCount: "Kameras / Geräte (ca.) *", cameraPlaceholder: "z. B. 24", messagePlaceholder: "Objekttyp, Standorte …" },
+    },
   },
   trustStrip: {
     label: "",
@@ -324,6 +334,12 @@ export const de: SiteDictionary = {
           { id: "btn_portal_cta2", label: "Portal-Anmeldung", href: "https://portal.visionone.si", variant: "outline" },
         ],
       },
+      {
+        id: "blk_portal_contact",
+        type: "contactForm",
+        product: "portal",
+        intro: "Portal-Demo und Angebot anfordern — ungefähre Kamera- und Geräteanzahl angeben.",
+      },
     ],
     "produkti-anketa": [
       {
@@ -383,8 +399,14 @@ export const de: SiteDictionary = {
         body: "Senden Sie eine Testantwort oder kontaktieren Sie uns für Einführungshilfe und Dashboard-Zugang.",
         buttons: [
           { id: "btn_anketa_cta", label: "Umfrage öffnen", href: "https://anketa.visionone.si", variant: "primary" },
-          { id: "btn_anketa_cta2", label: "Kontakt zur Einführung", href: "/kontakt#ponudba", variant: "outline" },
+          { id: "btn_anketa_cta2", label: "Kontakt zur Einführung", href: "/kontakt?product=anketa#ponudba", variant: "outline" },
         ],
+      },
+      {
+        id: "blk_anketa_contact",
+        type: "contactForm",
+        product: "anketa",
+        intro: "Angebot für die anonyme Umfrage anfordern — ohne Kamerafelder.",
       },
     ],
     kontakt: [
@@ -398,6 +420,7 @@ export const de: SiteDictionary = {
       {
         id: "blk_contact",
         type: "contactForm",
+        product: "cctv",
         intro: "Füllen Sie das Formular aus oder schreiben Sie uns direkt. Für dringende Einsätze nutzen Sie die Telefonnummer, falls angegeben.",
       },
     ],

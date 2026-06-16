@@ -63,6 +63,34 @@ export const en: SiteDictionary = {
       network: "Connection failed. Please try again or email info@visionone.si.",
       generic: "Sending failed. Please try again or email info@visionone.si.",
     },
+    company: "Company / organization *",
+    companyPlaceholder: "e.g. Acme Ltd.",
+    employeeCount: "Number of employees (approx.) *",
+    employeePlaceholder: "e.g. 45",
+    products: {
+      cctv: {
+        title: "Request a quote",
+        subtitle: "Tell us about your site — we respond within one business day with clear next steps.",
+        messagePlaceholder: "Brief description of the site, location and goals…",
+      },
+      general: {
+        title: "Request a quote",
+        subtitle: "Tell us about your site — we respond within one business day with clear next steps.",
+        messagePlaceholder: "Brief description of the site, location and goals…",
+      },
+      anketa: {
+        title: "Quote for anonymous survey",
+        subtitle: "Burnout Tracker SaaS onboarding — no camera fields. We reply with next steps and pricing.",
+        messagePlaceholder: "Describe your organization, survey goals and questions…",
+      },
+      portal: {
+        title: "Quote for VisionOne portal",
+        subtitle: "Portal demo and Care Box for your site — camera/device count helps us estimate.",
+        cameraCount: "Cameras / devices (approx.) *",
+        cameraPlaceholder: "e.g. 24",
+        messagePlaceholder: "Site type, locations, existing equipment…",
+      },
+    },
   },
   trustStrip: {
     label: "",
@@ -324,6 +352,12 @@ export const en: SiteDictionary = {
           { id: "btn_portal_cta2", label: "Portal login", href: "https://portal.visionone.si", variant: "outline" },
         ],
       },
+      {
+        id: "blk_portal_contact",
+        type: "contactForm",
+        product: "portal",
+        intro: "Request a portal demo and quote — include approximate camera and device count.",
+      },
     ],
     "produkti-anketa": [
       {
@@ -383,8 +417,14 @@ export const en: SiteDictionary = {
         body: "Submit a test response or contact us for rollout help and dashboard access.",
         buttons: [
           { id: "btn_anketa_cta", label: "Open survey", href: "https://anketa.visionone.si", variant: "primary" },
-          { id: "btn_anketa_cta2", label: "Contact for rollout", href: "/kontakt#ponudba", variant: "outline" },
+          { id: "btn_anketa_cta2", label: "Contact for rollout", href: "/kontakt?product=anketa#ponudba", variant: "outline" },
         ],
+      },
+      {
+        id: "blk_anketa_contact",
+        type: "contactForm",
+        product: "anketa",
+        intro: "Request a quote for rolling out the anonymous survey — no camera fields.",
       },
     ],
     kontakt: [
@@ -398,6 +438,7 @@ export const en: SiteDictionary = {
       {
         id: "blk_contact",
         type: "contactForm",
+        product: "cctv",
         intro: "Fill in the form or email us directly. For urgent on-site issues, use the phone number when available.",
       },
     ],

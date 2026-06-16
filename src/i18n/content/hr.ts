@@ -62,6 +62,16 @@ export const hr: SiteDictionary = {
       network: "Veza nije uspjela. Pokušajte ponovno ili pišite na info@visionone.si.",
       generic: "Slanje nije uspjelo. Pokušajte ponovno ili pišite na info@visionone.si.",
     },
+    company: "Tvrtka / organizacija *",
+    companyPlaceholder: "npr. Aktiva d.o.o.",
+    employeeCount: "Broj zaposlenih (približno) *",
+    employeePlaceholder: "npr. 45",
+    products: {
+      cctv: { title: "Zatražite ponudu", subtitle: "Opišite objekt — odgovaramo u jednom radnom danu.", messagePlaceholder: "Kratak opis …" },
+      general: { title: "Zatražite ponudu", subtitle: "Opišite objekt — odgovaramo u jednom radnom danu.", messagePlaceholder: "Kratak opis …" },
+      anketa: { title: "Ponuda za anonimnu anketu", subtitle: "Burnout Tracker SaaS — bez polja za kamere.", messagePlaceholder: "Organizacija i ciljevi …" },
+      portal: { title: "Ponuda za VisionOne portal", subtitle: "Demo portala za vaš objekt.", cameraCount: "Broj kamera / uređaja *", cameraPlaceholder: "npr. 24", messagePlaceholder: "Tip objekta …" },
+    },
   },
   trustStrip: {
     label: "",
@@ -324,6 +334,12 @@ export const hr: SiteDictionary = {
           { id: "btn_portal_cta2", label: "Prijava u portal", href: "https://portal.visionone.si", variant: "outline" },
         ],
       },
+      {
+        id: "blk_portal_contact",
+        type: "contactForm",
+        product: "portal",
+        intro: "Zatražite demo portala i ponudu — navedite približan broj kamera i uređaja.",
+      },
     ],
     "produkti-anketa": [
       {
@@ -383,8 +399,14 @@ export const hr: SiteDictionary = {
         body: "Pošaljite testni odgovor ili nas kontaktirajte za pomoć pri uvođenju i pristup nadzornoj ploči.",
         buttons: [
           { id: "btn_anketa_cta", label: "Otvori anketu", href: "https://anketa.visionone.si", variant: "primary" },
-          { id: "btn_anketa_cta2", label: "Kontakt za uvođenje", href: "/kontakt#ponudba", variant: "outline" },
+          { id: "btn_anketa_cta2", label: "Kontakt za uvođenje", href: "/kontakt?product=anketa#ponudba", variant: "outline" },
         ],
+      },
+      {
+        id: "blk_anketa_contact",
+        type: "contactForm",
+        product: "anketa",
+        intro: "Zatražite ponudu za anonimnu anketu — bez polja za kamere.",
       },
     ],
     kontakt: [
@@ -398,6 +420,7 @@ export const hr: SiteDictionary = {
       {
         id: "blk_contact",
         type: "contactForm",
+        product: "cctv",
         intro: "Ispunite obrazac ili nam pišite izravno. Za hitne slučajeve na lokaciji koristite telefonski broj kada je dostupan.",
       },
     ],

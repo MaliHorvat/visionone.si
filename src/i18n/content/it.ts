@@ -62,6 +62,16 @@ export const it: SiteDictionary = {
       network: "Connessione fallita. Riprova o scrivi a info@visionone.si.",
       generic: "Invio fallito. Riprova o scrivi a info@visionone.si.",
     },
+    company: "Azienda / organizzazione *",
+    companyPlaceholder: "es. Aktiva Srl",
+    employeeCount: "Numero dipendenti (circa) *",
+    employeePlaceholder: "es. 45",
+    products: {
+      cctv: { title: "Richiedi preventivo", subtitle: "Descrivi l'oggetto — risposta entro un giorno lavorativo.", messagePlaceholder: "Breve descrizione …" },
+      general: { title: "Richiedi preventivo", subtitle: "Descrivi l'oggetto — risposta entro un giorno lavorativo.", messagePlaceholder: "Breve descrizione …" },
+      anketa: { title: "Preventivo per sondaggio anonimo", subtitle: "Burnout Tracker SaaS — senza campi telecamere.", messagePlaceholder: "Organizzazione e obiettivi …" },
+      portal: { title: "Preventivo per VisionOne portal", subtitle: "Demo del portale per il vostro sito.", cameraCount: "Telecamere / dispositivi *", cameraPlaceholder: "es. 24", messagePlaceholder: "Tipo di sito …" },
+    },
   },
   trustStrip: {
     label: "",
@@ -324,6 +334,12 @@ export const it: SiteDictionary = {
           { id: "btn_portal_cta2", label: "Accesso al portale", href: "https://portal.visionone.si", variant: "outline" },
         ],
       },
+      {
+        id: "blk_portal_contact",
+        type: "contactForm",
+        product: "portal",
+        intro: "Richiedi demo del portale e preventivo — indica il numero approssimativo di telecamere e dispositivi.",
+      },
     ],
     "produkti-anketa": [
       {
@@ -383,8 +399,14 @@ export const it: SiteDictionary = {
         body: "Invia una risposta di test o contattaci per aiuto nell'implementazione e accesso alla dashboard.",
         buttons: [
           { id: "btn_anketa_cta", label: "Apri sondaggio", href: "https://anketa.visionone.si", variant: "primary" },
-          { id: "btn_anketa_cta2", label: "Contatto per implementazione", href: "/kontakt#ponudba", variant: "outline" },
+          { id: "btn_anketa_cta2", label: "Contatto per implementazione", href: "/kontakt?product=anketa#ponudba", variant: "outline" },
         ],
+      },
+      {
+        id: "blk_anketa_contact",
+        type: "contactForm",
+        product: "anketa",
+        intro: "Richiedi preventivo per il sondaggio anonimo — senza campi per le telecamere.",
       },
     ],
     kontakt: [
@@ -398,6 +420,7 @@ export const it: SiteDictionary = {
       {
         id: "blk_contact",
         type: "contactForm",
+        product: "cctv",
         intro: "Compila il modulo o scrivici direttamente. Per urgenze in loco, usa il numero di telefono quando disponibile.",
       },
     ],

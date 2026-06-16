@@ -62,6 +62,34 @@ export const sl: SiteDictionary = {
       network: "Povezava ni uspela. Poskusite znova ali pišite na info@visionone.si.",
       generic: "Pošiljanje ni uspelo. Poskusite znova ali pišite na info@visionone.si.",
     },
+    company: "Podjetje / organizacija *",
+    companyPlaceholder: "npr. Aktiva d.o.o.",
+    employeeCount: "Število zaposlenih (približno) *",
+    employeePlaceholder: "npr. 45",
+    products: {
+      cctv: {
+        title: "Zahtevajte ponudbo",
+        subtitle: "Opišite objekt — odgovorimo v enem delovnem dnevu z jasnimi naslednjimi koraki.",
+        messagePlaceholder: "Kratek opis objekta, lokacije in želja …",
+      },
+      general: {
+        title: "Zahtevajte ponudbo",
+        subtitle: "Opišite objekt — odgovorimo v enem delovnem dnevu z jasnimi naslednjimi koraki.",
+        messagePlaceholder: "Kratek opis objekta, lokacije in želja …",
+      },
+      anketa: {
+        title: "Ponudba za anonimno anketo",
+        subtitle: "Za uvajanje Burnout Tracker SaaS — brez polj za kamere. Odgovorimo z naslednjimi koraki in cenovnim okvirom.",
+        messagePlaceholder: "Kratko opišite organizacijo, cilje ankete in morebitna vprašanja …",
+      },
+      portal: {
+        title: "Ponudba za VisionOne portal",
+        subtitle: "Predstavitev portala in Care Box za vaš objekt — število kamer in naprav nam pomaga pri oceni.",
+        cameraCount: "Število kamer / naprav (približno) *",
+        cameraPlaceholder: "npr. 24",
+        messagePlaceholder: "Tip objekta, število lokacij, obstoječa oprema …",
+      },
+    },
   },
   trustStrip: {
     label: "",
@@ -280,7 +308,7 @@ export const sl: SiteDictionary = {
         title: "Manj klicev »ali deluje?« — več preventivnega ukrepanja",
         body: "Portal združuje podatke s terena in oddaljenih preverjanj. Vidite, katere kamere so offline, kateri diski so polni in kdaj je naprava nazadnje odgovorila. Ob dogovoru povežemo Care Box za 24/7 edge monitoring z Telegram obvestili.",
         linkLabel: "Zahtevajte predstavitev",
-        linkHref: "/kontakt#ponudba",
+        linkHref: "/kontakt?product=portal#ponudba",
       },
       {
         id: "blk_portal_cards",
@@ -320,9 +348,15 @@ export const sl: SiteDictionary = {
         title: "Želite predstavitev portala?",
         body: "Pokažemo vam portal na vašem tipu objekta in razložimo povezavo z videonadzorom ter servisom.",
         buttons: [
-          { id: "btn_portal_cta", label: "Rezervirajte klic", href: "/kontakt#ponudba", variant: "primary" },
+          { id: "btn_portal_cta", label: "Rezervirajte klic", href: "/kontakt?product=portal#ponudba", variant: "primary" },
           { id: "btn_portal_cta2", label: "Prijava v portal", href: "https://portal.visionone.si", variant: "outline" },
         ],
+      },
+      {
+        id: "blk_portal_contact",
+        type: "contactForm",
+        product: "portal",
+        intro: "Za predstavitev portala in ponudbo za vaš objekt — navedite približno število kamer in naprav.",
       },
     ],
     "produkti-anketa": [
@@ -365,7 +399,7 @@ export const sl: SiteDictionary = {
         title: "Podjetja, ki želijo preventivo, ne šele krize",
         body: "Anketa ni diagnostično orodje in ne nadomešča pogovorov z zaposlenimi. Je zgodnji signal: če povprečja padajo ali obremenitev raste, veste, da je čas za ukrepanje. Vodstvo na zaščiteni plošči vidi zbrane povprečje in zadnje oddaje — brez identitet. Primerno za ekipe od 10 naprej; redno (npr. mesečno) ponavljanje pokaže trende skozi čas.",
         linkLabel: "Pomoč pri uvajanju",
-        linkHref: "/kontakt#ponudba",
+        linkHref: "/kontakt?product=anketa#ponudba",
       },
       {
         id: "blk_anketa_stats",
@@ -383,8 +417,14 @@ export const sl: SiteDictionary = {
         body: "Oddajte testni odgovor ali nas kontaktirajte za pomoč pri uvajanju in dostopu do nadzorne plošče.",
         buttons: [
           { id: "btn_anketa_cta", label: "Odpri anketo", href: "https://anketa.visionone.si", variant: "primary" },
-          { id: "btn_anketa_cta2", label: "Kontakt za uvajanje", href: "/kontakt#ponudba", variant: "outline" },
+          { id: "btn_anketa_cta2", label: "Kontakt za uvajanje", href: "/kontakt?product=anketa#ponudba", variant: "outline" },
         ],
+      },
+      {
+        id: "blk_anketa_contact",
+        type: "contactForm",
+        product: "anketa",
+        intro: "Za ponudbo za uvajanje anonimne ankete v vašem podjetju — brez vprašanj o kamerah.",
       },
     ],
     kontakt: [
@@ -398,6 +438,7 @@ export const sl: SiteDictionary = {
       {
         id: "blk_contact",
         type: "contactForm",
+        product: "cctv",
         intro: "Izpolnite obrazec ali nas kontaktirajte po e-pošti. Za nujne posege uporabite telefon, če je naveden.",
       },
     ],

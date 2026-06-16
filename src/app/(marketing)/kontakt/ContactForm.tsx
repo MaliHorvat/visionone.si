@@ -1,8 +1,15 @@
 "use client";
 
-import { useState } from "react";
+import { Suspense, useState } from "react";
+import { useSearchParams } from "next/navigation";
 import { CheckCircle2, Loader2, Send } from "lucide-react";
 import { useLocale } from "@/context/LocaleContext";
+import {
+  CONTACT_FIELDS_BY_PRODUCT,
+  type ContactFieldKey,
+  type ContactProduct,
+  parseContactProduct,
+} from "@/lib/contact-form-products";
 
 type Status = "idle" | "sending" | "sent" | "error";
 
@@ -13,28 +20,65 @@ const TIMELINES = new Set(["asap", "30d", "90d", "later"]);
 const inputClass =
   "mt-1.5 min-h-11 w-full rounded-xl border border-[var(--vo-border)] bg-[var(--vo-bg)] px-3.5 py-2.5 text-base text-[var(--vo-fg)] transition focus:border-[var(--vo-accent)] focus:outline-none focus:ring-2 focus:ring-[var(--vo-accent)]/20 sm:min-h-0 sm:text-sm";
 
-export function ContactForm() {
+function ContactFormInner({ product: productProp = "cctv" }: { product?: ContactProduct }) {
+  const searchParams = useSearchParams();
+  const queryProduct = parseContactProduct(searchParams.get("product"));
+  const product = queryProduct ?? productProp;
+
   const { dict } = useLocale();
   const t = dict.contactForm;
+  const pt = t.products[product] ?? t.products.cctv;
+  const fields = CONTACT_FIELDS_BY_PRODUCT[product];
+
   const [status, setStatus] = useState<Status>("idle");
   const [error, setError] = useState<string | null>(null);
+
+  const cameraLabel = pt.cameraCount ?? t.cameraCount;
+  const cameraPlaceholder = pt.cameraPlaceholder ?? t.cameraPlaceholder;
+  const messagePlaceholder = pt.messagePlaceholder ?? t.messagePlaceholder;
+
+  function hasField(key: ContactFieldKey) {
+    return fields.includes(key);
+  }
 
   function validateForm(fd: FormData): string | null {
     const name = String(fd.get("name") ?? "").trim();
     const email = String(fd.get("email") ?? "").trim();
-    const siteType = String(fd.get("siteType") ?? "");
-    const timeline = String(fd.get("timeline") ?? "");
     const message = String(fd.get("message") ?? "").trim();
-    const cameraRaw = fd.get("cameraCount");
-    const cameraCount =
-      typeof cameraRaw === "number" ? cameraRaw : Number.parseInt(String(cameraRaw ?? ""), 10);
 
-    if (!name || !email || !EMAIL_RE.test(email) || !SITE_TYPES.has(siteType) || !TIMELINES.has(timeline)) {
+    if (!name || !email || !EMAIL_RE.test(email) || !message) {
       return t.errors.generic;
     }
-    if (!Number.isFinite(cameraCount) || cameraCount < 1 || !message) {
-      return t.errors.generic;
+
+    if (hasField("siteType")) {
+      const siteType = String(fd.get("siteType") ?? "");
+      if (!SITE_TYPES.has(siteType)) return t.errors.generic;
     }
+
+    if (hasField("timeline")) {
+      const timeline = String(fd.get("timeline") ?? "");
+      if (!TIMELINES.has(timeline)) return t.errors.generic;
+    }
+
+    if (hasField("cameraCount")) {
+      const cameraRaw = fd.get("cameraCount");
+      const cameraCount =
+        typeof cameraRaw === "number" ? cameraRaw : Number.parseInt(String(cameraRaw ?? ""), 10);
+      if (!Number.isFinite(cameraCount) || cameraCount < 1) return t.errors.generic;
+    }
+
+    if (hasField("employeeCount")) {
+      const empRaw = fd.get("employeeCount");
+      const employeeCount =
+        typeof empRaw === "number" ? empRaw : Number.parseInt(String(empRaw ?? ""), 10);
+      if (!Number.isFinite(employeeCount) || employeeCount < 1) return t.errors.generic;
+    }
+
+    if (hasField("company")) {
+      const company = String(fd.get("company") ?? "").trim();
+      if (company.length < 2) return t.errors.generic;
+    }
+
     return null;
   }
 
@@ -52,16 +96,20 @@ export function ContactForm() {
 
     setStatus("sending");
 
-    const payload = {
+    const payload: Record<string, unknown> = {
+      product,
       name: fd.get("name"),
       email: fd.get("email"),
       phone: fd.get("phone"),
-      siteType: fd.get("siteType"),
-      cameraCount: fd.get("cameraCount"),
-      timeline: fd.get("timeline"),
       message: fd.get("message"),
       vo_hp: fd.get("vo_hp"),
     };
+
+    if (hasField("siteType")) payload.siteType = fd.get("siteType");
+    if (hasField("cameraCount")) payload.cameraCount = fd.get("cameraCount");
+    if (hasField("employeeCount")) payload.employeeCount = fd.get("employeeCount");
+    if (hasField("company")) payload.company = fd.get("company");
+    if (hasField("timeline")) payload.timeline = fd.get("timeline");
 
     try {
       const res = await fetch("/api/contact", {
@@ -112,8 +160,9 @@ export function ContactForm() {
       onSubmit={onSubmit}
       className="relative rounded-2xl border border-[var(--vo-border)] bg-[var(--vo-surface)] p-6 shadow-[var(--vo-card-shadow)] sm:p-8"
     >
-      <h2 className="text-xl font-bold text-[var(--vo-fg)]">{t.title}</h2>
-      <p className="mt-2 text-sm leading-relaxed text-[var(--vo-muted)]">{t.subtitle}</p>
+      <input type="hidden" name="product" value={product} readOnly />
+      <h2 className="text-xl font-bold text-[var(--vo-fg)]">{pt.title}</h2>
+      <p className="mt-2 text-sm leading-relaxed text-[var(--vo-muted)]">{pt.subtitle}</p>
 
       <input
         type="text"
@@ -125,7 +174,10 @@ export function ContactForm() {
       />
 
       {error ? (
-        <p className="mt-5 rounded-xl border border-red-200 bg-red-50 p-3.5 text-sm text-red-800 dark:border-red-900 dark:bg-red-950/40 dark:text-red-200" role="alert">
+        <p
+          className="mt-5 rounded-xl border border-red-200 bg-red-50 p-3.5 text-sm text-red-800 dark:border-red-900 dark:bg-red-950/40 dark:text-red-200"
+          role="alert"
+        >
           {error}
         </p>
       ) : null}
@@ -143,40 +195,88 @@ export function ContactForm() {
           <span className="font-medium text-[var(--vo-fg)]">{t.phone}</span>
           <input type="tel" name="phone" maxLength={40} className={inputClass} autoComplete="tel" placeholder={t.phoneOptional} />
         </label>
-        <label className="block text-sm">
-          <span className="font-medium text-[var(--vo-fg)]">{t.cameraCount}</span>
-          <input required type="number" min={1} max={99999} name="cameraCount" className={inputClass} placeholder={t.cameraPlaceholder} />
-        </label>
-        <label className="sm:col-span-2 block text-sm">
-          <span className="font-medium text-[var(--vo-fg)]">{t.siteType}</span>
-          <select required name="siteType" className={inputClass} defaultValue="">
-            <option value="" disabled>
-              {t.siteTypePlaceholder}
-            </option>
-            {Object.entries(t.siteTypes).map(([value, label]) => (
-              <option key={value} value={value}>
-                {label}
+
+        {hasField("company") ? (
+          <label className="block text-sm">
+            <span className="font-medium text-[var(--vo-fg)]">{t.company}</span>
+            <input required name="company" maxLength={200} className={inputClass} placeholder={t.companyPlaceholder} />
+          </label>
+        ) : null}
+
+        {hasField("cameraCount") ? (
+          <label className="block text-sm">
+            <span className="font-medium text-[var(--vo-fg)]">{cameraLabel}</span>
+            <input
+              required
+              type="number"
+              min={1}
+              max={99999}
+              name="cameraCount"
+              className={inputClass}
+              placeholder={cameraPlaceholder}
+            />
+          </label>
+        ) : null}
+
+        {hasField("employeeCount") ? (
+          <label className="block text-sm">
+            <span className="font-medium text-[var(--vo-fg)]">{t.employeeCount}</span>
+            <input
+              required
+              type="number"
+              min={1}
+              max={999999}
+              name="employeeCount"
+              className={inputClass}
+              placeholder={t.employeePlaceholder}
+            />
+          </label>
+        ) : null}
+
+        {hasField("siteType") ? (
+          <label className="sm:col-span-2 block text-sm">
+            <span className="font-medium text-[var(--vo-fg)]">{t.siteType}</span>
+            <select required name="siteType" className={inputClass} defaultValue="">
+              <option value="" disabled>
+                {t.siteTypePlaceholder}
               </option>
-            ))}
-          </select>
-        </label>
-        <label className="sm:col-span-2 block text-sm">
-          <span className="font-medium text-[var(--vo-fg)]">{t.timeline}</span>
-          <select required name="timeline" className={inputClass} defaultValue="">
-            <option value="" disabled>
-              {t.timelinePlaceholder}
-            </option>
-            {Object.entries(t.timelines).map(([value, label]) => (
-              <option key={value} value={value}>
-                {label}
+              {Object.entries(t.siteTypes).map(([value, label]) => (
+                <option key={value} value={value}>
+                  {label}
+                </option>
+              ))}
+            </select>
+          </label>
+        ) : null}
+
+        {hasField("timeline") ? (
+          <label className="sm:col-span-2 block text-sm">
+            <span className="font-medium text-[var(--vo-fg)]">{t.timeline}</span>
+            <select required name="timeline" className={inputClass} defaultValue="">
+              <option value="" disabled>
+                {t.timelinePlaceholder}
               </option>
-            ))}
-          </select>
-        </label>
+              {Object.entries(t.timelines).map(([value, label]) => (
+                <option key={value} value={value}>
+                  {label}
+                </option>
+              ))}
+            </select>
+          </label>
+        ) : null}
+
         <label className="sm:col-span-2 block text-sm">
           <span className="font-medium text-[var(--vo-fg)]">{t.message}</span>
-          <textarea required name="message" rows={5} maxLength={10000} className={inputClass} placeholder={t.messagePlaceholder} />
+          <textarea
+            required
+            name="message"
+            rows={5}
+            maxLength={10000}
+            className={inputClass}
+            placeholder={messagePlaceholder}
+          />
         </label>
+
         <button
           type="submit"
           disabled={status === "sending"}
@@ -196,5 +296,21 @@ export function ContactForm() {
         </button>
       </div>
     </form>
+  );
+}
+
+function ContactFormFallback() {
+  return (
+    <div className="rounded-2xl border border-[var(--vo-border)] bg-[var(--vo-surface)] p-8 shadow-[var(--vo-card-shadow)]">
+      <p className="text-sm text-[var(--vo-muted)]">Nalagam obrazec…</p>
+    </div>
+  );
+}
+
+export function ContactForm({ product = "cctv" }: { product?: ContactProduct }) {
+  return (
+    <Suspense fallback={<ContactFormFallback />}>
+      <ContactFormInner product={product} />
+    </Suspense>
   );
 }
