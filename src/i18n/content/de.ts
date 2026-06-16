@@ -63,7 +63,7 @@ export const de: SiteDictionary = {
       generic: "Senden fehlgeschlagen. Bitte erneut versuchen oder info@visionone.si schreiben.",
     },
     company: "Unternehmen / Organisation *",
-    companyPlaceholder: "z. B. Aktiva GmbH",
+    companyPlaceholder: "",
     employeeCount: "Anzahl Mitarbeiter (ca.) *",
     employeePlaceholder: "z. B. 45",
     products: {

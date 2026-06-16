@@ -64,7 +64,7 @@ export const en: SiteDictionary = {
       generic: "Sending failed. Please try again or email info@visionone.si.",
     },
     company: "Company / organization *",
-    companyPlaceholder: "e.g. Acme Ltd.",
+    companyPlaceholder: "",
     employeeCount: "Number of employees (approx.) *",
     employeePlaceholder: "e.g. 45",
     products: {

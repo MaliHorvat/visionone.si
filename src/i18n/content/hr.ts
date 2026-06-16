@@ -63,7 +63,7 @@ export const hr: SiteDictionary = {
       generic: "Slanje nije uspjelo. Pokušajte ponovno ili pišite na info@visionone.si.",
     },
     company: "Tvrtka / organizacija *",
-    companyPlaceholder: "npr. Aktiva d.o.o.",
+    companyPlaceholder: "",
     employeeCount: "Broj zaposlenih (približno) *",
     employeePlaceholder: "npr. 45",
     products: {
