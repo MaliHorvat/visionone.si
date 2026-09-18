@@ -36,7 +36,7 @@ export function ProductShowcaseCard({
     "mt-8 inline-flex min-h-11 w-fit items-center gap-1 py-2 text-sm font-bold text-[var(--vo-accent)] hover:text-[var(--vo-accent-hover)] sm:min-h-0 sm:py-0";
 
   return (
-    <article className="vo-card-hover overflow-hidden rounded-2xl border border-[var(--vo-border)] bg-[var(--vo-surface)] shadow-[var(--vo-card-shadow)] md:grid md:grid-cols-2">
+    <article className="overflow-hidden rounded-2xl border border-[var(--vo-border)] bg-[var(--vo-surface)] md:grid md:grid-cols-2">
       <div className="relative aspect-[4/3] min-h-[200px] w-full bg-[var(--vo-surface-2)] md:aspect-auto md:min-h-[280px]">
         <Image
           src={imageSrc}

@@ -2,26 +2,26 @@
 
 /* —— Svetla tema (privzeto) —— */
 :root {
-  --vo-bg: #eef2f8;
+  --vo-bg: #f6f7f9;
   --vo-surface: #ffffff;
-  --vo-surface-2: #e4eaf3;
-  --vo-fg: #071018;
-  --vo-muted: #4a5568;
-  --vo-border: #cdd6e4;
-  --vo-accent: #0a8f8f;
-  --vo-accent-2: #06b6d4;
-  --vo-accent-3: #6366f1;
-  --vo-accent-hover: #087272;
-  --vo-accent-muted: rgba(10, 143, 143, 0.14);
-  --vo-accent-gradient: linear-gradient(135deg, #0a8f8f 0%, #0891b2 50%, #0e7490 100%);
+  --vo-surface-2: #eef0f4;
+  --vo-fg: #111827;
+  --vo-muted: #5b6472;
+  --vo-border: #e2e6ed;
+  --vo-accent: #0d7a7a;
+  --vo-accent-2: #0f8a8a;
+  --vo-accent-3: #0d7a7a;
+  --vo-accent-hover: #0a6363;
+  --vo-accent-muted: rgba(13, 122, 122, 0.1);
+  --vo-accent-gradient: #0d7a7a;
   --vo-danger: #c02626;
   --vo-danger-muted: rgba(192, 38, 38, 0.12);
   --vo-ok: #15803d;
   --vo-ok-muted: rgba(21, 128, 61, 0.12);
   --vo-warn: #b45309;
-  --vo-card-shadow: 0 2px 8px rgba(7, 16, 24, 0.06), 0 12px 32px rgba(7, 16, 24, 0.08);
-  --vo-glow-sm: 0 0 0 1px rgba(10, 143, 143, 0.12), 0 8px 24px rgba(10, 143, 143, 0.18);
-  --vo-glow-md: 0 0 0 1px rgba(10, 143, 143, 0.15), 0 16px 48px rgba(10, 143, 143, 0.22);
+  --vo-card-shadow: 0 1px 2px rgba(17, 24, 39, 0.04);
+  --vo-glow-sm: 0 1px 2px rgba(17, 24, 39, 0.05);
+  --vo-glow-md: 0 8px 24px rgba(17, 24, 39, 0.08);
   --vo-footer-bg: #050a12;
   --vo-footer-fg: #c8d0dc;
   --vo-footer-muted: #94a3b8;
@@ -111,10 +111,6 @@ h3 {
 .vo-mesh-bg {
   position: relative;
   background-color: var(--vo-bg);
-  background-image:
-    radial-gradient(ellipse 80% 60% at 10% -10%, rgba(10, 143, 143, 0.18), transparent 55%),
-    radial-gradient(ellipse 60% 50% at 90% 20%, rgba(6, 182, 212, 0.12), transparent 50%),
-    radial-gradient(ellipse 50% 40% at 50% 100%, rgba(10, 143, 143, 0.08), transparent 45%);
 }
 
 .dark .vo-mesh-bg {
@@ -203,13 +199,11 @@ h3 {
 /* —— Kartice: dvig + spotlight + svetleči rob —— */
 .vo-card-hover {
   position: relative;
-  transition: transform 0.25s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.25s ease, border-color 0.25s ease;
+  transition: border-color 0.2s ease;
 }
 
 .vo-card-hover:hover {
-  transform: translateY(-4px);
-  box-shadow: var(--vo-glow-sm);
-  border-color: rgba(10, 143, 143, 0.35);
+  border-color: rgba(13, 122, 122, 0.35);
 }
 
 .dark .vo-card-hover::after {
@@ -233,27 +227,12 @@ h3 {
 
 /* —— Gumbi: živ gradient + sij —— */
 .vo-btn-primary {
-  background: var(--vo-accent-gradient);
-  background-size: 200% 200%;
-  box-shadow: var(--vo-glow-sm);
-  animation: vo-grad-shift 6s ease infinite;
-  transition: transform 0.15s ease, box-shadow 0.15s ease, filter 0.15s ease;
-}
-
-@keyframes vo-grad-shift {
-  0%,
-  100% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
+  background: var(--vo-accent);
+  transition: background-color 0.15s ease;
 }
 
 .vo-btn-primary:hover {
-  filter: brightness(1.12);
-  box-shadow: var(--vo-glow-md);
-  transform: translateY(-1px);
+  background: var(--vo-accent-hover);
 }
 
 .vo-stat-card {
@@ -389,25 +368,6 @@ h3 {
   animation: vo-shimmer 7s linear infinite;
 }
 
-/* —— Razkrivanje sekcij ob drsenju (samo moderni brskalniki) —— */
-@supports (animation-timeline: view()) {
-  main section {
-    animation: vo-rise both;
-    animation-timeline: view();
-    animation-range: entry 0% entry 40%;
-  }
-
-  @keyframes vo-rise {
-    from {
-      opacity: 0.2;
-      transform: translateY(26px);
-    }
-    to {
-      opacity: 1;
-      transform: none;
-    }
-  }
-}
 
 /* Utripajoča statusna pika */
 .vo-pulse-dot {

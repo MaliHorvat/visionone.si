@@ -1,44 +1,16 @@
 import Link from "next/link";
 import Image from "next/image";
-import {
-  ArrowRight,
-  Bell,
-  Camera,
-  CheckCircle2,
-  DoorOpen,
-  EthernetPort,
-  Flame,
-  Network,
-  RadioTower,
-  Router,
-  Shield,
-  ShieldCheck,
-  Sparkles,
-  Video,
-  Wrench,
-  Zap,
-} from "lucide-react";
-import type { LucideIcon } from "lucide-react";
+import { ArrowRight, CheckCircle2, Sparkles } from "lucide-react";
+import { ContactForm } from "@/app/(marketing)/kontakt/ContactForm";
 import { MarketingImageSlot } from "@/components/public/MarketingImageSlot";
 import { PageHero } from "@/components/public/PageHero";
 import { ProductShowcaseCard } from "@/components/public/ProductShowcaseCard";
 import { ServiceImageSplit } from "@/components/public/ServiceImageSplit";
-import { ContactForm } from "@/app/(marketing)/kontakt/ContactForm";
 import type { Locale } from "@/i18n/config";
 import type { SiteDictionary } from "@/i18n/types";
-import type { MarketingBlock, MarketingSiteContent } from "@/lib/marketing-site/types";
 import { imageSrc } from "@/lib/marketing-site/fetch";
+import type { MarketingBlock, MarketingSiteContent } from "@/lib/marketing-site/types";
 import { SITE_CONTACT, sitePhoneHref, sitePhoneLabel } from "@/lib/site-contact";
-
-const SERVICE_ICONS: Record<string, LucideIcon> = {
-  alarm: Bell,
-  pozar: Flame,
-  domofon: DoorOpen,
-  mreza: Router,
-  wifi: Network,
-  servis: Shield,
-  ostalo: Wrench,
-};
 
 function btnClass(variant: "primary" | "secondary" | "outline") {
   if (variant === "primary") return "vo-btn-primary text-white";
@@ -50,24 +22,19 @@ function ProcessSection({ dict }: { dict: SiteDictionary }) {
   return (
     <section className="border-y border-[var(--vo-border)] bg-[var(--vo-surface)] py-16 md:py-20">
       <div className="mx-auto max-w-6xl px-4 md:px-6">
-        <div className="text-center">
-          <p className="text-xs font-bold uppercase tracking-[0.22em] text-[var(--vo-accent)]">
+        <div className="max-w-2xl">
+          <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[var(--vo-accent)]">
             {dict.process.kicker}
           </p>
-          <h2 className="mt-2 text-3xl font-bold text-[var(--vo-fg)]">{dict.process.title}</h2>
-          <p className="mx-auto mt-3 max-w-xl text-[var(--vo-muted)]">{dict.process.subtitle}</p>
+          <h2 className="mt-2 text-3xl font-bold tracking-tight text-[var(--vo-fg)]">{dict.process.title}</h2>
+          <p className="mt-3 text-[var(--vo-muted)]">{dict.process.subtitle}</p>
         </div>
-        <div className="mt-12 grid gap-5 md:grid-cols-3">
+        <div className="mt-10 grid gap-8 md:grid-cols-3 md:gap-10">
           {dict.process.steps.map((step, i) => (
-            <div
-              key={step.title}
-              className="vo-card-hover relative overflow-hidden rounded-2xl border border-[var(--vo-border)] bg-[var(--vo-bg)] p-6 shadow-[var(--vo-card-shadow)]"
-            >
-              <span className="absolute -right-2 -top-4 select-none text-7xl font-extrabold text-[var(--vo-accent)]/10">
-                {i + 1}
-              </span>
-              <h3 className="relative text-lg font-bold text-[var(--vo-fg)]">{step.title}</h3>
-              <p className="relative mt-2 text-sm leading-relaxed text-[var(--vo-muted)]">{step.body}</p>
+            <div key={step.title} className="relative">
+              <p className="text-sm font-semibold text-[var(--vo-accent)]">{String(i + 1).padStart(2, "0")}</p>
+              <h3 className="mt-3 text-lg font-semibold text-[var(--vo-fg)]">{step.title}</h3>
+              <p className="mt-2 text-sm leading-relaxed text-[var(--vo-muted)]">{step.body}</p>
             </div>
           ))}
         </div>
@@ -88,17 +55,15 @@ export function MarketingBlocksRenderer({
   dict: SiteDictionary;
   pageId: string;
 }) {
-  const statIcons = [ShieldCheck, Zap, RadioTower];
-
   return (
     <>
       {blocks.map((block) => {
         switch (block.type) {
           case "hero": {
-            const heroImg = imageSrc(site, block.imageKey) ?? "12.png";
+            const heroImg = imageSrc(site, block.imageKey) ?? "/images/cctv.jpg";
             const cfg = site.images[block.imageKey];
             return (
-              <section key={block.id} className="vo-hero-section relative min-h-[min(94vh,860px)] overflow-hidden border-b border-[var(--vo-border)]">
+              <section key={block.id} className="vo-hero-section relative min-h-[min(86vh,760px)] overflow-hidden border-b border-[var(--vo-border)]">
                 <div className="pointer-events-none absolute inset-0 bg-[var(--vo-surface-2)]">
                   <Image
                     src={heroImg}
@@ -110,12 +75,11 @@ export function MarketingBlocksRenderer({
                     sizes="100vw"
                   />
                   <div
-                    className="absolute inset-0 bg-[var(--vo-surface)]/90 md:bg-gradient-to-r md:from-[var(--vo-surface)] md:from-15% md:via-[var(--vo-surface)]/75 md:via-45% md:to-transparent md:to-80%"
+                    className="absolute inset-0 bg-[var(--vo-surface)]/88 md:bg-gradient-to-r md:from-[var(--vo-surface)] md:from-[22%] md:via-[var(--vo-surface)]/80 md:via-[46%] md:to-transparent md:to-[78%]"
                     aria-hidden
                   />
-                  <div className="vo-hero-glow absolute inset-0" aria-hidden />
                 </div>
-                <div className="relative mx-auto max-w-6xl px-4 py-16 sm:py-20 md:px-6 md:py-28">
+                <div className="relative mx-auto max-w-6xl px-4 py-16 sm:py-20 md:px-6 md:py-24">
                   <div className="inline-flex items-center gap-2 rounded-full border border-[var(--vo-accent)]/30 bg-[var(--vo-surface)]/80 px-3 py-1.5 text-xs font-semibold text-[var(--vo-accent)] shadow-sm backdrop-blur-sm">
                     <Sparkles className="h-3.5 w-3.5" aria-hidden />
                     {block.eyebrow}
@@ -231,45 +195,50 @@ export function MarketingBlocksRenderer({
           case "stats":
             return (
               <section key={block.id} className="mx-auto max-w-6xl px-4 pb-10 pt-4 md:px-6">
-                <div className="grid gap-4 sm:grid-cols-3">
-                  {block.items.map((stat, i) => {
-                    const Icon = statIcons[i] ?? ShieldCheck;
-                    return (
-                      <div key={stat.label} className="vo-stat-card vo-card-hover rounded-2xl border border-[var(--vo-border)] px-5 py-5">
-                        <Icon className="h-6 w-6 text-[var(--vo-accent)]" aria-hidden />
-                        <p className="mt-3 text-3xl font-extrabold text-[var(--vo-fg)]">{stat.value}</p>
-                        <p className="mt-1 text-sm text-[var(--vo-muted)]">{stat.label}</p>
-                      </div>
-                    );
-                  })}
+                <div className="grid gap-6 border-y border-[var(--vo-border)] py-8 sm:grid-cols-3 sm:gap-8">
+                  {block.items.map((stat) => (
+                    <div key={stat.label}>
+                      <p className="text-3xl font-bold tracking-tight text-[var(--vo-fg)]">{stat.value}</p>
+                      <p className="mt-1 text-sm text-[var(--vo-muted)]">{stat.label}</p>
+                    </div>
+                  ))}
                 </div>
               </section>
             );
           case "cards":
             return (
-              <section key={block.id} className="vo-section-alt border-y border-[var(--vo-border)] py-16 md:py-20">
+              <section key={block.id} className="border-y border-[var(--vo-border)] bg-[var(--vo-surface)] py-16 md:py-20">
                 <div className="mx-auto max-w-6xl px-4 md:px-6">
-                  <div className="text-center">
+                  <div className="max-w-2xl">
                     {block.kicker ? (
-                      <p className="text-xs font-bold uppercase tracking-[0.22em] text-[var(--vo-accent)]">{block.kicker}</p>
+                      <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[var(--vo-accent)]">{block.kicker}</p>
                     ) : null}
-                    <h2 className="mt-2 text-3xl font-bold text-[var(--vo-fg)]">{block.title}</h2>
-                    {block.subtitle ? <p className="mx-auto mt-3 max-w-xl text-[var(--vo-muted)]">{block.subtitle}</p> : null}
+                    <h2 className="mt-2 text-3xl font-bold tracking-tight text-[var(--vo-fg)]">{block.title}</h2>
+                    {block.subtitle ? <p className="mt-3 text-[var(--vo-muted)]">{block.subtitle}</p> : null}
                   </div>
-                  <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+                  <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
                     {block.items.map((item, i) => {
-                      const icons = [Video, Camera, Network, EthernetPort];
-                      const Icon = icons[i] ?? Video;
+                      const cardImageKeys = [
+                        "MARKETING_IMG_CCTV",
+                        "MARKETING_IMG_STORITVE_SERVIS",
+                        "MARKETING_IMG_STORITVE_MREZA",
+                        "MARKETING_IMG_DOMOV_PODPORA",
+                      ];
+                      const src = imageSrc(site, cardImageKeys[i] ?? cardImageKeys[0]);
                       return (
                         <div
                           key={item.title}
-                          className="vo-card-hover rounded-2xl border border-[var(--vo-border)] bg-[var(--vo-surface)] p-6 shadow-[var(--vo-card-shadow)]"
+                          className="overflow-hidden rounded-2xl border border-[var(--vo-border)] bg-[var(--vo-bg)]"
                         >
-                          <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-[var(--vo-accent-muted)] text-[var(--vo-accent)]">
-                            <Icon className="h-5 w-5" aria-hidden />
+                          {src ? (
+                            <div className="relative aspect-[16/10] w-full bg-[var(--vo-surface-2)]">
+                              <Image src={src} alt="" fill className="object-cover" sizes="(max-width: 1024px) 50vw, 25vw" />
+                            </div>
+                          ) : null}
+                          <div className="p-5">
+                            <h3 className="text-lg font-semibold text-[var(--vo-fg)]">{item.title}</h3>
+                            <p className="mt-2 text-sm leading-relaxed text-[var(--vo-muted)]">{item.body}</p>
                           </div>
-                          <h3 className="mt-4 text-lg font-bold text-[var(--vo-fg)]">{item.title}</h3>
-                          <p className="mt-2 text-sm text-[var(--vo-muted)]">{item.body}</p>
                         </div>
                       );
                     })}
@@ -280,29 +249,25 @@ export function MarketingBlocksRenderer({
           case "serviceBlocks":
             return (
               <section key={block.id} className="mx-auto max-w-6xl px-4 py-10 md:px-6">
-                <div className="space-y-8">
+                <div className="space-y-10">
                   {block.items.map((item) => {
                     const src = item.imageKey ? imageSrc(site, item.imageKey) : null;
-                    const Icon = SERVICE_ICONS[item.id] ?? Wrench;
                     return (
-                      <div
+                      <article
                         key={item.id}
                         id={item.id}
-                        className="vo-card-hover scroll-mt-24 overflow-hidden rounded-2xl border border-[var(--vo-border)] bg-[var(--vo-surface)] shadow-[var(--vo-card-shadow)]"
+                        className="scroll-mt-24 grid overflow-hidden rounded-2xl border border-[var(--vo-border)] bg-[var(--vo-surface)] md:grid-cols-2"
                       >
-                        <div className="grid gap-6 p-6 md:grid-cols-[auto_1fr] md:p-8">
-                          <Icon className="h-10 w-10 shrink-0 text-[var(--vo-accent)]" aria-hidden />
-                          <div>
-                            <h2 className="text-xl font-semibold text-[var(--vo-fg)]">{item.title}</h2>
-                            <p className="mt-2 text-sm leading-relaxed text-[var(--vo-muted)] md:text-base">{item.body}</p>
-                          </div>
-                        </div>
                         {src ? (
-                          <div className="border-t border-[var(--vo-border)] bg-[var(--vo-bg)] px-4 py-4 md:px-8">
-                            <MarketingImageSlot codeLabel={item.imageKey} src={src} alt={item.title} aspectClass="aspect-[16/9] min-h-[180px] w-full" />
+                          <div className="relative aspect-[16/10] min-h-[200px] bg-[var(--vo-surface-2)] md:aspect-auto">
+                            <Image src={src} alt={item.title} fill className="object-cover" sizes="(max-width: 768px) 100vw, 50vw" />
                           </div>
                         ) : null}
-                      </div>
+                        <div className="flex flex-col justify-center px-6 py-7 md:px-10 md:py-12">
+                          <h2 className="text-xl font-semibold text-[var(--vo-fg)]">{item.title}</h2>
+                          <p className="mt-3 text-sm leading-relaxed text-[var(--vo-muted)] md:text-base">{item.body}</p>
+                        </div>
+                      </article>
                     );
                   })}
                 </div>
@@ -335,7 +300,7 @@ export function MarketingBlocksRenderer({
           case "ctaBand":
             return (
               <section key={block.id} className="mx-auto max-w-6xl px-4 py-12 md:px-6">
-                <div className="vo-beam rounded-2xl border border-[var(--vo-border)] bg-[var(--vo-surface)] px-6 py-8 text-center md:px-10">
+                <div className="rounded-2xl border border-[var(--vo-border)] bg-[var(--vo-surface-2)] px-6 py-10 text-center md:px-10">
                   <h2 className="text-xl font-bold text-[var(--vo-fg)]">{block.title}</h2>
                   <p className="mt-2 text-sm text-[var(--vo-muted)]">{block.body}</p>
                   <div className="mt-6 flex flex-wrap justify-center gap-3">
