@@ -61,6 +61,91 @@
   color-scheme: dark;
 }
 
+/* —— Portal „Field" — vedno temen, neodvisen od teme javne strani —— */
+.vo-portal {
+  --vo-bg: #111827;
+  --vo-sidebar: #141c2b;
+  --vo-surface: #1a2232;
+  --vo-surface-2: #212b3d;
+  --vo-surface-hover: #222d40;
+  --vo-fg: #f1f5f9;
+  --vo-muted: #9aa5b8;
+  --vo-subtle: #6b778c;
+  --vo-border: #2a3547;
+  --vo-border-strong: #364257;
+  --vo-accent: #2dd4bf;
+  --vo-accent-2: #14b8a6;
+  --vo-accent-3: #2dd4bf;
+  --vo-accent-hover: #5eead4;
+  --vo-accent-fg: #052e2b;
+  --vo-accent-muted: rgba(45, 212, 191, 0.12);
+  --vo-accent-gradient: #14b8a6;
+  --vo-danger: #f87171;
+  --vo-danger-muted: rgba(248, 113, 113, 0.12);
+  --vo-ok: #4ade80;
+  --vo-ok-muted: rgba(74, 222, 128, 0.12);
+  --vo-warn: #fbbf24;
+  --vo-warn-muted: rgba(251, 191, 36, 0.12);
+  --vo-card-shadow: 0 1px 2px rgba(0, 0, 0, 0.25);
+  --vo-portal-font: "Segoe UI", -apple-system, BlinkMacSystemFont, var(--font-inter), system-ui, sans-serif;
+  color-scheme: dark;
+  background: var(--vo-bg);
+  color: var(--vo-fg);
+  font-family: var(--vo-portal-font);
+}
+
+.vo-portal h1,
+.vo-portal h2,
+.vo-portal h3 {
+  font-family: var(--vo-portal-font);
+  letter-spacing: -0.01em;
+}
+
+.vo-portal * {
+  scrollbar-width: thin;
+  scrollbar-color: #2e3a4f transparent;
+}
+
+.vo-portal input,
+.vo-portal select,
+.vo-portal textarea {
+  color: var(--vo-fg);
+}
+
+.vo-portal input[type="date"]::-webkit-calendar-picker-indicator {
+  filter: invert(0.8);
+}
+
+.vo-portal option {
+  background: var(--vo-surface);
+  color: var(--vo-fg);
+}
+
+.vo-portal :focus-visible {
+  outline: 2px solid var(--vo-accent);
+  outline-offset: 2px;
+}
+
+.vo-portal ::selection {
+  background: rgba(45, 212, 191, 0.3);
+  color: #ffffff;
+}
+
+@media print {
+  .vo-portal {
+    --vo-bg: #ffffff;
+    --vo-surface: #ffffff;
+    --vo-surface-2: #f3f4f6;
+    --vo-fg: #111827;
+    --vo-muted: #4b5563;
+    --vo-border: #d1d5db;
+    --vo-accent: #0d7a7a;
+  }
+  .vo-no-print {
+    display: none !important;
+  }
+}
+
 @theme inline {
   --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
   --font-display: var(--font-display), var(--font-inter), ui-sans-serif, system-ui, sans-serif;

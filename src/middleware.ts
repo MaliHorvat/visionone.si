@@ -3,15 +3,19 @@ import type { NextRequest } from "next/server";
 import { DEFAULT_LOCALE, detectLocaleFromHeader, isLocale } from "@/i18n/config";
 import { isPortalSessionValid, PORTAL_SESSION_COOKIE } from "@/lib/portal-auth";
 
-export default function middleware(request: NextRequest) {
+export default async function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
   const sessionCookie = request.cookies.get(PORTAL_SESSION_COOKIE)?.value;
-  const isLoggedIn = isPortalSessionValid(sessionCookie);
   const isPortalLoginRoute = pathname === "/portal-login";
   const isPortalRoute = pathname === "/portal" || pathname.startsWith("/portal/");
+  // Podpis preverjamo samo na poteh portala, da javna stran ostane hitra.
+  const isLoggedIn =
+    isPortalRoute || isPortalLoginRoute ? await isPortalSessionValid(sessionCookie) : false;
 
   if (isPortalRoute && !isLoggedIn) {
-    return NextResponse.redirect(new URL("/portal-login", request.url));
+    const loginUrl = new URL("/portal-login", request.url);
+    if (pathname !== "/portal") loginUrl.searchParams.set("next", pathname + request.nextUrl.search);
+    return NextResponse.redirect(loginUrl);
   }
 
   if (isPortalLoginRoute && isLoggedIn) {
