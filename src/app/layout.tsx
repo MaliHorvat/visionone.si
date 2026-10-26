@@ -1,51 +1,43 @@
 import type { Metadata, Viewport } from "next";
-import { Inter, Sora } from "next/font/google";
+import { headers } from "next/headers";
 import { Analytics } from "@vercel/analytics/next";
-import { Providers } from "./providers";
+import { LOCALE_META } from "@/i18n/config";
+import { toLocale } from "@/site";
 import "./globals.css";
-
-const inter = Inter({
-  variable: "--font-inter",
-  subsets: ["latin", "latin-ext"],
-});
-
-const display = Sora({
-  variable: "--font-display",
-  subsets: ["latin", "latin-ext"],
-  weight: ["500", "600", "700", "800"],
-});
+import "./site.css";
 
 export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
   viewportFit: "cover",
+  themeColor: "#17212b",
 };
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://visionone.si"),
   title: {
-    default: "VisionOne — Videonadzor, domofoni, omrežja",
+    default: "VisionOne – videonadzor, alarmi, domofoni in omrežja",
     template: "%s · VisionOne",
   },
-  description:
-    "Montaža videonadzora, domofonov in IT/mrežnih rešitev. 24/7 proaktivna podpora.",
+  icons: {
+    icon: [
+      { url: "/favicon-32x32.png", sizes: "32x32", type: "image/png" },
+      { url: "/favicon-16x16.png", sizes: "16x16", type: "image/png" },
+    ],
+    apple: "/apple-touch-icon.png",
+  },
+  manifest: "/site.webmanifest",
 };
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+export default async function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
+  const locale = toLocale((await headers()).get("x-vo-locale"));
   return (
-    <html lang="sl" suppressHydrationWarning>
+    <html lang={LOCALE_META[locale].hrefLang.slice(0, 2)}>
       <head>
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `(function(){try{var k="vo-website-theme",t=localStorage.getItem(k),d=false;if(t==="dark")d=true;else if(t==="system")d=window.matchMedia("(prefers-color-scheme: dark)").matches;document.documentElement.classList.toggle("dark",d)}catch(e){}})();`,
-          }}
-        />
+        <link rel="preload" href="/fonts/archivo-var.woff" as="font" type="font/woff" crossOrigin="anonymous" />
       </head>
-      <body className={`${inter.variable} ${display.variable} min-h-screen min-w-0 overflow-x-clip antialiased`}>
-        <Providers>{children}</Providers>
+      <body>
+        {children}
         <Analytics />
       </body>
     </html>
