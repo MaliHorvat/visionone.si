@@ -5,9 +5,17 @@ import { OpomnikiView } from "./OpomnikiView";
 
 export const dynamic = "force-dynamic";
 
-export default async function OpomnikiPage() {
+type Props = { searchParams?: Promise<{ nov?: string }> };
+
+export default async function OpomnikiPage({ searchParams }: Props) {
+  const params = await searchParams;
   const [reminders, clients] = await Promise.all([listReminders(), listClients()]);
   return (
-    <OpomnikiView reminders={reminders} clients={clients} dbConfigured={isDbConfigured()} />
+    <OpomnikiView
+      reminders={reminders}
+      clients={clients}
+      dbConfigured={isDbConfigured()}
+      openNew={params?.nov === "1"}
+    />
   );
 }

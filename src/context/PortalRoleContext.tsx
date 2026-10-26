@@ -1,6 +1,6 @@
 "use client";
 
-import { createContext, useContext, useMemo, useState } from "react";
+import { createContext, useCallback, useContext, useEffect, useMemo, useState } from "react";
 
 export type PortalRole = "admin" | "client";
 
@@ -9,14 +9,33 @@ type Ctx = {
   setRole: (r: PortalRole) => void;
 };
 
+const STORAGE_KEY = "vo-portal-role";
+
 const PortalRoleContext = createContext<Ctx | null>(null);
 
 export function PortalRoleProvider({ children }: { children: React.ReactNode }) {
-  const [role, setRole] = useState<PortalRole>("admin");
-  const value = useMemo(() => ({ role, setRole }), [role]);
-  return (
-    <PortalRoleContext.Provider value={value}>{children}</PortalRoleContext.Provider>
-  );
+  const [role, setRoleState] = useState<PortalRole>("admin");
+
+  useEffect(() => {
+    try {
+      const stored = localStorage.getItem(STORAGE_KEY);
+      if (stored === "admin" || stored === "client") setRoleState(stored);
+    } catch {
+      /* brskalnik brez shrambe */
+    }
+  }, []);
+
+  const setRole = useCallback((r: PortalRole) => {
+    setRoleState(r);
+    try {
+      localStorage.setItem(STORAGE_KEY, r);
+    } catch {
+      /* ignore */
+    }
+  }, []);
+
+  const value = useMemo(() => ({ role, setRole }), [role, setRole]);
+  return <PortalRoleContext.Provider value={value}>{children}</PortalRoleContext.Provider>;
 }
 
 export function usePortalRole() {

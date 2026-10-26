@@ -1,73 +1,77 @@
 "use client";
 
 import { useState } from "react";
+import { Send } from "lucide-react";
 import { AdminGate } from "@/components/portal/AdminGate";
+import { Button, Card, CardHeader, Field, Notice, PageHeader, inputClass } from "@/components/portal/ui";
 
 export default function ObvestilaPage() {
   const [token, setToken] = useState("");
   const [chatId, setChatId] = useState("");
   const [saved, setSaved] = useState(false);
 
+  const tokenValid = token === "" || /^\d{6,}:[\w-]{20,}$/.test(token.trim());
+  const chatValid = chatId === "" || /^-?\d{5,}$/.test(chatId.trim());
+
   function onSave(e: React.FormEvent) {
     e.preventDefault();
+    if (!tokenValid || !chatValid) return;
     setSaved(true);
   }
 
   return (
     <AdminGate>
-    <div className="mx-auto max-w-xl space-y-6">
-      <div>
-        <h1 className="text-2xl font-bold text-[var(--vo-fg)]">Obvestila — Telegram</h1>
-        <p className="mt-1 text-sm text-[var(--vo-muted)]">
-          Nastavitve za integracijo bota. Vrednosti ostanejo v brskalniku (demo) — v produkciji jih
-          shrani Go backend in ne izpostavljaj v frontendu.
-        </p>
-      </div>
+      <div className="max-w-2xl space-y-6">
+        <PageHeader title="Obvestila" subtitle="Telegram opozorila ob izpadu kamere, snemalnika ali diska." />
 
-      <form
-        onSubmit={onSave}
-        className="space-y-4 rounded-xl border border-[var(--vo-border)] bg-[var(--vo-surface)] p-6 shadow-[var(--vo-card-shadow)]"
-      >
-        <label className="block text-sm">
-          <span className="text-[var(--vo-muted)]">Bot API žeton</span>
-          <input
-            value={token}
-            onChange={(e) => {
-              setToken(e.target.value);
-              setSaved(false);
-            }}
-            placeholder="123456:ABC..."
-            className="mt-1 w-full rounded-lg border border-[var(--vo-border)] bg-[var(--vo-bg)] px-3 py-2 font-mono text-sm"
-            autoComplete="off"
-          />
-        </label>
-        <label className="block text-sm">
-          <span className="text-[var(--vo-muted)]">Chat ID (admin)</span>
-          <input
-            value={chatId}
-            onChange={(e) => {
-              setChatId(e.target.value);
-              setSaved(false);
-            }}
-            placeholder="-100xxxxxxxxxx"
-            className="mt-1 w-full rounded-lg border border-[var(--vo-border)] bg-[var(--vo-bg)] px-3 py-2 font-mono text-sm"
-            autoComplete="off"
-          />
-        </label>
-        <p className="text-xs text-[var(--vo-muted)]">
-          Ob izpadu naprave bo worker v Go klical Telegram API in poslal push obvestilo na ta kanal.
-        </p>
-        <button
-          type="submit"
-          className="w-full rounded-lg bg-[var(--vo-accent)] py-2.5 text-sm font-semibold text-white hover:bg-[var(--vo-accent-hover)]"
-        >
-          Shrani (demo)
-        </button>
-        {saved ? (
-          <p className="text-center text-sm text-[var(--vo-ok)]">Shranjeno v seji (simulacija).</p>
-        ) : null}
-      </form>
-    </div>
+        <Notice tone="warn">
+          Predogled nastavitev — vrednosti se ne shranijo. V produkciji žeton hrani strežnik, nikoli brskalnik.
+        </Notice>
+
+        <Card>
+          <CardHeader title="Telegram bot" icon={Send} />
+          <form onSubmit={onSave} className="space-y-4 p-4">
+            <Field
+              label="Bot API žeton"
+              hint={tokenValid ? "Dobite ga pri @BotFather v Telegramu." : "Oblika žetona ni pravilna (npr. 123456:ABC…)."}
+            >
+              <input
+                type="password"
+                value={token}
+                onChange={(e) => {
+                  setToken(e.target.value);
+                  setSaved(false);
+                }}
+                placeholder="123456:ABC…"
+                className={`${inputClass} font-mono ${tokenValid ? "" : "border-[var(--vo-danger)]"}`}
+                autoComplete="off"
+                aria-invalid={!tokenValid}
+              />
+            </Field>
+            <Field
+              label="Chat ID skupine ali skrbnika"
+              hint={chatValid ? "Za skupine se začne z -100." : "Chat ID je številka (lahko z minusom)."}
+            >
+              <input
+                value={chatId}
+                onChange={(e) => {
+                  setChatId(e.target.value);
+                  setSaved(false);
+                }}
+                placeholder="-100xxxxxxxxxx"
+                inputMode="numeric"
+                className={`${inputClass} font-mono ${chatValid ? "" : "border-[var(--vo-danger)]"}`}
+                autoComplete="off"
+                aria-invalid={!chatValid}
+              />
+            </Field>
+            <Button type="submit" variant="primary" disabled={!token || !chatId || !tokenValid || !chatValid}>
+              Shrani
+            </Button>
+            {saved ? <Notice tone="ok">Nastavitve so preverjene (predogled — niso shranjene).</Notice> : null}
+          </form>
+        </Card>
+      </div>
     </AdminGate>
   );
 }

@@ -5,7 +5,17 @@ import { StrankeView } from "./StrankeView";
 
 export const dynamic = "force-dynamic";
 
-export default async function StrankeListPage() {
+type Props = { searchParams?: Promise<{ nova?: string }> };
+
+export default async function StrankeListPage({ searchParams }: Props) {
+  const params = await searchParams;
   const [clients, packages] = await Promise.all([listClients(), listPackages()]);
-  return <StrankeView clients={clients} packages={packages} dbConfigured={isDbConfigured()} />;
+  return (
+    <StrankeView
+      clients={clients}
+      packages={packages}
+      dbConfigured={isDbConfigured()}
+      openNew={params?.nova === "1"}
+    />
+  );
 }

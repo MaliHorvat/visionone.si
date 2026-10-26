@@ -1,36 +1,40 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# VisionOne — spletna stran in portal
 
-## Getting Started
+Next.js 15 (App Router) + Tailwind 4 + Prisma.
 
-First, run the development server:
+- **Javna stran** — `src/app/(marketing)`
+- **Portal za spremljanje strank** — `src/app/portal` (prijava na `/portal-login`)
+
+## Zagon
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install
+cp .env.example .env.local   # izpolnite vrednosti
+npm run dev                  # http://localhost:3000
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Brez `DATABASE_URL` portal prikazuje demo podatke (dodajanje in brisanje sta onemogočena).
+Z bazo: `npm run db:push` in po želji `npm run db:seed`.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Portal — okoljske spremenljivke
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+| Spremenljivka | Namen |
+| --- | --- |
+| `PORTAL_USERNAME` | Uporabniško ime (privzeto `admin`) |
+| `PORTAL_PASSWORD` | Geslo — **v produkciji obvezno nastavite** |
+| `PORTAL_SESSION_SECRET` | Skrivnost za podpis sejnega piškotka (`openssl rand -hex 32`) |
 
-## Learn More
+Seja je podpisana (HMAC-SHA256) in velja 8 ur. Sprememba gesla ali skrivnosti odjavi vse uporabnike.
 
-To learn more about Next.js, take a look at the following resources:
+## Struktura portala
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+| Pot | Vsebina |
+| --- | --- |
+| `/portal` | Danes — hitra dejanja, opomniki ta teden, poslovanje, stanje objektov |
+| `/portal/stranke` | Seznam strank z iskanjem, filtri, dodajanjem in urejanjem |
+| `/portal/stranke/[id]` | Profil objekta — kamere, NVR, stikala, diski, topologija, rack |
+| `/portal/opomniki` | Vzdrževalni opomniki, razvrščeni po roku |
+| `/portal/ponudbe` | Sestavljanje ponudbe z DDV in tiskom v PDF |
+| `/portal/orodja`, `/cas`, `/inventar`, `/paketi`, `/obvestila` | Terenska orodja in nastavitve |
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Skupni gradniki vmesnika so v `src/components/portal/ui.tsx`, barvni žetoni pa v `.vo-portal` v `src/app/globals.css`.
