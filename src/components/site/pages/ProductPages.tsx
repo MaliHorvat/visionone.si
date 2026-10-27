@@ -183,10 +183,7 @@ export function SurveyPage({ locale }: { locale: Locale }) {
 
       <section className="s-section">
         <div className="s-wrap">
-          <div className="s-feature wide-media flip">
-            <div className="s-plain-media">
-              <img src="/img/anketa-obrazec.webp" alt={t.uiAlt} width={1400} height={933} />
-            </div>
+          <div className="s-two">
             <div>
               <h2>{t.howTitle}</h2>
               <p>{t.howBody}</p>
@@ -196,20 +193,10 @@ export function SurveyPage({ locale }: { locale: Locale }) {
                 ))}
               </ul>
             </div>
-          </div>
-        </div>
-      </section>
-
-      <section className="s-section s-white">
-        <div className="s-wrap">
-          <div className="s-feature wide-media">
             <div>
               <h2>{t.dashTitle}</h2>
               <p>{t.dashBody}</p>
               <p className="s-note">{t.dashNote}</p>
-            </div>
-            <div className="s-plain-media">
-              <img src="/img/anketa-plosca.webp" alt={t.dashAlt} width={1400} height={933} loading="lazy" />
             </div>
           </div>
         </div>

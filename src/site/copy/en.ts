@@ -36,52 +36,56 @@ export const en: SiteCopy = {
     portal: "Portal",
     survey: "Anonymous survey",
     contact: "Contact",
-    cta: "Book a site visit",
+    cta: "Request a quote",
     menuOpen: "Open menu",
     menuClose: "Close menu",
     language: "Language",
     skip: "Skip to content",
   },
   hero: {
-    title: "We install security systems and keep them working.",
-    lead:
-      "CCTV, alarms, fire detection, intercoms and networks for businesses and homes. After installation we service the system regularly and act before something fails.",
-    primary: "Book a site visit",
-    secondary: "See our services",
-    facts: ["Free site visit and quote", "Reply within one working day", "Servicing after installation"],
-    feedAlt: "Two outdoor security cameras on a building wall",
-    osdCamera: "CAM 03 · Warehouse entrance",
+    title: "Security systems for businesses and private properties",
+    lead: "We design, install and maintain CCTV, intrusion and fire protection, intercom systems and communication networks, with complete technical documentation for every system.",
+    primary: "Request a quote",
+    secondary: "Our services",
+    facts: ["Free site survey and quote", "Documentation at handover", "Regular maintenance after installation"],
+    imageAlt: "Outdoor security cameras on a building facade",
   },
   home: {
-    servicesTitle: "What we install",
-    servicesIntro:
-      "We plan, install and configure the whole system. Every device goes into our portal, so IP addresses, passwords and warranties are at hand whenever you need service.",
-    servicesAll: "All services",
-    featureTitle: "From site visit to handover",
-    featureBody:
-      "We start by visiting the site to see what you actually need. The quote separates equipment from labour, so you know what you are paying for.",
-    featureChecks: [
-      "Camera positions drawn on your floor plan",
-      "Recording and phone access set up in front of you",
-      "A handover record with all devices and passwords",
-      "CCTV notice signs prepared in line with Slovenian law",
+    servicesTitle: "Our services",
+    servicesIntro: "We take care of the whole system, from design to handover: equipment selection, installation, configuration and user training. Every device is recorded in our own portal, which makes maintenance fast and reliable.",
+    servicesAll: "More about our services",
+    sectorsTitle: "Who we work for",
+    sectors: [
+      {
+        title: "Businesses and offices",
+        body: "CCTV for entrances and premises, access control, structured cabling and wireless networks.",
+        imageAlt: "Office corridor",
+      },
+      {
+        title: "Industry and logistics",
+        body: "Surveillance of warehouses, yards and production areas, fire detection and reliable networks for large sites.",
+        imageAlt: "Inside a logistics warehouse",
+      },
+      {
+        title: "Residential buildings",
+        body: "Video intercoms, CCTV for shared areas and intrusion protection for houses and apartment buildings.",
+        imageAlt: "Apartment building",
+      },
     ],
-    featureAlt: "Technician with a tablet next to a network cabinet",
-    portalKicker: "Our software",
-    portalTitle: "A portal where every system is recorded down to the last camera",
-    portalBody:
-      "In the VisionOne portal we keep customers, sites and equipment: IP addresses, encrypted passwords, warranties, floor plans with cameras and service dates. Quotes, work orders and invoices come from the same place.",
-    portalCta: "About the portal",
-    portalAlt: "VisionOne portal: today's appointments, enquiries and business overview",
+    featureTitle: "Professional work from survey to handover",
+    featureBody: "We propose a solution after surveying the site. The quote lists equipment and labour separately, and the work follows the agreed plan.",
+    featureChecks: ["Camera and sensor layout on the floor plan", "Recording and remote access configured at handover", "Handover record with a device and access register", "CCTV notices in line with Slovenian data protection law"],
+    featureAlt: "Technician working on an electrical cabinet",
+    processTitle: "How we work with you",
   },
   steps: [
     { title: "Site visit and quote", body: "We inspect the site, propose a solution and send a written quote." },
     { title: "Installation", body: "We install, set up recording and access, and show you how to use it." },
-    { title: "Servicing", body: "We remind you about regular checks and come when something needs replacing." },
+    { title: "Maintenance", body: "We carry out regular inspections and replace worn equipment in good time." },
   ],
   cta: {
-    title: "Tell us what you need",
-    body: "Describe the building and what you want to protect. We reply within one working day.",
+    title: "Request a site survey and quote",
+    body: "Describe the building and your requirements. We reply within one working day.",
     button: "Send an enquiry",
   },
   services: [
@@ -104,7 +108,7 @@ export const en: SiteCopy = {
       title: "Alarm systems",
       short: "Control panels, sensors, phone alerts",
       lead:
-        "An alarm protects the building while you are away. We place sensors where an intruder would actually get in and send alerts to your phone or a security company.",
+        "We design intrusion protection around the risks of each site. Detectors are installed at critical entry points and alarms are sent to your phone or a monitoring centre.",
       points: [
         "Wired and wireless motion and opening sensors",
         "Arming by app, keypad or key fob",
@@ -168,7 +172,7 @@ export const en: SiteCopy = {
       title: "Servicing and maintenance",
       short: "Regular checks, disk replacement, repairs",
       lead:
-        "A system should not be forgotten after installation. We remind you about checks, replace worn disks and update software before something fails.",
+        "Regular maintenance keeps systems reliable. We carry out periodic inspections, replace worn components and keep software up to date.",
       points: ["Regular checks as agreed", "Replacing disks, cameras and power supplies", "Software updates", "Remote help where possible"],
       imageAlt: "Technician working on an electrical cabinet",
     },
@@ -177,7 +181,7 @@ export const en: SiteCopy = {
       title: "Other installations",
       short: "Low-voltage installations to design",
       lead:
-        "If you need something that is not listed, describe it to us. Often it is a combination: a barrier with a camera, access control or camera images on a reception screen.",
+        "We also carry out other low-voltage installations to design, such as access control, barriers and CCTV display screens at reception.",
       points: ["Access control and barriers", "Camera images on screens", "Upgrading existing systems", "Quote after a site visit"],
       imageAlt: "Low-voltage installation in a building",
     },
@@ -243,7 +247,7 @@ export const en: SiteCopy = {
   },
   contactPage: {
     title: "Contact",
-    lead: "Tell us what you need. We reply within one working day; the site visit and quote are free.",
+    lead: "To arrange a site survey or request a quote, fill in the form or write to us. We reply within one working day.",
     email: "Email",
     phone: "Phone",
     hours: "Office hours",

@@ -358,7 +358,6 @@ export const SOFTWARE_LINKS: Record<SoftwareId, { open?: string; source?: string
     page: "/produkti/anketa",
     open: "https://anketa.visionone.si",
     source: "https://github.com/MaliHorvat/anonymous-burnout-tracker",
-    image: "/img/anketa-obrazec.webp",
   },
   poroka: { open: "https://porocni-organizator.visionone.si", source: "https://github.com/MaliHorvat/porocni_organizator" },
 };

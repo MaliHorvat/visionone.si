@@ -37,22 +37,6 @@ export const SURVEY_URL = "https://anketa.visionone.si";
 export const INQUIRY_URL =
   process.env.NEXT_PUBLIC_INQUIRY_URL?.trim() || "https://portal.visionone.si/api/public/inquiry";
 
-/** Fotografija za vsako storitev – vsaka prikazuje točno to, kar storitev je. */
-export const SERVICE_IMAGES: Record<ServiceId, string> = {
-  videonadzor: "/img/svc/videonadzor.webp",
-  alarm: "/img/svc/alarm.webp",
-  pozar: "/img/svc/pozar.webp",
-  domofon: "/img/svc/domofon.webp",
-  mreza: "/img/svc/mreza.webp",
-  wifi: "/img/svc/wifi.webp",
-  servis: "/img/svc/servis.webp",
-  ostalo: "/img/svc/ostalo.webp",
-};
-
-export function serviceThumb(id: ServiceId): string {
-  return `/img/svc/${id}-sm.webp`;
-}
-
 /** Tema v obrazcu, ki se izbere, ko pridete s podstrani storitve. */
 export const SERVICE_TOPIC: Record<ServiceId, TopicId> = {
   videonadzor: "cctv",

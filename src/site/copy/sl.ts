@@ -36,52 +36,56 @@ export const sl: SiteCopy = {
     portal: "Portal",
     survey: "Anonimna anketa",
     contact: "Kontakt",
-    cta: "Dogovorite ogled",
+    cta: "Zahtevajte ponudbo",
     menuOpen: "Odpri meni",
     menuClose: "Zapri meni",
     language: "Jezik",
     skip: "Na vsebino",
   },
   hero: {
-    title: "Montiramo varnostne sisteme in skrbimo, da delujejo.",
-    lead:
-      "Videonadzor, alarmi, požarna signalizacija, domofoni in omrežja za podjetja in domove. Po montaži sistem redno servisiramo in ukrepamo, preden kaj odpove.",
-    primary: "Dogovorite se za ogled",
-    secondary: "Poglejte storitve",
-    facts: ["Ogled in ponudba brez obveznosti", "Odgovor v enem delovnem dnevu", "Servis po montaži"],
-    feedAlt: "Dve zunanji varnostni kameri na steni objekta",
-    osdCamera: "KAM 03 · Vhod skladišče",
+    title: "Varnostni sistemi za podjetja in zasebne objekte",
+    lead: "Načrtujemo, montiramo in vzdržujemo sisteme videonadzora, protivlomne in požarne zaščite, domofonije ter komunikacijska omrežja. Za vsak sistem vodimo popolno tehnično dokumentacijo.",
+    primary: "Zahtevajte ponudbo",
+    secondary: "Področja dela",
+    facts: ["Ogled in ponudba brez obveznosti", "Dokumentacija ob predaji sistema", "Redno vzdrževanje po montaži"],
+    imageAlt: "Zunanji varnostni kameri na fasadi objekta",
   },
   home: {
-    servicesTitle: "Kaj montiramo",
-    servicesIntro:
-      "Načrtujemo, montiramo in nastavimo celoten sistem. Vse naprave vpišemo v naš portal, da imamo pri servisu takoj pri roki IP naslove, gesla in garancije.",
-    servicesAll: "Vse storitve",
-    featureTitle: "Od ogleda do predaje sistema",
-    featureBody:
-      "Najprej pridemo na objekt in pogledamo, kaj res potrebujete. Ponudba je razdeljena na opremo in delo, da veste, za kaj plačujete.",
-    featureChecks: [
-      "Postavitev kamer narišemo na tloris objekta",
-      "Snemanje in dostop na telefonu nastavimo pred vami",
-      "Ob predaji dobite zapisnik z napravami in gesli",
-      "Obvestilo o videonadzoru pripravimo skladno z ZVOP-2",
+    servicesTitle: "Področja dela",
+    servicesIntro: "Celoten sistem prevzamemo od načrta do predaje: izbira opreme, montaža, nastavitev in usposabljanje uporabnikov. Vse naprave evidentiramo v lastnem portalu, kar omogoča hitro in zanesljivo vzdrževanje.",
+    servicesAll: "Podrobneje o storitvah",
+    sectorsTitle: "Za koga delamo",
+    sectors: [
+      {
+        title: "Podjetja in pisarne",
+        body: "Videonadzor vhodov in prostorov, kontrola dostopa, strukturirano ožičenje in brezžično omrežje.",
+        imageAlt: "Hodnik poslovnih prostorov",
+      },
+      {
+        title: "Industrija in logistika",
+        body: "Nadzor skladišč, dvorišč in proizvodnih površin, požarno javljanje in zanesljiva omrežja za večje objekte.",
+        imageAlt: "Notranjost logističnega skladišča",
+      },
+      {
+        title: "Stanovanjski objekti",
+        body: "Video domofonija, videonadzor skupnih prostorov in protivlomna zaščita za hiše in večstanovanjske stavbe.",
+        imageAlt: "Večstanovanjska stavba",
+      },
     ],
-    featureAlt: "Tehnik s tablico ob omari z mrežno opremo",
-    portalKicker: "Naša programska oprema",
-    portalTitle: "Portal, v katerem je vsak vaš sistem zapisan do zadnje kamere",
-    portalBody:
-      "V VisionOne portalu vodimo stranke, objekte in opremo: IP naslove, šifrirana gesla, garancije, tlorise s kamerami in servisne roke. Iz njega izdamo ponudbo, delovni nalog in račun z UPN QR kodo.",
-    portalCta: "Več o portalu",
-    portalAlt: "VisionOne portal: današnji termini, povpraševanja in poslovanje",
+    featureTitle: "Strokovna izvedba od ogleda do predaje",
+    featureBody: "Rešitev predlagamo na podlagi ogleda objekta. Ponudba ločeno navaja opremo in delo, izvedba pa sledi dogovorjenemu načrtu.",
+    featureChecks: ["Razporeditev kamer in senzorjev na tlorisu objekta", "Nastavitev snemanja in oddaljenega dostopa ob predaji", "Zapisnik o predaji z evidenco naprav in dostopnih podatkov", "Obvestila o videonadzoru skladno z ZVOP-2"],
+    featureAlt: "Tehnik pri delu na električni omarici",
+    processTitle: "Potek sodelovanja",
   },
   steps: [
-    { title: "Ogled in ponudba", body: "Pregledamo objekt, predlagamo rešitev in pošljemo pisno ponudbo." },
-    { title: "Montaža in zagon", body: "Montiramo, nastavimo snemanje in dostop ter vas naučimo uporabe." },
-    { title: "Servis", body: "Opomnimo vas na redni pregled in pridemo, ko je treba kaj zamenjati." },
+    { title: "Ogled in ponudba", body: "Pregledamo objekt, predlagamo rešitev in pripravimo pisno ponudbo." },
+    { title: "Montaža in zagon", body: "Sistem montiramo, nastavimo in uporabnike usposobimo za delo z njim." },
+    { title: "Vzdrževanje", body: "Izvajamo redne preglede in pravočasno zamenjamo dotrajano opremo." },
   ],
   cta: {
-    title: "Povejte nam, kaj potrebujete",
-    body: "Opišite objekt in kaj želite zavarovati. Odgovorimo v enem delovnem dnevu.",
+    title: "Zahtevajte ogled in ponudbo",
+    body: "Opišite objekt in vaše zahteve. Odgovorimo v enem delovnem dnevu.",
     button: "Pošljite povpraševanje",
   },
   services: [
@@ -90,7 +94,7 @@ export const sl: SiteCopy = {
       title: "Videonadzor",
       short: "IP kamere, snemalniki, ogled na telefonu",
       lead:
-        "Kamere izberemo glede na to, kaj morajo videti: obraz na vhodu, registrsko tablico na dvorišču ali pregled nad skladiščem. Snemalnik hrani posnetke, vi pa jih gledate na telefonu.",
+        "Kamere izberemo glede na namen nadzora: prepoznavanje oseb na vhodu, branje registrskih tablic ali pregled nad večjimi površinami. Posnetki se hranijo na snemalniku, dostop do žive slike in arhiva pa je mogoč tudi prek mobilne aplikacije.",
       points: [
         "IP kamere z nočnim pogledom za zunaj in znotraj",
         "Snemalnik z diski za več tednov posnetkov",
@@ -104,7 +108,7 @@ export const sl: SiteCopy = {
       title: "Alarmni sistemi",
       short: "Centrale, senzorji, obvestila na telefon",
       lead:
-        "Alarm varuje objekt, ko vas ni. Senzorje postavimo tja, kjer bi vlomilec res vstopil, in nastavimo obvestila na vaš telefon ali varnostno službo.",
+        "Protivlomni sistem načrtujemo glede na tveganja objekta. Javljalnike namestimo na kritične točke vstopa, alarme pa posredujemo na mobilni telefon ali varnostno-nadzorni center.",
       points: [
         "Žični in brezžični senzorji gibanja in odprtja",
         "Vklop z aplikacijo, tipkovnico ali obeskom",
@@ -118,7 +122,7 @@ export const sl: SiteCopy = {
       title: "Požarna signalizacija",
       short: "Javljalniki dima in ročni javljalniki",
       lead:
-        "Požar je treba zaznati v prvih minutah. Montiramo javljalnike dima in toplote, ročne javljalnike, sirene in centralo, ki ob alarmu obvesti odgovorne.",
+        "Sistemi požarnega javljanja omogočajo zgodnje odkrivanje požara. Montiramo avtomatske in ročne javljalnike, alarmne sirene in požarno centralo z obveščanjem odgovornih oseb.",
       points: [
         "Optični javljalniki dima in toplotni javljalniki",
         "Ročni javljalniki in sirene z bliskavico",
@@ -132,7 +136,7 @@ export const sl: SiteCopy = {
       title: "Domofonija",
       short: "Video domofoni in odklepanje na daljavo",
       lead:
-        "Video domofon pokaže, kdo je pred vrati, tudi ko niste doma. Vrata odklenete z notranjo enoto ali s telefonom.",
+        "Video domofonski sistemi omogočajo nadzor vstopa v objekt in odklepanje vrat z notranje enote ali mobilnega telefona.",
       points: [
         "Video domofoni za hiše in večstanovanjske stavbe",
         "Odgovor in odklepanje na telefonu",
@@ -146,7 +150,7 @@ export const sl: SiteCopy = {
       title: "Omrežja",
       short: "Kabliranje, omare, stikala, PoE",
       lead:
-        "Kamere, domofoni in računalniki potrebujejo zanesljivo omrežje. Napeljemo kable, uredimo omaro in označimo vsak priključek, da je tudi čez leta vse jasno.",
+        "Zanesljivo omrežje je osnova za delovanje varnostnih in poslovnih sistemov. Izvedemo strukturirano ožičenje, uredimo komunikacijske omare in dokumentiramo vse priključke.",
       points: [
         "Strukturirano ožičenje Cat6 in optika",
         "Komunikacijske omare z označenimi patch paneli",
@@ -160,7 +164,7 @@ export const sl: SiteCopy = {
       title: "Wi‑Fi",
       short: "Pokritost čez vsa nadstropja",
       lead:
-        "Namesto enega močnega usmerjevalnika postavimo več dostopnih točk, ki skupaj pokrijejo hišo, pisarno ali halo. Telefon med njimi preklaplja brez prekinitev.",
+        "Brezžično omrežje načrtujemo z več dostopnimi točkami, ki zagotavljajo enakomerno pokritost hiše, poslovnih prostorov ali hal brez prekinitev pri gibanju.",
       points: [
         "Načrt postavitve dostopnih točk",
         "Ločeno omrežje za goste",
@@ -174,7 +178,7 @@ export const sl: SiteCopy = {
       title: "Servis in vzdrževanje",
       short: "Redni pregledi, menjava diskov, popravila",
       lead:
-        "Sistem po montaži ne sme biti pozabljen. Opomnimo vas na redni pregled, zamenjamo dotrajane diske in posodobimo programsko opremo, preden kaj odpove.",
+        "Z rednim vzdrževanjem zagotavljamo zanesljivo delovanje sistemov. Izvajamo periodične preglede, menjavo dotrajanih komponent in posodobitve programske opreme.",
       points: [
         "Redni pregledi po dogovoru",
         "Menjava diskov, kamer in napajalnikov",
@@ -188,7 +192,7 @@ export const sl: SiteCopy = {
       title: "Druge montaže",
       short: "Nizkonapetostne inštalacije po projektu",
       lead:
-        "Če potrebujete kaj, česar ni na seznamu, nam opišite. Pogosto gre za kombinacijo: zapornica s kamero, kontrola dostopa ali slika kamer na zaslonu v recepciji.",
+        "Izvajamo tudi druge nizkonapetostne inštalacije po projektu, na primer kontrolo dostopa, zapornice in prikaz videonadzora na zaslonih v recepciji.",
       points: [
         "Kontrola dostopa in zapornice",
         "Prikaz kamer na zaslonih",
@@ -201,7 +205,7 @@ export const sl: SiteCopy = {
   servicesPage: {
     title: "Storitve",
     lead:
-      "Montiramo sisteme, ki varujejo objekt in ljudi v njem, ter omrežje, po katerem delujejo. Vse naprave po montaži vpišemo v portal in jih redno servisiramo.",
+      "Celovite rešitve tehničnega varovanja in komunikacijske infrastrukture: od načrtovanja in montaže do rednega vzdrževanja. Vse nameščene naprave evidentiramo v lastnem portalu.",
     ask: "Pošljite povpraševanje",
     processTitle: "Kako poteka delo",
   },
@@ -268,7 +272,7 @@ export const sl: SiteCopy = {
   },
   contactPage: {
     title: "Kontakt",
-    lead: "Opišite, kaj potrebujete. Odgovorimo v enem delovnem dnevu, ogled in ponudba sta brez obveznosti.",
+    lead: "Za ogled objekta ali pripravo ponudbe izpolnite obrazec ali nam pišite. Odgovorimo v enem delovnem dnevu.",
     email: "E-pošta",
     phone: "Telefon",
     hours: "Delovni čas",
@@ -284,7 +288,7 @@ export const sl: SiteCopy = {
   },
   form: {
     title: "Pošljite povpraševanje",
-    intro: "Dovolj je ime, e-pošta ali telefon in nekaj besed o tem, kaj potrebujete.",
+    intro: "Navedite kontaktne podatke in kratek opis objekta ter vaših zahtev.",
     topicLegend: "Kaj vas zanima?",
     topics: {
       cctv: "Videonadzor",

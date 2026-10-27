@@ -1,8 +1,10 @@
 import Link from "next/link";
 import type { Locale } from "@/i18n/config";
-import { getCopy, getSoftware, href, serviceThumb } from "@/site";
-import { HeroFeed } from "../HeroFeed";
+import { getCopy, getSoftware, href } from "@/site";
+import { ServiceIcon } from "../Icon";
 import { CtaBand, Shot, Steps } from "../parts";
+
+const SECTOR_IMAGES = ["/img/foto/podjetja.webp", "/img/foto/industrija.webp", "/img/foto/stanovanjski.webp"];
 
 export function HomePage({ locale }: { locale: Locale }) {
   const t = getCopy(locale);
@@ -11,8 +13,11 @@ export function HomePage({ locale }: { locale: Locale }) {
   return (
     <>
       <section className="s-hero s-on-dark">
+        <div className="s-hero-media">
+          <img src="/img/foto/kamere.webp" alt={t.hero.imageAlt} width={1400} height={934} fetchPriority="high" />
+        </div>
         <div className="s-wrap">
-          <div>
+          <div className="s-hero-text">
             <h1>{t.hero.title}</h1>
             <p className="s-lead">{t.hero.lead}</p>
             <div className="s-btns">
@@ -23,48 +28,67 @@ export function HomePage({ locale }: { locale: Locale }) {
                 {t.hero.secondary}
               </Link>
             </div>
-            <ul className="s-hero-facts">
-              {t.hero.facts.map((f) => (
-                <li key={f}>{f}</li>
-              ))}
-            </ul>
           </div>
-          <HeroFeed alt={t.hero.feedAlt} camera={t.hero.osdCamera} />
+        </div>
+      </section>
+
+      <section className="s-facts" aria-label={t.hero.secondary}>
+        <div className="s-wrap">
+          <ul>
+            {t.hero.facts.map((f) => (
+              <li key={f}>{f}</li>
+            ))}
+          </ul>
         </div>
       </section>
 
       <section className="s-section">
-        <div className="s-wrap s-split-head">
-          <header>
+        <div className="s-wrap">
+          <header className="s-sec-head">
             <h2>{t.home.servicesTitle}</h2>
             <p>{t.home.servicesIntro}</p>
-            <Link className="s-link" href={href(locale, "/storitve")}>
-              {t.home.servicesAll}
-            </Link>
           </header>
-          <ul className="s-svc-list">
+          <ul className="s-svc-grid">
             {t.services.map((s) => (
               <li key={s.id}>
                 <Link href={href(locale, `/storitve#${s.id}`)}>
-                  <span className="thumb">
-                    <img src={serviceThumb(s.id)} alt="" width={76} height={76} loading="lazy" />
-                  </span>
-                  <span>
-                    <strong>{s.title}</strong>
-                    <span>{s.short}</span>
-                  </span>
+                  <ServiceIcon id={s.id} />
+                  <strong>{s.title}</strong>
+                  <span>{s.short}</span>
                 </Link>
+              </li>
+            ))}
+          </ul>
+          <p className="s-more">
+            <Link className="s-link" href={href(locale, "/storitve")}>
+              {t.home.servicesAll}
+            </Link>
+          </p>
+        </div>
+      </section>
+
+      <section className="s-section s-white">
+        <div className="s-wrap">
+          <header className="s-sec-head">
+            <h2>{t.home.sectorsTitle}</h2>
+          </header>
+          <ul className="s-sectors">
+            {t.home.sectors.map((s, i) => (
+              <li key={s.title}>
+                <img src={SECTOR_IMAGES[i]} alt={s.imageAlt} width={900} height={675} loading="lazy" />
+                <h3>{s.title}</h3>
+                <p>{s.body}</p>
               </li>
             ))}
           </ul>
         </div>
       </section>
 
-      <section className="s-section s-white">
+      <section className="s-section">
         <div className="s-wrap">
           <div className="s-feature">
             <div className="s-feature-media">
-              <img src="/img/ogled.webp" alt={t.home.featureAlt} width={1200} height={800} loading="lazy" />
+              <img src="/img/foto/montaza.webp" alt={t.home.featureAlt} width={1200} height={801} loading="lazy" />
             </div>
             <div>
               <h2>{t.home.featureTitle}</h2>
@@ -76,7 +100,8 @@ export function HomePage({ locale }: { locale: Locale }) {
               </ul>
             </div>
           </div>
-          <Steps steps={t.steps} />
+          <h2 className="s-steps-title">{t.home.processTitle}</h2>
+          <Steps steps={t.steps} title={t.home.processTitle} />
         </div>
       </section>
 

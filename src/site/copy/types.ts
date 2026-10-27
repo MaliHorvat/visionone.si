@@ -38,22 +38,19 @@ export type SiteCopy = {
     primary: string;
     secondary: string;
     facts: string[];
-    feedAlt: string;
-    osdCamera: string;
+    imageAlt: string;
   };
   home: {
     servicesTitle: string;
     servicesIntro: string;
     servicesAll: string;
+    sectorsTitle: string;
+    sectors: { title: string; body: string; imageAlt: string }[];
     featureTitle: string;
     featureBody: string;
     featureChecks: string[];
     featureAlt: string;
-    portalKicker: string;
-    portalTitle: string;
-    portalBody: string;
-    portalCta: string;
-    portalAlt: string;
+    processTitle: string;
   };
   steps: Step[];
   cta: { title: string; body: string; button: string };

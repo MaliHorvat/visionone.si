@@ -48,7 +48,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       siteName: "VisionOne",
       locale: LOCALE_META[locale].hrefLang,
       type: "website",
-      images: [{ url: "/img/hero-kamere.webp", width: 1400, height: 934 }],
+      images: [{ url: "/img/foto/kamere.webp", width: 1400, height: 934 }],
     },
   };
 }

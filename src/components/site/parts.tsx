@@ -52,11 +52,6 @@ export function PageHead({ title, lead, children }: { title: string; lead?: stri
 export function Shot({ src, alt, eager = false }: { src: string; alt: string; eager?: boolean }) {
   return (
     <div className="s-shot">
-      <div className="s-shot-bar" aria-hidden="true">
-        <i />
-        <i />
-        <i />
-      </div>
       <img src={src} alt={alt} width={1600} height={1011} loading={eager ? "eager" : "lazy"} />
     </div>
   );
